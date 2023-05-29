@@ -1,6 +1,6 @@
 import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import { getUser } from '$lib/auth';
+import { getUserFromJWT } from '$lib/auth';
 
 export const load: PageServerLoad = async ({ cookies }) => {
   const token = cookies.get("session");
@@ -9,7 +9,7 @@ export const load: PageServerLoad = async ({ cookies }) => {
     throw redirect(303, '/admin/login');
   }
 
-  const { success, user } = getUser(token);
+  const { success, user } = getUserFromJWT(token);
   if (!success) {
     throw redirect(303, '/admin/login');
   }

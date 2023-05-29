@@ -6,7 +6,6 @@ import { JWTKEY as secretKey} from '$env/static/private';
 const database = {
     users: [
         { username: 'admin', password: bcrypt.hashSync('admin', bcrypt.genSaltSync(10)) },
-        { username: 'user', password: bcrypt.hashSync('user', bcrypt.genSaltSync(10))}
     ]
 }
 
@@ -16,7 +15,7 @@ export const login = (username: string, password: string): { success: boolean, t
     return bcrypt.compareSync(password, userInDB.password) ? { success: true, token: jwt.sign({ username }, secretKey) } : { success: false };
 }
 
-export const getUser = (token: string): { success: boolean, user?: string } => {
+export const getUserFromJWT = (token: string): { success: boolean, user?: string } => {
     try {
         const { username } = jwt.verify(token, secretKey);
         return { user: username, success: true };
