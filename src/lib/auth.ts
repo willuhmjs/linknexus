@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import jwt from "jsonwebtoken";
-import { JWTKEY as secretKey} from '$env/static/private';
+import { JWT_KEY } from '$env/static/private';
 
 
 const database = {
@@ -17,7 +17,7 @@ export const login = (username: string, password: string): { success: boolean, t
 
 export const getUserFromJWT = (token: string): { success: boolean, user?: string } => {
     try {
-        const { username } = jwt.verify(token, secretKey);
+        const { username } = jwt.verify(token, JWT_KEY);
         return { user: username, success: true };
     } catch (e) {
         return { success: false };
