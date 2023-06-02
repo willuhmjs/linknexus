@@ -2,23 +2,22 @@ import mongoose, { Schema } from 'mongoose';
 import { MONGO_URI } from "$env/static/private";
 
 // initialize database
-mongoose.connect(MONGO_URI).then(() => {
-    console.log('Connected to MongoDB');
-}).catch((err) => {
-    console.log(err);
-});
+try {
+    await mongoose.connect(MONGO_URI);
+    console.log("Connected to database");
+} catch (e) {
+    console.error(e);
+}
 
 export const User = mongoose.model('User', new Schema({
-    email: String,
-    password: String,
-    username: String,
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    username: { type: String, required: true, unique: true },
+    bio: { type: String, required: false },
+    theme: { type: Number, required: true, default: 0 },
+    links: [{
+        title: { type: String, required: true },
+        url: { type: String, required: true},
+        icon: { type: String, required: false }
+    }]
 }, { timestamps: true }))
-
-export const UserData = mongoose.model('UserData', new Schema({
-    user: { type: Schema.Types.ObjectId, ref: 'User' },
-    data: Object,
-}, { timestamps: true }))
-
-// example to link user and userdata 
-// const user = await User.findOne({ email: 'test@test' })
-// const userdata = await UserData.findOne({ user: user._id })
