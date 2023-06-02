@@ -9,7 +9,7 @@ export const load: PageServerLoad = async ({ cookies }) => {
     throw redirect(303, '/admin/login');
   }
 
-  const { success, user } = getUserFromJWT(token);
+  const { success, user } = await getUserFromJWT(token);
   if (!success) {
     throw redirect(303, '/admin/login');
   }
