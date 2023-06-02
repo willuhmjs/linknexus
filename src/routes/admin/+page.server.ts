@@ -13,8 +13,7 @@ export const load: PageServerLoad = async ({ cookies }) => {
   if (!success) {
     throw redirect(303, '/admin/login');
   }
-  console.log(user);
   return {
-    undefined
+    user: JSON.parse(JSON.stringify(user))
   };
 };
