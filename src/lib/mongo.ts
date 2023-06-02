@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 import { MONGO_URI } from "$env/static/private";
-
+import type Theme from '$lib/theme';
 export const connect = async () => {
     await mongoose.connect(MONGO_URI);
     console.log("connected to mongo");
@@ -18,11 +18,6 @@ export const User = mongoose.model<IUser>('User', new Schema({
         icon: { type: String, required: false }
     }]
 }, { timestamps: true }))
-
-enum Theme {
-    SIMPLE_LIGHT = 0,
-    SIMPLE_DARK = 1
-}
 
 export interface IUser extends mongoose.Document {
     email: string;
