@@ -1,16 +1,17 @@
 import { redirect, type Actions } from '@sveltejs/kit';
-import { login } from '$lib/auth';
+import { register } from '$lib/auth';
 
 export const actions = {
     default: async ({ cookies, request }) => {
         const data = await request.formData();
         const username = data.get('username')?.toString();
         const password = data.get('password')?.toString();
-        if (!username || !password) {
+        const email = data.get('email')?.toString();
+        if (!username || !password || !email) {
             return { success: false };
         }
-    
-        const { success, token } = await login(username, password);
+        console.log({ username, password, email });
+        const { success, token } = await register(email, username, password);
         
         if (token) {
             cookies.set('session', token, {

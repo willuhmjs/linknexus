@@ -1,15 +1,12 @@
 import mongoose, { Schema } from 'mongoose';
 import { MONGO_URI } from "$env/static/private";
 
-// initialize database
-try {
+export const connect = async () => {
     await mongoose.connect(MONGO_URI);
-    console.log("Connected to database");
-} catch (e) {
-    console.error(e);
+    console.log("connected to mongo");
 }
 
-export const User = mongoose.model('User', new Schema({
+export const User = mongoose.model<IUser>('User', new Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     username: { type: String, required: true, unique: true },
@@ -21,3 +18,21 @@ export const User = mongoose.model('User', new Schema({
         icon: { type: String, required: false }
     }]
 }, { timestamps: true }))
+
+enum Theme {
+    SIMPLE_LIGHT = 0,
+    SIMPLE_DARK = 1
+}
+
+export interface IUser extends mongoose.Document {
+    email: string;
+    password: string;
+    username: string;
+    bio?: string;
+    theme: Theme;
+    links: {
+        title: string;
+        url: string;
+        icon?: string;
+    }[];
+}
