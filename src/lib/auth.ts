@@ -12,8 +12,9 @@ export const login = async (username: string, password: string): Promise<{ succe
 export const getUserFromJWT = async (token: string): Promise<{ success: boolean; user?: IUser; }> => {
     try {
         const { username } = jwt.verify(token, JWT_KEY);
-        const user = await getUserFromUsername(username);
-        return { user, success: true };
+        const { user, success }: { user?: IUser, success: boolean } = await getUserFromUsername(username);
+        return { user, success };
+
     } catch {
         return { success: false };
     }
