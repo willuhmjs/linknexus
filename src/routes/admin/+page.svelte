@@ -7,5 +7,8 @@
     <h2>{data.user.email}</h2>
     <p>{data.user.bio || "No bio!"}</p>
     <p>{Theme[data.user.theme]}</p>
-
 {/if}
+
+<form method="POST">
+    <input type="submit"/>
+</form>
