@@ -14,13 +14,13 @@ const checkAuth = async (cookies: Cookies) => {
     }
   }
 
-  const { user } = await getUserFromJWT(token);
-  return { user };
+  const user = await getUserFromJWT(token);
+  return user;
 }
   
 
 export const load: PageServerLoad = async ({ cookies }) => {
-  const { user } = await checkAuth(cookies);
+  const user = await checkAuth(cookies);
   if (!user) return { user };
   return {
     user: JSON.parse(JSON.stringify(user))
@@ -69,7 +69,7 @@ export const actions = {
     },
 
      bio: async ({ cookies, request }) => {
-      const { user } = await checkAuth(cookies);
+      const user = await checkAuth(cookies);
       if (!user) return fail(403, { ref: "bio", error: true, message: "Not authorized!" });
 
       const data = await request.formData();
@@ -83,12 +83,6 @@ export const actions = {
       await user.save();
       
       return { ref: "bio", error: false, message: "Bio updated!" };
-    },
-
-    special2: async ({ cookies, request }) => {
-      const { authorized } = await checkAuth(cookies);
-      if (!authorized) return fail(403, { authorized });
-      return { ref: "special2", data: "special2 fired" };
     }
 
 } satisfies Actions;
