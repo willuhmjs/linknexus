@@ -29,7 +29,6 @@ const checkAuth = async (cookies: Cookies) => {
   
 
 export const load: PageServerLoad = async ({ cookies }) => {
-  console.log("this loads whenever GLOBAL")
   const { user } = await checkAuth(cookies);
   if (!user) return { user };
   return {
