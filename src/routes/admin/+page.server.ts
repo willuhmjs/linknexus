@@ -104,15 +104,12 @@ export const actions = {
     if (!user) return fail(403, { ref: 'theme', error: true, message: 'Not authorized!' });
 
     const data = await request.formData();
-    console.log(data.get('theme')?.toString());
     const theme = parseInt(data.get('theme')?.toString() || "");
 
     // validate theme
-    console.log(theme);
     try {
       validator.theme.parse(theme);
     } catch (e) {
-      console.error(e);
       return fail(403, { ref: 'theme', error: true, message: e.errors[0].message });
     }
 
