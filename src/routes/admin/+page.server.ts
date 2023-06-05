@@ -76,8 +76,6 @@ export const actions = {
     },
 
     special: async ({ cookies, request }) => {
-      console.log("this loads whenever SPECIAL")
-      // this gives me headaches. idk how to make auth checking work
       const { authorized } = await checkAuth(cookies);
       if (!authorized) return fail(403, { success: false });
     }
