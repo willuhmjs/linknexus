@@ -68,7 +68,6 @@ export const actions = {
               httpOnly: true,
               maxAge: 60 * 60 * 24 * 7 // 1 week
           });
-          // redirect to admin page
       } else {
           return fail(403, { success })
       }
