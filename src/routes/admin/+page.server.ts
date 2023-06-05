@@ -38,7 +38,7 @@ export const actions = {
         validator.username.parse(username);
         validator.password.parse(password)
       } catch (e) {
-        return fail(403, { success: false, message: e.errors[0].message })
+        return fail(403, { success: false, message: e.errors[0].message, username, email })
       }
 
       // redundant check to prevent type errors
@@ -51,7 +51,7 @@ export const actions = {
               maxAge: 60 * 60 * 24 * 7 // 1 week
           });
       } else {
-          return fail(403, { success, message: "User already exists!" })
+          return fail(403, { success, message: "User already exists!", username, email })
       }
     },
 
@@ -70,7 +70,7 @@ export const actions = {
               maxAge: 60 * 60 * 24 * 7 // 1 week
           });
       } else {
-          return fail(403, { success, message: "Invalid username or password!" })
+          return fail(403, { success, message: "Invalid username or password!", username })
       }
     },
 

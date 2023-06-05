@@ -24,14 +24,14 @@
     {/if}
     <h2>Login</h2>
     <form method="POST" action="?/login">
-        <input type="text" name="username" placeholder="Username" />
-        <input type="password" name="password" placeholder="Password" />
+        <input type="text" name="username" placeholder="Username" value={form?.username || ""}/>
+        <input type="password" name="password" placeholder="Password"/>
         <button type="submit">Login</button>
     </form>
     <h2>Register</h2>
     <form method="POST" action="?/register">
-        <input type="text" name="username" placeholder="Username" />
-        <input type="email" name="email" placeholder="Email" />
+        <input type="text" name="username" placeholder="Username" value={form?.username || ""} />
+        <input type="email" name="email" placeholder="Email" value={form?.email || ""} />
         <input type="password" name="password" placeholder="Password" />
         <button type="submit">Login</button>
     </form>
