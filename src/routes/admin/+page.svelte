@@ -11,6 +11,9 @@
 	<p>{data.user.bio || 'No bio!'}</p>
 	<p>{Theme[data.user.theme]}</p>
     <form method="POST" action="?/theme">
+        {#if form?.ref === 'theme'}
+            <p style={form?.error ? 'color: red;' : 'color: green;'}>{form?.message}</p>
+        {/if}
         <select name="theme">
           {#each Object.keys(Theme).filter(value => !isNaN(parseFloat(value))) as theme}
             <option selected={(theme == data.user.theme)} value={theme}>{Theme[theme]}</option>
