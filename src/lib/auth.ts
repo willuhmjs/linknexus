@@ -6,7 +6,7 @@ import { User, type IUser } from '$lib/mongo';
 export const login = async (username: string, password: string): Promise<{ success: boolean, token?: string }> => {
     const userInDB = await User.findOne({ username })
     if (!userInDB || false) return { success: false };   
-    return bcrypt.compareSync(password, userInDB.password) ? { success: true, token: jwt.sign({ username }, JWT_KEY) } : { success: false };
+    return bcrypt.compareSync(password, userInDB.password) ? { success: true, token: jwt.sign({ username }, JWT_KEY, { expiresIn: "7d" }) } : { success: false };
 }
 
 export const getUserFromJWT = async (token: string): Promise<{ success: boolean; user?: IUser; }> => {
@@ -29,7 +29,7 @@ export const getUserFromUsername = async (username: string): Promise<{ success: 
 export const register = async (email: string, username: string, password: string): Promise<{ success: boolean; token?: string; }> => {
     try {
         await User.create({ email, username, password: bcrypt.hashSync(password, bcrypt.genSaltSync(10)) });
-        return { success: true, token: jwt.sign({ username }, JWT_KEY) };
+        return { success: true, token: jwt.sign({ username }, JWT_KEY, { expiresIn: "7d" }) };
     } catch (e) {
         console.error(e);
         return { success: false };
