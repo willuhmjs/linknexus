@@ -46,7 +46,7 @@ export const theme = z
 		invalid_type_error: 'Theme must be a number.'
 	})
 	.min(0, { message: 'Theme must be at least 0.' })
-	.max(Object.keys(Theme).length - 1, { message: 'Theme must be at most 1.' })
+	.max(Object.keys(Theme).length - 1, { message: `Theme must be at most ${Object.keys(Theme).length -1}.` })
 	.transform((val) => {
 		return Theme[val];
 	});
