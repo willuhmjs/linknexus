@@ -1,6 +1,8 @@
 <script lang="ts">
     export let data;
+    export let form: ActionData;
     import Theme from "$lib/theme";
+	import type { ActionData } from "./$types.js";
 </script>
 
 {#if data?.authorized}
@@ -10,6 +12,16 @@
     <p>{Theme[data.user.theme]}</p>
 
     <form method="POST" action="?/special">
+        {#if form?.ref === "special"}
+            <p>{form.data}</p>
+        {/if}
+        <input type="submit"/>
+    </form>
+
+    <form method="POST" action="?/special2">
+        {#if form?.ref === "special2"}
+            <p>{form.data}</p>
+        {/if}
         <input type="submit"/>
     </form>
 {:else}

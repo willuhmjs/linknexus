@@ -77,7 +77,14 @@ export const actions = {
 
     special: async ({ cookies, request }) => {
       const { authorized } = await checkAuth(cookies);
-      if (!authorized) return fail(403, { success: false });
+      if (!authorized) return fail(403, { authorized });
+      return { ref: "special", data: "special1 fired" };
+    },
+
+    special2: async ({ cookies, request }) => {
+      const { authorized } = await checkAuth(cookies);
+      if (!authorized) return fail(403, { authorized });
+      return { ref: "special2", data: "special2 fired" };
     }
 
 } satisfies Actions;
