@@ -2,6 +2,8 @@ import { fail, type Cookies } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import type { Actions } from './$types';
 import { getUserFromJWT, login, register } from '$lib/auth';
+import * as validator from "$lib/validation"; 
+
 
 const checkAuth = async (cookies: Cookies) => {
   const token = cookies.get("session");
@@ -82,9 +84,14 @@ export const actions = {
 
       const data = await request.formData();
       const bio = data.get('bio')?.toString();
+
+      // validate bio
+      const d = validator.bio.safeParse(bio);
+      if (!d.success) return fail(403, { ref: "bio", error: true, message: d.error.errors[0].message });
+
       user.bio = bio;
       await user.save();
-      if (!bio) return fail(403, { ref: "bio", error: true, message: "Bio is missing!" });
+      
       return { ref: "bio", error: false, message: "Bio updated!" };
     },
 
