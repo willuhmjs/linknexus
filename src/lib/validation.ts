@@ -19,6 +19,10 @@ export const password = z
     message: 'Password should contain at least one lowercase letter, one uppercase letter, one digit, and one special character.',
   });
 
+export const email = z.string({
+    required_error: "Email is required.",
+    invalid_type_error: "Email must be a string.",
+}).email({ message: "Email must be a valid email address."});
 
 export const bio = z.string({
     required_error: "Bio is required.",
