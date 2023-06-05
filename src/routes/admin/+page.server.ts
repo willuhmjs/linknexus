@@ -10,9 +10,7 @@ const checkAuth = async (cookies: Cookies) => {
   const token = cookies.get("session");
   
   if (!token) {
-    return {
-      user: null
-    }
+    return null;
   }
 
   const user = await getUserFromJWT(token);
