@@ -97,5 +97,28 @@ export const actions = {
 		await validUser.save();
 
 		return { ref: 'bio', error: false, message: 'Bio updated!' };
-	}
+	},
+
+  theme: async ({ cookies, request }) => {
+    const user = await checkAuth(cookies);
+    if (!user) return fail(403, { ref: 'theme', error: true, message: 'Not authorized!' });
+
+    const data = await request.formData();
+    console.log(data.get('theme')?.toString());
+    const theme = parseInt(data.get('theme')?.toString() || "");
+
+    // validate theme
+    console.log(theme);
+    try {
+      validator.theme.parse(theme);
+    } catch (e) {
+      console.error(e);
+      return fail(403, { ref: 'theme', error: true, message: e.errors[0].message });
+    }
+
+    const validUser = user as IUser;
+    validUser.theme = theme;
+    await validUser.save();
+  },
+
 } satisfies Actions;

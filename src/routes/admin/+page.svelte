@@ -10,6 +10,14 @@
 	<h2>{data.user.email}</h2>
 	<p>{data.user.bio || 'No bio!'}</p>
 	<p>{Theme[data.user.theme]}</p>
+    <form method="POST" action="?/theme">
+        <select name="theme">
+          {#each Object.keys(Theme).filter(value => !isNaN(parseFloat(value))) as theme}
+            <option value={theme}>{Theme[theme]}</option>
+          {/each}
+        </select>
+        <button type="submit">Update Theme</button>
+      </form>
     <form method="POST" action="?/logout">
         <button type="submit">Logout</button>
     </form>
