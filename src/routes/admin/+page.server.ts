@@ -19,7 +19,7 @@ const checkAuth = async (cookies: Cookies) => {
     }
   } else {
     return {
-      user: JSON.parse(JSON.stringify(user)),
+      user,
       authorized: true
     }
   }
@@ -28,9 +28,12 @@ const checkAuth = async (cookies: Cookies) => {
 
 export const load: PageServerLoad = async ({ cookies }) => {
   console.log("this loads whenever GLOBAL")
-  return checkAuth(cookies);
+  const { user } = await checkAuth(cookies);
+  if (!user) return { user };
+  return {
+    user: JSON.parse(JSON.stringify(user))
+  }
 };
-
 
 export const actions = {
     register: async ({ cookies, request }) => {
@@ -71,14 +74,18 @@ export const actions = {
       } else {
           return fail(403, { success })
       }
-
-
     },
 
-    special: async ({ cookies, request }) => {
-      const { authorized } = await checkAuth(cookies);
-      if (!authorized) return fail(403, { authorized });
-      return { ref: "special", data: "special1 fired" };
+     bio: async ({ cookies, request }) => {
+      const { user } = await checkAuth(cookies);
+      if (!user) return fail(403, { ref: "bio", error: true, message: "Not authorized!" });
+
+      const data = await request.formData();
+      const bio = data.get('bio')?.toString();
+      user.bio = bio;
+      await user.save();
+      if (!bio) return fail(403, { ref: "bio", error: true, message: "Bio is missing!" });
+      return { ref: "bio", error: false, message: "Bio updated!" };
     },
 
     special2: async ({ cookies, request }) => {
