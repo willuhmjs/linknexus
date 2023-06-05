@@ -10,7 +10,9 @@
 	<h2>{data.user.email}</h2>
 	<p>{data.user.bio || 'No bio!'}</p>
 	<p>{Theme[data.user.theme]}</p>
-
+    <form method="POST" action="?/logout">
+        <button type="submit">Logout</button>
+    </form>
 	<form method="POST" action="?/bio">
 		{#if form?.ref === 'bio'}
 			<p style={form?.error ? 'color: red;' : 'color: green;'}>{form?.message}</p>

@@ -73,6 +73,11 @@ export const actions = {
 		}
 	},
 
+  logout: ({ cookies }) => {
+    cookies.delete('session');
+  },
+
+
 	bio: async ({ cookies, request }) => {
 		const user = await checkAuth(cookies);
 		if (!user) return fail(403, { ref: 'bio', error: true, message: 'Not authorized!' });
