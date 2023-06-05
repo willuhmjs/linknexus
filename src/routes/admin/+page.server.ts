@@ -41,9 +41,8 @@ export const actions = {
         return fail(403, { success: false, message: e.errors[0].message })
       }
 
-      if (!username || !password || !email) {
-          return fail(403, { success: false })
-      }
+      // redundant check to prevent type errors
+      if (!username || !password || !email) return;
       const { success, token } = await register(email, username, password);
       
       if (token) {
@@ -52,7 +51,7 @@ export const actions = {
               maxAge: 60 * 60 * 24 * 7 // 1 week
           });
       } else {
-          return fail(403, { success })
+          return fail(403, { success, message: "User already exists!" })
       }
     },
 
@@ -60,9 +59,8 @@ export const actions = {
       const data = await request.formData();
       const username = data.get('username')?.toString();
       const password = data.get('password')?.toString();
-      if (!username || !password) {
-          return fail(403, { success: false })
-      }
+
+      if (!username || !password) return fail(403, { success: false, message: "Invalid username or password!" })
   
       const { success, token } = await login(username, password);
       
@@ -72,7 +70,7 @@ export const actions = {
               maxAge: 60 * 60 * 24 * 7 // 1 week
           });
       } else {
-          return fail(403, { success })
+          return fail(403, { success, message: "Invalid username or password!" })
       }
     },
 
