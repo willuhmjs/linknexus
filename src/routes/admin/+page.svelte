@@ -18,8 +18,8 @@
 			<p style={form?.error ? 'color: red;' : 'color: green;'}>{form?.message}</p>
 		{/if}
 		<input type="text" name="bio" placeholder={data?.user.bio || ''} />
-		<input type="submit" />
-	</form>
+        <button type="submit">Update Bio</button>
+    </form>
 {:else}
 	{#if form?.success === false}
 		<p style="color: red;">{form.message}</p>
