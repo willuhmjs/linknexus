@@ -85,7 +85,13 @@ export const actions = {
 
       // validate bio
       const d = validator.bio.safeParse(bio);
-      if (!d.success) return fail(403, { ref: "bio", error: true, message: d.error.errors[0].message });
+      try {
+        validator.bio.parse(bio)
+      } catch (e) {
+        if (!d.success) return fail(403, { ref: "bio", error: true, message: e.errors[0].message });
+      }
+
+
 
       const validUser = user as IUser;
       validUser.bio = bio;
