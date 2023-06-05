@@ -13,7 +13,7 @@
     <form method="POST" action="?/theme">
         <select name="theme">
           {#each Object.keys(Theme).filter(value => !isNaN(parseFloat(value))) as theme}
-            <option value={theme}>{Theme[theme]}</option>
+            <option selected={(theme == data.user.theme)} value={theme}>{Theme[theme]}</option>
           {/each}
         </select>
         <button type="submit">Update Theme</button>
