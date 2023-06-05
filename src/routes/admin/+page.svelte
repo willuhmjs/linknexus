@@ -19,6 +19,9 @@
         <input type="submit"/>
     </form>
 {:else}
+    {#if form?.success === false}
+        <p style="color: red;">{form.message}</p>
+    {/if}
     <h2>Login</h2>
     <form method="POST" action="?/login">
         <input type="text" name="username" placeholder="Username" />

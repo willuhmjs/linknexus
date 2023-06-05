@@ -32,6 +32,15 @@ export const actions = {
       const username = data.get('username')?.toString();
       const password = data.get('password')?.toString();
       const email = data.get('email')?.toString();
+
+      try {
+        validator.email.parse(email);
+        validator.username.parse(username);
+        validator.password.parse(password)
+      } catch (e) {
+        return fail(403, { success: false, message: e.errors[0].message })
+      }
+
       if (!username || !password || !email) {
           return fail(403, { success: false })
       }
