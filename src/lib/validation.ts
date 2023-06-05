@@ -1,0 +1,26 @@
+import { z } from 'zod';
+
+// contains validation schemas
+export const username = z.string({
+    required_error: "Username is required.",
+    invalid_type_error: "Username must be a string.",
+}).min(1, { message: "Username must be at least 3 characters long."}).max(15, { message: "Username must be at most 15 characters long."}).regex(/^[a-zA-Z0-9\s]*$/, {
+    message: 'Username should only contain alphanumeric characters and spaces.'
+});
+
+export const password = z
+  .string({
+    required_error: "Password is required.",
+    invalid_type_error: "Password must be a string.",
+  })
+  .min(8, { message: "Password must be at least 8 characters long." })
+  .max(30, { message: "Password must be at most 30 characters long." })
+  .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\-_=+{};:,<.>])/, {
+    message: 'Password should contain at least one lowercase letter, one uppercase letter, one digit, and one special character.',
+  });
+
+
+export const bio = z.string({
+    required_error: "Bio is required.",
+    invalid_type_error: "Bio must be a string.",
+}).min(1, { message: "Bio must be at least 1 character long."}).max(160, { message: "Bio must be at most 160 characters long."})
