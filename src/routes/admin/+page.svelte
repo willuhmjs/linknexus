@@ -1,39 +1,38 @@
 <script lang="ts">
-    export let data;
-    export let form: ActionData;
-    import Theme from "$lib/theme";
-	import type { ActionData } from "./$types.js";
+	export let data;
+	export let form: ActionData;
+	import Theme from '$lib/theme';
+	import type { ActionData } from './$types.js';
 </script>
 
 {#if data?.user}
-    <h1>{data.user.username}</h1>
-    <h2>{data.user.email}</h2>
-    <p>{data.user.bio || "No bio!"}</p>
-    <p>{Theme[data.user.theme]}</p>
+	<h1>{data.user.username}</h1>
+	<h2>{data.user.email}</h2>
+	<p>{data.user.bio || 'No bio!'}</p>
+	<p>{Theme[data.user.theme]}</p>
 
-    <form method="POST" action="?/bio">
-        {#if form?.ref === "bio"}
-            <p style={form?.error ? "color: red;" : "color: green;"}>{form?.message}</p>
-        {/if}
-        <input type="text" name="bio" placeholder={data?.user.bio || ""} />
-        <input type="submit"/>
-    </form>
+	<form method="POST" action="?/bio">
+		{#if form?.ref === 'bio'}
+			<p style={form?.error ? 'color: red;' : 'color: green;'}>{form?.message}</p>
+		{/if}
+		<input type="text" name="bio" placeholder={data?.user.bio || ''} />
+		<input type="submit" />
+	</form>
 {:else}
-    {#if form?.success === false}
-        <p style="color: red;">{form.message}</p>
-    {/if}
-    <h2>Login</h2>
-    <form method="POST" action="?/login">
-        <input type="text" name="username" placeholder="Username" value={form?.username || ""}/>
-        <input type="password" name="password" placeholder="Password"/>
-        <button type="submit">Login</button>
-    </form>
-    <h2>Register</h2>
-    <form method="POST" action="?/register">
-        <input type="text" name="username" placeholder="Username" value={form?.username || ""} />
-        <input type="email" name="email" placeholder="Email" value={form?.email || ""} />
-        <input type="password" name="password" placeholder="Password" />
-        <button type="submit">Login</button>
-    </form>
+	{#if form?.success === false}
+		<p style="color: red;">{form.message}</p>
+	{/if}
+	<h2>Login</h2>
+	<form method="POST" action="?/login">
+		<input type="text" name="username" placeholder="Username" value={form?.username || ''} />
+		<input type="password" name="password" placeholder="Password" />
+		<button type="submit">Login</button>
+	</form>
+	<h2>Register</h2>
+	<form method="POST" action="?/register">
+		<input type="text" name="username" placeholder="Username" value={form?.username || ''} />
+		<input type="email" name="email" placeholder="Email" value={form?.email || ''} />
+		<input type="password" name="password" placeholder="Password" />
+		<button type="submit">Login</button>
+	</form>
 {/if}
-
