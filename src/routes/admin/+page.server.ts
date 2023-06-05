@@ -3,6 +3,7 @@ import type { PageServerLoad } from './$types';
 import type { Actions } from './$types';
 import { getUserFromJWT, login, register } from '$lib/auth';
 import * as validator from "$lib/validation"; 
+import type { IUser } from '$lib/mongo';
 
 
 const checkAuth = async (cookies: Cookies) => {
@@ -79,8 +80,9 @@ export const actions = {
       const d = validator.bio.safeParse(bio);
       if (!d.success) return fail(403, { ref: "bio", error: true, message: d.error.errors[0].message });
 
-      user.bio = bio;
-      await user.save();
+      const validUser = user as IUser;
+      validUser.bio = bio;
+      await validUser.save();
       
       return { ref: "bio", error: false, message: "Bio updated!" };
     }
