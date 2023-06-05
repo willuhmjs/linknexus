@@ -82,11 +82,10 @@ export const actions = {
       const bio = data.get('bio')?.toString();
 
       // validate bio
-      const d = validator.bio.safeParse(bio);
       try {
         validator.bio.parse(bio)
       } catch (e) {
-        if (!d.success) return fail(403, { ref: "bio", error: true, message: e.errors[0].message });
+        return fail(403, { ref: "bio", error: true, message: e.errors[0].message });
       }
 
 
