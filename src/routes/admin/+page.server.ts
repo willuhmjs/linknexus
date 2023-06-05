@@ -10,21 +10,12 @@ const checkAuth = async (cookies: Cookies) => {
   
   if (!token) {
     return {
-      authorized: false
+      user: null
     }
   }
 
-  const { success, user } = await getUserFromJWT(token);
-  if (!success) {
-    return {
-      authorized: false
-    }
-  } else {
-    return {
-      user,
-      authorized: true
-    }
-  }
+  const { user } = await getUserFromJWT(token);
+  return { user };
 }
   
 

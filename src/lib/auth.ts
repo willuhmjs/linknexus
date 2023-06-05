@@ -14,7 +14,6 @@ export const getUserFromJWT = async (token: string): Promise<{ success: boolean;
         const { username } = jwt.verify(token, JWT_KEY);
         const { user, success }: { user?: IUser, success: boolean } = await getUserFromUsername(username);
         return { user, success };
-
     } catch {
         return { success: false };
     }
