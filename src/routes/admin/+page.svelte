@@ -18,13 +18,6 @@
         <input type="text" name="bio" placeholder={data?.user.bio || ""} />
         <input type="submit"/>
     </form>
-
-    <form method="POST" action="?/special2">
-        {#if form?.ref === "special2"}
-            <p>{form.data}</p>
-        {/if}
-        <input type="submit"/>
-    </form>
 {:else}
     <h2>Login</h2>
     <form method="POST" action="?/login">
