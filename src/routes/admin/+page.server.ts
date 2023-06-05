@@ -1,4 +1,4 @@
-import { redirect, fail, type Cookies } from '@sveltejs/kit';
+import { fail, type Cookies } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import type { Actions } from './$types';
 import { getUserFromJWT, login, register } from '$lib/auth';
@@ -77,7 +77,10 @@ export const actions = {
     },
 
     special: async ({ cookies, request }) => {
-      
+      console.log("this loads whenever SPECIAL")
+      // this gives me headaches. idk how to make auth checking work
+      const { authorized } = await checkAuth(cookies);
+      if (!authorized) return fail(403, { success: false });
     }
 
 } satisfies Actions;
