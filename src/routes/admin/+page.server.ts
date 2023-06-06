@@ -73,9 +73,9 @@ export const actions = {
 		}
 	},
 
-  logout: ({ cookies }) => {
-    cookies.delete('session');
-  },
+	logout: ({ cookies }) => {
+		cookies.delete('session');
+	},
 
 
 	bio: async ({ cookies, request }) => {
@@ -118,4 +118,28 @@ export const actions = {
     await validUser.save();
   },
 
+  link: async ({ cookies, request }) => {
+	const user = await checkAuth(cookies);
+	if (!user) return fail(403, { ref: 'link', error: true, message: 'Not authorized!' });
+
+	const data = await request.formData();
+	const title = data.get('title')?.toString();
+	const url = data.get('url')?.toString();
+	const icon = data.get('icon')?.toString();
+
+	// validate url, title, icon
+	try {
+		validator.link.parse(url);
+		validator.title.parse(title);
+		validator.icon.parse(icon);
+	} catch (e) {
+		return fail(403, { ref: 'link', error: true, message: e.errors[0].message, title, url, icon });
+	}
+
+	const validUser = user as IUser;
+	validUser.links.push({ title, url, icon });
+	await validUser.save();
+
+	return { ref: 'link', error: false, message: 'Link added!' };
+  }
 } satisfies Actions;

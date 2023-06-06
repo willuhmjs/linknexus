@@ -50,3 +50,28 @@ export const theme = z
 	.transform((val) => {
 		return Theme[val];
 	});
+
+export const link = z
+	.string({
+		required_error: 'URL is required.',
+		invalid_type_error: 'URL must be a string.'
+	})
+	.url({
+		message: 'Must be a valid URL.'
+	});
+
+export const title = z
+	.string({
+		required_error: 'URL is required.',
+		invalid_type_error: 'URL must be a string.'
+	})
+	.min(1, { message: 'Bio must be at least 1 character long.' })
+	.max(60, { message: 'Bio must be at most 60 characters long.' });
+
+
+export const icon = z
+	.string({
+		required_error: 'Emoji is required.',
+		invalid_type_error: 'Emoji must be a string.'
+	})
+	.emoji({ message: 'Must be an emoji.' });

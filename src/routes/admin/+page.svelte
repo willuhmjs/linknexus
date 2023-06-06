@@ -31,6 +31,18 @@
 		<input type="text" name="bio" placeholder={data?.user.bio || ''} autocomplete="off" />
         <button type="submit">Update Bio</button>
     </form>
+
+	<!-- add link -->
+	<form method="POST" action="?/link">
+		{#if form?.ref === 'link'}
+			<p style={form?.error ? 'color: red;' : 'color: green;'}>{form?.message}</p>
+		{/if}
+		<input type="text" name="icon" placeholder="Emoji" autocomplete="off" value={form?.icon || ''} />
+		<input type="text" name="title" placeholder="Title" autocomplete="off" value={form?.title || ''} />
+		<input type="url" name="url" placeholder="URL" autocomplete="off" value={form?.url || ''} />
+		<button type="submit">Add Link</button>
+	</form>
+
 {:else}
 	{#if form?.success === false}
 		<p style="color: red;">{form.message}</p>
