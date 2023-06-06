@@ -43,6 +43,25 @@
 		<button type="submit">Add Link</button>
 	</form>
 
+	<!-- display links -->
+	{#if data?.user.links.length > 0}
+		<h2>Links</h2>
+		<ul>
+			{#each data.user.links as link}
+				<li>
+					<a href={link.url} target="_blank" rel="noopener noreferrer">
+						{link.icon} {link.title}
+					</a>
+					<!-- delete button -->
+					<form method="POST" action="?/linkdelete">
+						<input type="hidden" name="title" value={link.title} />
+						<button type="submit">Delete</button>
+					</form>
+				</li>
+			{/each}
+		</ul>
+	{/if}
+
 {:else}
 	{#if form?.success === false}
 		<p style="color: red;">{form.message}</p>

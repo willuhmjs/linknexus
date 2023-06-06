@@ -137,9 +137,28 @@ export const actions = {
 	}
 
 	const validUser = user as IUser;
+	
+	// check if link with same title already exists
+	if (validUser.links.find((link) => link.title === title)) {
+		return fail(403, { ref: 'link', error: true, message: 'Link with same title already exists!', title, url, icon });
+	}
+
+	// redundant check to prevent type errors
+	if (!title || !url || !icon) return;
 	validUser.links.push({ title, url, icon });
 	await validUser.save();
 
 	return { ref: 'link', error: false, message: 'Link added!' };
+  },
+
+  linkdelete: async ({ cookies, request }) => {
+	const user = await checkAuth(cookies);
+	if (!user) return fail(403, { ref: 'linkdelete', error: true, message: 'Not authorized!' });
+
+	const data = await request.formData();
+	const title = data.get('title')?.toString();
+
+	await user.updateOne({ $pull: { links: { title } } });
+	return { ref: 'linkdelete', error: false, message: 'Link deleted!' };
   }
 } satisfies Actions;
