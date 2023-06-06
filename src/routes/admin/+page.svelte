@@ -28,7 +28,7 @@
 		{#if form?.ref === 'bio'}
 			<p style={form?.error ? 'color: red;' : 'color: green;'}>{form?.message}</p>
 		{/if}
-		<input type="text" name="bio" placeholder={data?.user.bio || ''} />
+		<input type="text" name="bio" placeholder={data?.user.bio || ''} autocomplete="off" />
         <button type="submit">Update Bio</button>
     </form>
 {:else}
@@ -37,14 +37,14 @@
 	{/if}
 	<h2>Login</h2>
 	<form method="POST" action="?/login">
-		<input type="text" name="username" placeholder="Username" value={form?.username || ''} />
+		<input type="text" name="username" placeholder="Username" value={form?.username || ''} autocomplete="off" />
 		<input type="password" name="password" placeholder="Password" />
 		<button type="submit">Login</button>
 	</form>
 	<h2>Register</h2>
 	<form method="POST" action="?/register">
-		<input type="text" name="username" placeholder="Username" value={form?.username || ''} />
-		<input type="email" name="email" placeholder="Email" value={form?.email || ''} />
+		<input type="text" name="username" placeholder="Username" value={form?.username || ''} autocomplete="off" />
+		<input type="email" name="email" placeholder="Email" value={form?.email || ''} autocomplete="off" />
 		<input type="password" name="password" placeholder="Password" />
 		<button type="submit">Login</button>
 	</form>
