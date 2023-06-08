@@ -29,7 +29,6 @@ export const actions = {
 	register: async ({ cookies, request }) => {
 		if (!JSON.parse((SAAS))) {
 			const numUsers = await User.countDocuments();
-			console.log(numUsers);
 			if (numUsers > 0) return fail(401, { success: false, message: 'Registration is disabled!' });
 		}
 		const data = await request.formData();
@@ -107,7 +106,6 @@ export const actions = {
 
   theme: async ({ cookies, request }) => {
     const user = await checkAuth(cookies);
-	console.log(user);
     if (!user) return fail(403, { ref: 'theme', error: true, message: 'Not authorized!' });
 
     const data = await request.formData();
