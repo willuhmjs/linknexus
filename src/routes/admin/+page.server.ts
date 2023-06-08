@@ -13,7 +13,7 @@ const checkAuth = async (cookies: Cookies) => {
 		return null;
 	}
 
-	const user = await getUserFromJWT(token);
+	const user = await getUserFromJWT(token, { password: 0 });
 	return user;
 };
 
