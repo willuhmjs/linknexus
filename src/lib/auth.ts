@@ -2,11 +2,9 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { JWT_KEY } from '$env/static/private';
 import { User, type IUser } from '$lib/mongo';
-
-interface Projection {
-	password?: number;
-	email?: number;
-}
+import type { ProjectionType } from 'mongoose';
+ 
+type Projection = ProjectionType<IUser>;
 
 export const login = async (
 	username: string,
