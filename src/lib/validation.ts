@@ -3,15 +3,18 @@ import Theme from '$lib/theme';
 
 // contains validation schemas
 export const username = z
-	.string({
-		required_error: 'Username is required.',
-		invalid_type_error: 'Username must be a string.'
-	})
-	.min(1, { message: 'Username must be at least 3 characters long.' })
-	.max(15, { message: 'Username must be at most 15 characters long.' })
-	.regex(/^[a-zA-Z0-9\s]*$/, {
-		message: 'Username should only contain alphanumeric characters and spaces.'
-	});
+  .string({
+    required_error: 'Username is required.',
+    invalid_type_error: 'Username must be a string.'
+  })
+  .min(1, { message: 'Username must be at least 3 characters long.' })
+  .max(15, { message: 'Username must be at most 15 characters long.' })
+  .regex(/^[a-zA-Z0-9]*$/, {
+    message: 'Username should only contain alphanumeric characters.'
+  })
+  .refine((value) => value !== 'admin', {
+    message: 'Username cannot be "admin".'
+  });
 
 export const password = z
 	.string({
