@@ -43,16 +43,7 @@ export const bio = z
 	.min(1, { message: 'Bio must be at least 1 character long.' })
 	.max(160, { message: 'Bio must be at most 160 characters long.' });
 
-export const theme = z
-	.number({
-		required_error: 'Theme is required.',
-		invalid_type_error: 'Theme must be a number.'
-	})
-	.min(0, { message: 'Theme must be at least 0.' })
-	.max((Object.keys(Theme).length/2) - 1, { message: `Theme must be at most ${(Object.keys(Theme).length/2) - 1	}.` })
-	.transform((val) => {
-		return Theme[val];
-	});
+export const theme = z.nativeEnum(Theme)
 
 export const link = z
 	.string({
