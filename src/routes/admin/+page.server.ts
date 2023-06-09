@@ -19,7 +19,10 @@ const checkAuth = async (cookies: Cookies) => {
 
 export const load: PageServerLoad = async ({ cookies }) => {
 	const user = await checkAuth(cookies);
-	if (!user) return { user };
+	if (!user) {
+		cookies.delete('session');
+		return { user };
+	}
 	return {
 		user: JSON.parse(JSON.stringify(user))
 	};
