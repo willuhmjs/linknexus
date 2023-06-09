@@ -3,8 +3,22 @@
 	export let form: ActionData;
 	import Theme from '$lib/theme';
 	import type { ActionData } from './$types.js';
-
+	import Sortable from 'sortablejs'
+	import { onMount } from "svelte";
 	import Auth from '$lib/modules/Auth.svelte';
+
+	let links: HTMLUListElement;
+	onMount(() => {
+		Sortable.create(links, {
+			group: {
+				name: 'links',
+				put: true
+			},
+			animation: 200,
+			onUpdate: () => alert("updated"),
+			onRemove: () => alert("deleted")
+		});
+	});
 </script>
 
 {#if data?.user}
@@ -60,7 +74,7 @@
 	<!-- display links -->
 	{#if data?.user.links.length > 0}
 		<h2>Links</h2>
-		<ul>
+		<ul bind:this={links}>
 			{#each data.user.links as link}
 				<li>
 					<a href={link.url} target="_blank" rel="noopener noreferrer">
@@ -79,3 +93,14 @@
 {:else}
 	<Auth {form} />
 {/if}
+<style>
+	ul {
+		width: 50%;
+	}
+
+	li {
+		padding: 0.25rem;
+		background-color: lightgray;
+		margin: 0.25rem;
+	}
+</style>
