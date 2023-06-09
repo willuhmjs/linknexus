@@ -44,7 +44,7 @@
 			name="icon"
 			placeholder="Emoji"
 			autocomplete="off"
-			value={form?.icon || ''}
+			value={form?.icon || '🔗'}
 		/>
 		<input
 			type="text"
