@@ -11,10 +11,15 @@ export const login = async (
 	password: string
 ): Promise<{ success: boolean; token?: string }> => {
 	const userInDB = await getUserFromUsername(username);
-	if (!userInDB || false) return { success: false };
-	return bcrypt.compareSync(password, userInDB.password)
-		? { success: true, token: jwt.sign({ username }, JWT_KEY, { expiresIn: '7d' }) }
-		: { success: false };
+	if (!userInDB) return { success: false };
+
+	const passwordMatch = bcrypt.compareSync(password, userInDB.password);
+	if (passwordMatch) {
+		const token = jwt.sign({ username }, JWT_KEY, { expiresIn: '7d' });
+		return { success: true, token };
+	}
+
+	return { success: false };
 };
 
 export const getUserFromJWT = async (
@@ -22,12 +27,11 @@ export const getUserFromJWT = async (
 	projection?: Projection
 ): Promise<IUser | null> => {
 	try {
-		const { username } = jwt.verify(token, JWT_KEY) as {
-			username: string;
-		};
+		const { username } = jwt.verify(token, JWT_KEY) as { username: string };
 		const user = await getUserFromUsername(username, projection);
 		return user;
-	} catch {
+	} catch (error) {
+		console.error(error);
 		return null;
 	}
 };
@@ -41,7 +45,7 @@ export const getUserFromUsername = async (
 };
 
 export const getFirstUser = async (): Promise<IUser | null> => {
-	return await User.findOne({}, { password: 0, email: 0 });
+	return User.findOne({}, { password: 0, email: 0 });
 };
 
 export const register = async (
@@ -50,14 +54,17 @@ export const register = async (
 	password: string
 ): Promise<{ success: boolean; token?: string }> => {
 	try {
+		const hashedPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
 		await User.create({
 			email,
 			username,
-			password: bcrypt.hashSync(password, bcrypt.genSaltSync(10))
+			password: hashedPassword
 		});
-		return { success: true, token: jwt.sign({ username }, JWT_KEY, { expiresIn: '7d' }) };
-	} catch (e) {
-		console.error(e);
+
+		const token = jwt.sign({ username }, JWT_KEY, { expiresIn: '7d' });
+		return { success: true, token };
+	} catch (error) {
+		console.error(error);
 		return { success: false };
 	}
 };
