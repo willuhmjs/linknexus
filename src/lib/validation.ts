@@ -67,4 +67,5 @@ export const icon = z
 		required_error: 'Emoji is required.',
 		invalid_type_error: 'Emoji must be a string.'
 	})
+	.length(2, { message: 'Emoji must be 2 characters long.' })
 	.emoji({ message: 'Must be an emoji.' });
