@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { JWT_KEY } from '$env/static/private';
+import { JWT_KEY } from '$config';
 import { User, type IUser } from '$lib/mongo';
 import type { ProjectionType } from 'mongoose';
  

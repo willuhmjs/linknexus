@@ -1,7 +1,7 @@
 import type { PageServerLoad } from './$types';
 import { redirect } from "@sveltejs/kit";
 import { getUserFromUsername } from '$lib/auth';
-import { SAAS } from "$env/static/private";
+import { SAAS } from "$config";
 
 export const load = (async ({ params }) => {
     if (!JSON.parse((SAAS))) throw redirect(303, `/`);

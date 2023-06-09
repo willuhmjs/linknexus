@@ -4,7 +4,7 @@ import type { Actions } from './$types';
 import { getUserFromJWT, login, register } from '$lib/auth';
 import * as validator from '$lib/validation';
 import { type IUser, User } from '$lib/mongo';
-import { SAAS } from "$env/static/private";
+import { SAAS } from "$config";
 
 const checkAuth = async (cookies: Cookies) => {
 	const token = cookies.get('session');

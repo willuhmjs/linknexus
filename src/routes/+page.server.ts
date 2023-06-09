@@ -1,5 +1,5 @@
 import type { PageServerLoad } from './$types';
-import { SAAS } from "$env/static/private";
+import { SAAS } from "$config";
 import { getFirstUser } from "$lib/auth";
 export const load = (async () => {
     return {
