@@ -4,7 +4,7 @@
 	import Theme from '$lib/theme';
 	import type { ActionData } from './$types.js';
 
-	import Auth from "$lib/modules/Auth.svelte";
+	import Auth from '$lib/modules/Auth.svelte';
 </script>
 
 {#if data?.user}
@@ -12,35 +12,47 @@
 	<h2>{data.user.email}</h2>
 	<p>{data.user.bio || 'No bio!'}</p>
 	<p>{Theme[data.user.theme]}</p>
-    <form method="POST" action="?/theme">
-        {#if form?.ref === 'theme'}
-            <p style={form?.error ? 'color: red;' : 'color: green;'}>{form?.message}</p>
-        {/if}
-        <select name="theme">
-          {#each Object.keys(Theme).filter(value => !isNaN(parseFloat(value))) as theme}
-            <option selected={(theme == data.user.theme)} value={theme}>{Theme[theme]}</option>
-          {/each}
-        </select>
-        <button type="submit">Update Theme</button>
-      </form>
-    <form method="POST" action="?/logout">
-        <button type="submit">Logout</button>
-    </form>
+	<form method="POST" action="?/theme">
+		{#if form?.ref === 'theme'}
+			<p style={form?.error ? 'color: red;' : 'color: green;'}>{form?.message}</p>
+		{/if}
+		<select name="theme">
+			{#each Object.keys(Theme).filter((value) => !isNaN(parseFloat(value))) as theme}
+				<option selected={theme == data.user.theme} value={theme}>{Theme[theme]}</option>
+			{/each}
+		</select>
+		<button type="submit">Update Theme</button>
+	</form>
+	<form method="POST" action="?/logout">
+		<button type="submit">Logout</button>
+	</form>
 	<form method="POST" action="?/bio">
 		{#if form?.ref === 'bio'}
 			<p style={form?.error ? 'color: red;' : 'color: green;'}>{form?.message}</p>
 		{/if}
 		<input type="text" name="bio" placeholder={data?.user.bio || ''} autocomplete="off" />
-        <button type="submit">Update Bio</button>
-    </form>
+		<button type="submit">Update Bio</button>
+	</form>
 
 	<!-- add link -->
 	<form method="POST" action="?/link">
 		{#if form?.ref === 'link'}
 			<p style={form?.error ? 'color: red;' : 'color: green;'}>{form?.message}</p>
 		{/if}
-		<input type="text" name="icon" placeholder="Emoji" autocomplete="off" value={form?.icon || ''} />
-		<input type="text" name="title" placeholder="Title" autocomplete="off" value={form?.title || ''} />
+		<input
+			type="text"
+			name="icon"
+			placeholder="Emoji"
+			autocomplete="off"
+			value={form?.icon || ''}
+		/>
+		<input
+			type="text"
+			name="title"
+			placeholder="Title"
+			autocomplete="off"
+			value={form?.title || ''}
+		/>
 		<input type="url" name="url" placeholder="URL" autocomplete="off" value={form?.url || ''} />
 		<button type="submit">Add Link</button>
 	</form>
@@ -52,7 +64,8 @@
 			{#each data.user.links as link}
 				<li>
 					<a href={link.url} target="_blank" rel="noopener noreferrer">
-						{link.icon} {link.title}
+						{link.icon}
+						{link.title}
 					</a>
 					<!-- delete button -->
 					<form method="POST" action="?/linkdelete">
@@ -63,7 +76,6 @@
 			{/each}
 		</ul>
 	{/if}
-
 {:else}
 	<Auth {form} />
 {/if}

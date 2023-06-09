@@ -3,18 +3,18 @@ import Theme from '$lib/theme';
 
 // contains validation schemas
 export const username = z
-  .string({
-    required_error: 'Username is required.',
-    invalid_type_error: 'Username must be a string.'
-  })
-  .min(1, { message: 'Username must be at least 3 characters long.' })
-  .max(15, { message: 'Username must be at most 15 characters long.' })
-  .regex(/^[a-zA-Z0-9]*$/, {
-    message: 'Username should only contain alphanumeric characters.'
-  })
-  .refine((value) => value !== 'admin', {
-    message: 'Username cannot be "admin".'
-  });
+	.string({
+		required_error: 'Username is required.',
+		invalid_type_error: 'Username must be a string.'
+	})
+	.min(1, { message: 'Username must be at least 3 characters long.' })
+	.max(15, { message: 'Username must be at most 15 characters long.' })
+	.regex(/^[a-zA-Z0-9]*$/, {
+		message: 'Username should only contain alphanumeric characters.'
+	})
+	.refine((value) => value !== 'admin', {
+		message: 'Username cannot be "admin".'
+	});
 
 export const password = z
 	.string({
@@ -43,7 +43,7 @@ export const bio = z
 	.min(1, { message: 'Bio must be at least 1 character long.' })
 	.max(160, { message: 'Bio must be at most 160 characters long.' });
 
-export const theme = z.nativeEnum(Theme)
+export const theme = z.nativeEnum(Theme);
 
 export const link = z
 	.string({
@@ -61,7 +61,6 @@ export const title = z
 	})
 	.min(1, { message: 'Bio must be at least 1 character long.' })
 	.max(60, { message: 'Bio must be at most 60 characters long.' });
-
 
 export const icon = z
 	.string({

@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
-import { MONGO_URI } from '$config'; 	
+import { MONGO_URI } from '$config';
 import type Theme from '$lib/theme';
 export const connect = async () => {
 	await mongoose.connect(MONGO_URI);

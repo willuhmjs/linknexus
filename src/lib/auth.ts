@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import { JWT_KEY } from '$config';
 import { User, type IUser } from '$lib/mongo';
 import type { ProjectionType } from 'mongoose';
- 
+
 type Projection = ProjectionType<IUser>;
 
 export const login = async (
@@ -17,7 +17,10 @@ export const login = async (
 		: { success: false };
 };
 
-export const getUserFromJWT = async (token: string, projection?: Projection): Promise<IUser | null> => {
+export const getUserFromJWT = async (
+	token: string,
+	projection?: Projection
+): Promise<IUser | null> => {
 	try {
 		const { username } = jwt.verify(token, JWT_KEY) as {
 			username: string;
@@ -29,14 +32,17 @@ export const getUserFromJWT = async (token: string, projection?: Projection): Pr
 	}
 };
 
-export const getUserFromUsername = async (username: string, projection?: Projection): Promise<IUser | null> => {
+export const getUserFromUsername = async (
+	username: string,
+	projection?: Projection
+): Promise<IUser | null> => {
 	const user = await User.findOne({ username }, projection);
 	return user;
 };
 
 export const getFirstUser = async (): Promise<IUser | null> => {
 	return await User.findOne({}, { password: 0, email: 0 });
-}
+};
 
 export const register = async (
 	email: string,

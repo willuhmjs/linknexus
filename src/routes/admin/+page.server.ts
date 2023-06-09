@@ -4,7 +4,7 @@ import type { Actions } from './$types';
 import { getUserFromJWT, login, register } from '$lib/auth';
 import * as validator from '$lib/validation';
 import { type IUser, User } from '$lib/mongo';
-import { SAAS } from "$config";
+import { SAAS } from '$config';
 
 const checkAuth = async (cookies: Cookies) => {
 	const token = cookies.get('session');
@@ -27,7 +27,7 @@ export const load: PageServerLoad = async ({ cookies }) => {
 
 export const actions = {
 	register: async ({ cookies, request }) => {
-		if (!JSON.parse((SAAS))) {
+		if (!JSON.parse(SAAS)) {
 			const numUsers = await User.countDocuments();
 			if (numUsers > 0) return fail(401, { success: false, message: 'Registration is disabled!' });
 		}
@@ -82,7 +82,6 @@ export const actions = {
 		cookies.delete('session');
 	},
 
-
 	bio: async ({ cookies, request }) => {
 		const user = await checkAuth(cookies);
 		if (!user) return fail(403, { ref: 'bio', error: true, message: 'Not authorized!' });
@@ -104,66 +103,80 @@ export const actions = {
 		return { ref: 'bio', error: false, message: 'Bio updated!' };
 	},
 
-  theme: async ({ cookies, request }) => {
-    const user = await checkAuth(cookies);
-    if (!user) return fail(403, { ref: 'theme', error: true, message: 'Not authorized!' });
+	theme: async ({ cookies, request }) => {
+		const user = await checkAuth(cookies);
+		if (!user) return fail(403, { ref: 'theme', error: true, message: 'Not authorized!' });
 
-    const data = await request.formData();
-    const theme = parseInt(data.get('theme')?.toString() || "");
+		const data = await request.formData();
+		const theme = parseInt(data.get('theme')?.toString() || '');
 
-    // validate theme
-    try {
-      validator.theme.parse(theme);
-    } catch (e) {
-      return fail(403, { ref: 'theme', error: true, message: e.errors[0].message });
-    }
+		// validate theme
+		try {
+			validator.theme.parse(theme);
+		} catch (e) {
+			return fail(403, { ref: 'theme', error: true, message: e.errors[0].message });
+		}
 
-    const validUser = user as IUser;
-    validUser.theme = theme;
-    await validUser.save();
-  },
+		const validUser = user as IUser;
+		validUser.theme = theme;
+		await validUser.save();
+	},
 
-  link: async ({ cookies, request }) => {
-	const user = await checkAuth(cookies);
-	if (!user) return fail(403, { ref: 'link', error: true, message: 'Not authorized!' });
+	link: async ({ cookies, request }) => {
+		const user = await checkAuth(cookies);
+		if (!user) return fail(403, { ref: 'link', error: true, message: 'Not authorized!' });
 
-	const data = await request.formData();
-	const title = data.get('title')?.toString();
-	const url = data.get('url')?.toString();
-	const icon = data.get('icon')?.toString();
+		const data = await request.formData();
+		const title = data.get('title')?.toString();
+		const url = data.get('url')?.toString();
+		const icon = data.get('icon')?.toString();
 
-	// validate url, title, icon
-	try {
-		validator.link.parse(url);
-		validator.title.parse(title);
-		validator.icon.parse(icon);
-	} catch (e) {
-		return fail(403, { ref: 'link', error: true, message: e.errors[0].message, title, url, icon });
+		// validate url, title, icon
+		try {
+			validator.link.parse(url);
+			validator.title.parse(title);
+			validator.icon.parse(icon);
+		} catch (e) {
+			return fail(403, {
+				ref: 'link',
+				error: true,
+				message: e.errors[0].message,
+				title,
+				url,
+				icon
+			});
+		}
+
+		const validUser = user as IUser;
+
+		// check if link with same title already exists
+		if (validUser.links.find((link) => link.title === title)) {
+			return fail(403, {
+				ref: 'link',
+				error: true,
+				message: 'Link with same title already exists!',
+				title,
+				url,
+				icon
+			});
+		}
+
+		// redundant check to prevent type errors
+		if (!title || !url || !icon) return;
+		validUser.links.push({ title, url, icon });
+		await validUser.save();
+
+		return { ref: 'link', error: false, message: 'Link added!' };
+	},
+
+	linkdelete: async ({ cookies, request }) => {
+		const user = await checkAuth(cookies);
+		if (!user) return fail(403, { ref: 'linkdelete', error: true, message: 'Not authorized!' });
+
+		const data = await request.formData();
+		const title = data.get('title')?.toString();
+
+		await user.updateOne({ $pull: { links: { title } } });
+		return { ref: 'linkdelete', error: false, message: 'Link deleted!' };
 	}
-
-	const validUser = user as IUser;
-	
-	// check if link with same title already exists
-	if (validUser.links.find((link) => link.title === title)) {
-		return fail(403, { ref: 'link', error: true, message: 'Link with same title already exists!', title, url, icon });
-	}
-
-	// redundant check to prevent type errors
-	if (!title || !url || !icon) return;
-	validUser.links.push({ title, url, icon });
-	await validUser.save();
-
-	return { ref: 'link', error: false, message: 'Link added!' };
-  },
-
-  linkdelete: async ({ cookies, request }) => {
-	const user = await checkAuth(cookies);
-	if (!user) return fail(403, { ref: 'linkdelete', error: true, message: 'Not authorized!' });
-
-	const data = await request.formData();
-	const title = data.get('title')?.toString();
-
-	await user.updateOne({ $pull: { links: { title } } });
-	return { ref: 'linkdelete', error: false, message: 'Link deleted!' };
-  }
 } satisfies Actions;
