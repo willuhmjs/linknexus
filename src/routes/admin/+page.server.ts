@@ -1,6 +1,5 @@
 import { fail, type Cookies } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import type { Actions } from './$types';
 import { getUserFromJWT, login, register } from '$lib/auth';
 import * as validator from '$lib/validation';
 import { type IUser, User } from '$lib/mongo';
@@ -32,7 +31,9 @@ export const actions = {
 	register: async ({ cookies, request }) => {
 		if (!JSON.parse(SAAS)) {
 			const numUsers = await User.countDocuments();
-			if (numUsers > 0) return fail(401, { success: false, message: 'Registration is disabled!' });
+			if (numUsers > 0) {
+				return fail(401, { success: false, message: 'Registration is disabled!' });
+			}
 		}
 		const data = await request.formData();
 		const username = data.get('username')?.toString();
@@ -47,8 +48,10 @@ export const actions = {
 			return fail(403, { success: false, message: e.errors[0].message, username, email });
 		}
 
-		// redundant check to prevent type errors
-		if (!username || !password || !email) return;
+		if (!username || !password || !email) {
+			return;
+		}
+
 		const { success, token } = await register(email, username, password);
 
 		if (token) {
@@ -66,8 +69,9 @@ export const actions = {
 		const username = data.get('username')?.toString();
 		const password = data.get('password')?.toString();
 
-		if (!username || !password)
+		if (!username || !password) {
 			return fail(403, { success: false, message: 'Invalid username or password!' });
+		}
 
 		const { success, token } = await login(username, password);
 
@@ -87,12 +91,13 @@ export const actions = {
 
 	bio: async ({ cookies, request }) => {
 		const user = await checkAuth(cookies);
-		if (!user) return fail(403, { ref: 'bio', error: true, message: 'Not authorized!' });
+		if (!user) {
+			return fail(403, { ref: 'bio', error: true, message: 'Not authorized!' });
+		}
 
 		const data = await request.formData();
 		const bio = data.get('bio')?.toString();
 
-		// validate bio
 		try {
 			validator.bio.parse(bio);
 		} catch (e) {
@@ -108,12 +113,13 @@ export const actions = {
 
 	theme: async ({ cookies, request }) => {
 		const user = await checkAuth(cookies);
-		if (!user) return fail(403, { ref: 'theme', error: true, message: 'Not authorized!' });
+		if (!user) {
+			return fail(403, { ref: 'theme', error: true, message: 'Not authorized!' });
+		}
 
 		const data = await request.formData();
 		const theme = parseInt(data.get('theme')?.toString() || '');
 
-		// validate theme
 		try {
 			validator.theme.parse(theme);
 		} catch (e) {
@@ -127,14 +133,15 @@ export const actions = {
 
 	link: async ({ cookies, request }) => {
 		const user = await checkAuth(cookies);
-		if (!user) return fail(403, { ref: 'link', error: true, message: 'Not authorized!' });
+		if (!user) {
+			return fail(403, { ref: 'link', error: true, message: 'Not authorized!' });
+		}
 
 		const data = await request.formData();
 		const title = data.get('title')?.toString();
 		const url = data.get('url')?.toString();
 		const icon = data.get('icon')?.toString();
 
-		// validate url, title, icon
 		try {
 			validator.link.parse(url);
 			validator.title.parse(title);
@@ -152,7 +159,6 @@ export const actions = {
 
 		const validUser = user as IUser;
 
-		// check if link with same title already exists
 		if (validUser.links.find((link) => link.title === title)) {
 			return fail(403, {
 				ref: 'link',
@@ -164,8 +170,10 @@ export const actions = {
 			});
 		}
 
-		// redundant check to prevent type errors
-		if (!title || !url || !icon) return;
+		if (!title || !url || !icon) {
+			return;
+		}
+
 		validUser.links.push({ title, url, icon });
 		await validUser.save();
 
@@ -174,7 +182,9 @@ export const actions = {
 
 	linkdelete: async ({ cookies, request }) => {
 		const user = await checkAuth(cookies);
-		if (!user) return fail(403, { ref: 'linkdelete', error: true, message: 'Not authorized!' });
+		if (!user) {
+			return fail(403, { ref: 'linkdelete', error: true, message: 'Not authorized!' });
+		}
 
 		const data = await request.formData();
 		const title = data.get('title')?.toString();
@@ -182,4 +192,4 @@ export const actions = {
 		await user.updateOne({ $pull: { links: { title } } });
 		return { ref: 'linkdelete', error: false, message: 'Link deleted!' };
 	}
-} satisfies Actions;
+};
