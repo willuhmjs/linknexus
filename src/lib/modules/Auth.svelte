@@ -34,5 +34,5 @@
 		autocomplete="off"
 	/>
 	<input type="password" name="password" placeholder="Password" />
-	<button type="submit">Login</button>
+	<button type="submit">Register</button>
 </form>
