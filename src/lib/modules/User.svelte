@@ -1,5 +1,19 @@
 <script lang="ts">
-	export let user;
+	import type { IUser } from "$lib/mongo";
+
+	export let user: IUser;
 </script>
 
-{JSON.stringify(user)}
+<h1>{user.username}</h1>
+{#if user.bio}
+	<p>{user.bio}</p>
+{/if}
+<ul>
+	{#each user.links as link}
+		<li>
+			<a href={link.url} target="_blank" rel="noopener noreferrer">
+				{link.icon} {link.title}
+			</a>
+		</li>
+	{/each}
+</ul>
