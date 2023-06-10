@@ -180,14 +180,15 @@ export const actions = {
 		return { ref: 'link', error: false, message: 'Link added!' };
 	},
 
-	linkdelete: async ({ cookies, request }) => {
+	// code to update linsk
+	linksupdate: async ({ cookies, request }) => {
 		const user = await checkAuth(cookies);
 		if (!user) {
 			return fail(403, { ref: 'linkdelete', error: true, message: 'Not authorized!' });
 		}
 
 		const data = await request.formData();
-		const title = data.get('title')?.toString();
+		const title = data.get('links')?.toString();
 
 		await user.updateOne({ $pull: { links: { title } } });
 		return { ref: 'linkdelete', error: false, message: 'Link deleted!' };

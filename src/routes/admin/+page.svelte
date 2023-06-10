@@ -8,6 +8,7 @@
 	import Auth from '$lib/modules/Auth.svelte';
 
 	let links: HTMLUListElement;
+	let cachedLinks: { title: string, url: string, icon: string }[] = Array.from(data.user.links);
 	onMount(() => {
 		Sortable.create(links, {
 			group: {
@@ -15,10 +16,22 @@
 				put: true
 			},
 			animation: 200,
-			onUpdate: () => alert("updated"),
-			onRemove: () => alert("deleted")
+			onUpdate: () => {
+				console.log(cachedLinks)
+			},
 		});
 	});
+
+	function deleteLink(event: Event) {
+		const form = event.target as HTMLFormElement;
+		const formData = new FormData(form);
+		const title = formData.get('title') as string;
+		const linkIndex = cachedLinks.findIndex((link) => link.title === title);
+		cachedLinks.splice(linkIndex, 1);
+		console.log(cachedLinks)
+		const li = links.querySelector(`li:nth-child(${linkIndex + 1})`);
+		li?.remove();
+	}
 </script>
 
 {#if data?.user}
@@ -75,14 +88,14 @@
 	{#if data?.user.links.length > 0}
 		<h2>Links</h2>
 		<ul bind:this={links}>
-			{#each data.user.links as link}
+			{#each cachedLinks as link}
 				<li>
 					<a href={link.url} target="_blank" rel="noopener noreferrer">
 						{link.icon}
 						{link.title}
 					</a>
 					<!-- delete button -->
-					<form method="POST" action="?/linkdelete">
+					<form on:submit|preventDefault={deleteLink}>
 						<input type="hidden" name="title" value={link.title} />
 						<button type="submit">Delete</button>
 					</form>
