@@ -190,15 +190,19 @@ export const actions = {
 		const data = await request.formData();
 		try {
 			const links = JSON.parse(data.get('links')?.toString());
-			
-			for (let i = 0; i < links.length; i++ ) {
+
+			for (let i = 0; i < links.length; i++) {
 				validator.link.parse(links[i].url);
 				validator.title.parse(links[i].title);
 				validator.icon.parse(links[i].icon);
 			}
-			await user.updateOne({ links: links});
+			await user.updateOne({ links: links });
 		} catch (e) {
-			return fail(403, { ref: 'links', error: true, message: e.errors?.[0].message || "Malformed input!" });
+			return fail(403, {
+				ref: 'links',
+				error: true,
+				message: e.errors?.[0].message || 'Malformed input!'
+			});
 		}
 	}
 };
