@@ -29,7 +29,7 @@ export const load: PageServerLoad = async ({ cookies }) => {
 
 export const actions = {
 	register: async ({ cookies, request }) => {
-		if (!JSON.parse(SAAS)) {
+		if (!SAAS) {
 			const numUsers = await User.countDocuments();
 			if (numUsers > 0) {
 				return fail(401, { success: false, message: 'Registration is disabled!' });
