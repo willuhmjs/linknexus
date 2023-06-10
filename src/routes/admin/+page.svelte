@@ -8,8 +8,10 @@
 	import Auth from '$lib/modules/Auth.svelte';
 
 	let links: HTMLUListElement;
-	let cachedLinks: { title: string, url: string, icon: string }[] = Array.from(data.user.links);
+	let cachedLinks: { title: string, url: string, icon: string }[];
 	onMount(() => {
+		if (!links) return;
+		cachedLinks = Array.from(data.user.links);
 		Sortable.create(links, {
 			group: {
 				name: 'links',
@@ -85,7 +87,7 @@
 	</form>
 
 	<!-- display links -->
-	{#if data?.user.links.length > 0}
+	{#if cachedLinks?.length > 0}
 		<h2>Links</h2>
 		<ul bind:this={links}>
 			{#each cachedLinks as link}
