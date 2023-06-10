@@ -8,7 +8,7 @@
 	import Auth from '$lib/modules/Auth.svelte';
 
 	let linksElement: HTMLUListElement;
-	let links: { title: string; url: string; icon: string; _id: string }[] = data.user.links;
+	let links: { title: string; url: string; icon: string; _id: string }[] = data.user?.links;
 	let saveFailureMessage: string;
 
 	onMount(() => {
