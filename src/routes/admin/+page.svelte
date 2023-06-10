@@ -9,7 +9,8 @@
   
 	let linksElement: HTMLUListElement;
 	let links: { title: string, url: string, icon: string, _id: string }[] = data.user.links;
-  
+	let saveFailureMessage: string;
+
 	onMount(() => {
 	  Sortable.create(linksElement, {
 		group: {
@@ -22,6 +23,7 @@
 			const linkId = li.querySelector("a")?.id || "";
 			return links.find((link) => link?._id === linkId);
 		  }).filter(Boolean) as { title: string, url: string, icon: string, _id: string }[];
+		  updateLinks();
 		},
 	  });
 	});
@@ -34,7 +36,26 @@
 	  links.splice(linkIndex, 1);
 	  const li = linksElement.querySelector(`li:nth-child(${linkIndex + 1})`);
 	  li?.remove();
+	  updateLinks();
 	}
+
+	function updateLinks() {
+    const urlEncodedData = new URLSearchParams();
+	urlEncodedData.append("links", JSON.stringify(links));
+    // Set the request headers
+    const headers = new Headers();
+    headers.append("Content-Type", "application/x-www-form-urlencoded");
+    headers.append("Cookie", document.cookie);
+
+    // Make the POST request
+    fetch("/admin?/links", {
+      method: "POST",
+      headers: headers,
+      body: urlEncodedData.toString(),
+    }).then(res => res.json()).then(res => {
+	  saveFailureMessage = JSON.parse(res.data)[3];
+	});
+  }
   </script>
 
 {#if data?.user}
@@ -89,6 +110,9 @@
 
   <!-- display links -->
   <h2>Links</h2>
+  {#if saveFailureMessage}
+      <p style='color: red'>{saveFailureMessage}</p>
+    {/if}
   <ul bind:this={linksElement}>
     {#if links?.length > 0}
       {#each links as link (link._id)}

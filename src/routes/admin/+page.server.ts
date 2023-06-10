@@ -181,16 +181,24 @@ export const actions = {
 	},
 
 	// code to update linsk
-	linksupdate: async ({ cookies, request }) => {
+	links: async ({ cookies, request }) => {
 		const user = await checkAuth(cookies);
 		if (!user) {
-			return fail(403, { ref: 'linkdelete', error: true, message: 'Not authorized!' });
+			return fail(403, { ref: 'links', error: true, message: 'Not authorized!' });
 		}
 
 		const data = await request.formData();
-		const title = data.get('links')?.toString();
-
-		await user.updateOne({ $pull: { links: { title } } });
-		return { ref: 'linkdelete', error: false, message: 'Link deleted!' };
+		try {
+			const links = JSON.parse(data.get('links')?.toString());
+			
+			for (let i = 0; i < links.length; i++ ) {
+				validator.link.parse(links[i].url);
+				validator.title.parse(links[i].title);
+				validator.icon.parse(links[i].icon);
+			}
+			await user.updateOne({ links: links});
+		} catch (e) {
+			return fail(403, { ref: 'links', error: true, message: e.errors?.[0].message || "Malformed input!" });
+		}
 	}
 };
