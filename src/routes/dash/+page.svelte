@@ -62,90 +62,196 @@
 	}
 </script>
 
-{#if data?.user}
-	<h1>{data.user.username}</h1>
-	<h2>{data.user.email}</h2>
-	<p>{data.user.bio || 'No bio!'}</p>
-	<p>{Theme[data.user.theme]}</p>
-	<form method="POST" action="?/theme">
-		{#if form?.ref === 'theme'}
-			<p style={form?.error ? 'color: red;' : 'color: green;'}>{form?.message}</p>
-		{/if}
-		<select name="theme">
-			{#each Object.keys(Theme).filter((value) => !isNaN(parseFloat(value))) as theme}
-				<option selected={theme == data.user.theme} value={theme}>{Theme[theme]}</option>
-			{/each}
-		</select>
-		<button type="submit">Update Theme</button>
-	</form>
-	<form method="POST" action="?/logout">
-		<button type="submit">Logout</button>
-	</form>
-	<form method="POST" action="?/bio">
-		{#if form?.ref === 'bio'}
-			<p style={form?.error ? 'color: red;' : 'color: green;'}>{form?.message}</p>
-		{/if}
-		<input type="text" name="bio" placeholder={data?.user.bio || ''} autocomplete="off" />
-		<button type="submit">Update Bio</button>
-	</form>
+<div class="container">
+	<div class="account-info">
+		<h1>Account Information</h1>
+		<p><strong>Username:</strong> {data.user.username}</p>
+		<p><strong>Email:</strong> {data.user.email}</p>
+		<p><strong>Credentials:</strong> Placeholder for credentials</p>
+		<form method="POST" action="?/logout">
+			<button type="submit" class="logout-button">Logout</button>
+		</form>
+	</div>
+	<div class="profile-info">
+		<h1>Profile Information</h1>
+		<p><strong>Bio:</strong> {data.user.bio || 'No bio!'}</p>
+		<p><strong>Theme:</strong> {Theme[data.user.theme]}</p>
+		<form method="POST" action="?/theme">
+			{#if form?.ref === 'theme'}
+				<p class={form?.error ? 'error' : 'success'}>{form?.message}</p>
+			{/if}
+			<select name="theme">
+				{#each Object.keys(Theme).filter((value) => !isNaN(parseFloat(value))) as theme}
+					<option selected={theme == data.user.theme} value={theme}>{Theme[theme]}</option>
+				{/each}
+			</select>
+			<button type="submit">Update Theme</button>
+		</form>
+		<form method="POST" action="?/bio">
+			{#if form?.ref === 'bio'}
+				<p class={form?.error ? 'error' : 'success'}>{form?.message}</p>
+			{/if}
+			<input type="text" name="bio" placeholder={data?.user.bio || ''} autocomplete="off" />
+			<button type="submit">Update Bio</button>
+		</form>
 
-	<!-- add link -->
-	<form method="POST" action="?/link">
-		{#if form?.ref === 'link'}
-			<p style={form?.error ? 'color: red;' : 'color: green;'}>{form?.message}</p>
-		{/if}
-		<input
-			type="text"
-			name="icon"
-			placeholder="Emoji"
-			autocomplete="off"
-			value={form?.icon || '🔗'}
-		/>
-		<input
-			type="text"
-			name="title"
-			placeholder="Title"
-			autocomplete="off"
-			value={form?.title || ''}
-		/>
-		<input type="url" name="url" placeholder="URL" autocomplete="off" value={form?.url || ''} />
-		<button type="submit">Add Link</button>
-	</form>
+		<h2>Add Link</h2>
+		<form method="POST" action="?/link">
+			{#if form?.ref === 'link'}
+				<p class={form?.error ? 'error' : 'success'}>{form?.message}</p>
+			{/if}
+			<input
+				type="text"
+				name="icon"
+				placeholder="Emoji"
+				autocomplete="off"
+				value={form?.icon || '🔗'}
+			/>
+			<input
+				type="text"
+				name="title"
+				placeholder="Title"
+				autocomplete="off"
+				value={form?.title || ''}
+			/>
+			<input type="url" name="url" placeholder="URL" autocomplete="off" value={form?.url || ''} />
+			<button type="submit">Add Link</button>
+		</form>
 
-	<!-- display links -->
-	<h2>Links</h2>
-	{#if saveFailureMessage}
-		<p style="color: red">{saveFailureMessage}</p>
-	{/if}
-	<ul bind:this={linksElement}>
-		{#if links?.length > 0}
-			{#each links as link (link._id)}
-				<li>
-					<a href={link.url} target="_blank" rel="noopener noreferrer" id={link._id}>
-						{link.icon}
-						{link.title}
-					</a>
-					<!-- delete button -->
-					<form on:submit|preventDefault={deleteLink}>
-						<input type="hidden" name="id" value={link._id} />
-						<button type="submit">Delete</button>
-					</form>
-				</li>
-			{/each}
+		<h2>Links</h2>
+		{#if saveFailureMessage}
+			<p class="save-failure">{saveFailureMessage}</p>
 		{/if}
-	</ul>
-{:else}
-	<Auth {form} />
-{/if}
+		<ul bind:this={linksElement}>
+			{#if links?.length > 0}
+				{#each links as link (link._id)}
+					<li>
+						<a href={link.url} target="_blank" rel="noopener noreferrer" id={link._id}>
+							<span>{link.icon}</span>
+							<span>{link.title}</span>
+						</a>
+						<form on:submit|preventDefault={deleteLink}>
+							<input type="hidden" name="id" value={link._id} />
+							<button type="submit">Delete</button>
+						</form>
+					</li>
+				{/each}
+			{/if}
+		</ul>
+	</div>
+</div>
 
 <style>
-	ul {
-		width: 50%;
+	.container {
+		display: flex;
+		justify-content: space-between;
+		font-family: 'Arial', sans-serif;
+		color: #333;
+		background-color: #f7f7f7;
 	}
 
-	li {
-		padding: 0.25rem;
-		background-color: lightgray;
-		margin: 0.25rem;
+	.container .account-info {
+		width: 40%;
+		padding: 2rem;
+	}
+
+	.container .profile-info {
+		width: 60%;
+		padding: 2rem;
+	}
+
+	.container h1 {
+		font-size: 2rem;
+		margin-bottom: 2rem;
+	}
+
+	.container p {
+		margin-bottom: 1rem;
+	}
+
+	.container form {
+		margin-bottom: 1rem;
+	}
+
+	.container form button {
+		background-color: #4dbbff;
+		color: white;
+		padding: 0.5rem 1rem;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+	}
+
+	.container .success {
+		color: green;
+	}
+
+	.container .error {
+		color: red;
+	}
+
+	.container select,
+	.container input[type="text"],
+	.container input[type="url"] {
+		margin-bottom: 1rem;
+		padding: 0.5rem;
+		border-radius: 4px;
+		border: 1px solid #ccc;
+	}
+
+	.container ul {
+		list-style: none;
+		padding: 0;
+	}
+
+	.container li {
+		display: flex;
+		align-items: center;
+		padding: 0.5rem;
+		background-color: #fff;
+		border-radius: 4px;
+		margin-bottom: 0.5rem;
+	}
+
+	.container li a {
+		text-decoration: none;
+		color: #333;
+		margin-right: 1rem;
+		display: flex;
+		align-items: center;
+	}
+
+	.container li a span:first-child {
+		font-size: 1.5rem;
+		margin-right: 0.5rem;
+	}
+
+	.container li form button {
+		background-color: #ff4d4d;
+		color: white;
+		padding: 0.25rem 0.5rem;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+	}
+
+	.container .logout-button {
+		background-color: #ff4d4d;
+		color: white;
+		padding: 0.5rem 1rem;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+	}
+
+	@media only screen and (max-width: 768px) {
+		.container {
+			flex-direction: column;
+		}
+
+		.container .account-info,
+		.container .profile-info {
+			width: 100%;
+		}
 	}
 </style>
