@@ -50,7 +50,7 @@
 		headers.append('Cookie', document.cookie);
 
 		// Make the POST request
-		fetch('/admin?/links', {
+		fetch('/dash?/links', {
 			method: 'POST',
 			headers: headers,
 			body: urlEncodedData.toString()
