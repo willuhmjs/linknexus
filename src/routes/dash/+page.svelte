@@ -191,8 +191,8 @@
 	}
 
 	.container select,
-	.container input[type="text"],
-	.container input[type="url"] {
+	.container input[type='text'],
+	.container input[type='url'] {
 		margin-bottom: 1rem;
 		padding: 0.5rem;
 		border-radius: 4px;
