@@ -62,6 +62,7 @@
 	}
 </script>
 
+{#if data.user}
 <div class="container">
 	<div class="account-info">
 		<h1>Account Information</h1>
@@ -140,7 +141,9 @@
 		</ul>
 	</div>
 </div>
-
+{:else}
+<Auth {form}/>
+{/if}
 <style>
 	.container {
 		display: flex;
