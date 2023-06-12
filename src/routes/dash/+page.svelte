@@ -76,7 +76,6 @@
 	<div class="profile-info">
 		<h1>Profile Information</h1>
 		<p><strong>Bio:</strong> {data.user.bio || 'No bio!'}</p>
-		<p><strong>Theme:</strong> {Theme[data.user.theme]}</p>
 		<form method="POST" action="?/theme">
 			{#if form?.ref === 'theme'}
 				<p class={form?.error ? 'error' : 'success'}>{form?.message}</p>
@@ -155,12 +154,12 @@
 
 	.container .account-info {
 		width: 40%;
-		padding: 2rem;
+		padding: 1rem;
 	}
 
 	.container .profile-info {
 		width: 60%;
-		padding: 2rem;
+		padding: 1rem;
 	}
 
 	.container h1 {
