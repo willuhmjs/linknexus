@@ -80,7 +80,7 @@
 			{#if form?.ref === 'theme'}
 				<p class={form?.error ? 'error' : 'success'}>{form?.message}</p>
 			{/if}
-			<select name="theme">
+			<select name="theme" required>
 				{#each Object.keys(Theme).filter((value) => !isNaN(parseFloat(value))) as theme}
 					<option selected={theme == data.user.theme} value={theme}>{Theme[theme]}</option>
 				{/each}
@@ -91,11 +91,11 @@
 			{#if form?.ref === 'bio'}
 				<p class={form?.error ? 'error' : 'success'}>{form?.message}</p>
 			{/if}
-			<input type="text" name="bio" placeholder={data?.user.bio || ''} autocomplete="off" />
+			<input required type="text" name="bio" placeholder={data?.user.bio || ''} autocomplete="off" />
 			<button type="submit">Update Bio</button>
 		</form>
 
-		<h2>Add Link</h2>
+		<h2>Links</h2>
 		<form method="POST" action="?/link">
 			{#if form?.ref === 'link'}
 				<p class={form?.error ? 'error' : 'success'}>{form?.message}</p>
@@ -106,6 +106,7 @@
 				placeholder="Emoji"
 				autocomplete="off"
 				value={form?.icon || '🔗'}
+				required
 			/>
 			<input
 				type="text"
@@ -113,12 +114,12 @@
 				placeholder="Title"
 				autocomplete="off"
 				value={form?.title || ''}
+				required
 			/>
-			<input type="url" name="url" placeholder="URL" autocomplete="off" value={form?.url || ''} />
+			<input required type="url" name="url" placeholder="URL" autocomplete="off" value={form?.url || ''} />
 			<button type="submit">Add Link</button>
 		</form>
 
-		<h2>Links</h2>
 		{#if saveFailureMessage}
 			<p class="save-failure">{saveFailureMessage}</p>
 		{/if}
@@ -164,15 +165,15 @@
 
 	.container h1 {
 		font-size: 2rem;
-		margin-bottom: 2rem;
+		margin-bottom: 1.3rem;
 	}
 
 	.container p {
-		margin-bottom: 1rem;
+		margin-bottom: 0.6rem;
 	}
 
 	.container form {
-		margin-bottom: 1rem;
+		margin-bottom: 0.6rem;
 	}
 
 	.container form button {

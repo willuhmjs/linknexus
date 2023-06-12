@@ -25,6 +25,7 @@
 		placeholder="Username"
 		value={form?.username || ''}
 		autocomplete="off"
+		required
 	/>
 	<input
 		type="email"
@@ -32,7 +33,8 @@
 		placeholder="Email"
 		value={form?.email || ''}
 		autocomplete="off"
+		required
 	/>
-	<input type="password" name="password" placeholder="Password" />
+	<input type="password" name="password" placeholder="Password" required />
 	<button type="submit">Register</button>
 </form>
