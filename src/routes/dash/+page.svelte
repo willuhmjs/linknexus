@@ -62,14 +62,13 @@
 	}
 </script>
 
-{#if data.user}
 <div class="container">
 	<div class="account-info">
 		<h1>Account Information</h1>
 		<p><strong>Username:</strong> {data.user.username}</p>
 		<p><strong>Email:</strong> {data.user.email}</p>
 		<p><strong>Credentials:</strong> Placeholder for credentials</p>
-		<form method="POST" action="?/logout">
+		<form method="POST" action="/auth?/logout">
 			<button type="submit" class="logout-button">Logout</button>
 		</form>
 	</div>
@@ -141,9 +140,6 @@
 		</ul>
 	</div>
 </div>
-{:else}
-<Auth {form}/>
-{/if}
 <style>
 	.container {
 		display: flex;
