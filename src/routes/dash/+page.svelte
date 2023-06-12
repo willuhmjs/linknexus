@@ -168,14 +168,6 @@
 		margin-bottom: 1.3rem;
 	}
 
-	.container p {
-		margin-bottom: 0.6rem;
-	}
-
-	.container form {
-		margin-bottom: 0.6rem;
-	}
-
 	.container form button {
 		background-color: #4dbbff;
 		color: white;
