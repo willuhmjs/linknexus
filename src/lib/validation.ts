@@ -54,13 +54,15 @@ export const link = z
 		message: 'Must be a valid URL.'
 	});
 
-export const title = z
-	.string({
-		required_error: 'URL is required.',
-		invalid_type_error: 'URL must be a string.'
-	})
-	.min(1, { message: 'Bio must be at least 1 character long.' })
-	.max(60, { message: 'Bio must be at most 60 characters long.' });
+	export const title = z
+	.string()
+	.min(1, { message: 'Title must be at least 1 character long.' })
+	.max(60, { message: 'Title must be at most 60 characters long.' })
+	.refine(value => /\S/.test(value), {
+	  message: 'Title cannot be empty.',
+	  path: [],
+	});
+  
 
 	export const icon = z
 	.string({
