@@ -62,10 +62,20 @@ export const title = z
 	.min(1, { message: 'Bio must be at least 1 character long.' })
 	.max(60, { message: 'Bio must be at most 60 characters long.' });
 
-export const icon = z
+	export const icon = z
 	.string({
-		required_error: 'Emoji is required.',
-		invalid_type_error: 'Emoji must be a string.'
+	  required_error: 'Emoji is required.',
+	  invalid_type_error: 'Emoji must be a string.',
 	})
-	.length(2, { message: 'Emoji must be 2 characters long.' })
-	.emoji({ message: 'Must be an emoji.' });
+	.refine((value) => {
+	  const emojiRegex = /\p{So}/u;
+	  const matches = value.match(emojiRegex);
+  
+	  // Check if there is exactly one emoji in the string
+	  if (!matches || matches.length !== 1) {
+		throw new Error('Input must contain exactly one emoji.');
+	  }
+  
+	  return value;
+	});
+  
