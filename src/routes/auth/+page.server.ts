@@ -16,10 +16,9 @@ const checkAuth = async (cookies: Cookies) => {
 	return user;
 };
 
-
 export const load: PageServerLoad = async ({ cookies }) => {
 	const user = await checkAuth(cookies);
-	if (user) throw redirect(303, "/dash/");
+	if (user) throw redirect(303, '/dash/');
 };
 
 export const actions = {
@@ -54,7 +53,7 @@ export const actions = {
 				httpOnly: true,
 				maxAge: 60 * 60 * 24 * 7 // 1 week
 			});
-			throw redirect(303, "/dash/")
+			throw redirect(303, '/dash/');
 		} else {
 			return fail(403, { success, message: 'User already exists!', username, email });
 		}
@@ -76,7 +75,7 @@ export const actions = {
 				httpOnly: true,
 				maxAge: 60 * 60 * 24 * 7 // 1 week
 			});
-			throw redirect(303, "/dash/")
+			throw redirect(303, '/dash/');
 		} else {
 			return fail(403, { success, message: 'Invalid username or password!', username });
 		}
@@ -84,5 +83,5 @@ export const actions = {
 
 	logout: ({ cookies }) => {
 		cookies.delete('session');
-	},
+	}
 };

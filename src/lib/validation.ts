@@ -54,30 +54,28 @@ export const link = z
 		message: 'Must be a valid URL.'
 	});
 
-	export const title = z
+export const title = z
 	.string()
 	.min(1, { message: 'Title must be at least 1 character long.' })
 	.max(60, { message: 'Title must be at most 60 characters long.' })
-	.refine(value => /\S/.test(value), {
-	  message: 'Title cannot be empty.',
-	  path: [],
+	.refine((value) => /\S/.test(value), {
+		message: 'Title cannot be empty.',
+		path: []
 	});
-  
 
-	export const icon = z
+export const icon = z
 	.string({
-	  required_error: 'Emoji is required.',
-	  invalid_type_error: 'Emoji must be a string.',
+		required_error: 'Emoji is required.',
+		invalid_type_error: 'Emoji must be a string.'
 	})
 	.refine((value) => {
-	  const emojiRegex = /\p{So}/u;
-	  const matches = value.match(emojiRegex);
-  
-	  // Check if there is exactly one emoji in the string
-	  if (!matches || matches.length !== 1) {
-		throw new Error('Input must contain exactly one emoji.');
-	  }
-  
-	  return value;
+		const emojiRegex = /\p{So}/u;
+		const matches = value.match(emojiRegex);
+
+		// Check if there is exactly one emoji in the string
+		if (!matches || matches.length !== 1) {
+			throw new Error('Input must contain exactly one emoji.');
+		}
+
+		return value;
 	});
-  
