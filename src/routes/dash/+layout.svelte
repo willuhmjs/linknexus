@@ -1,3 +1,7 @@
+<script lang="ts">
+    import Nav from "$lib/modules/Nav.svelte";
+</script>
+
 <svelte:head>
 	<style>
 		body {
@@ -96,5 +100,5 @@
 		}
 	</style>
 </svelte:head>
-
+<Nav />
 <slot />
