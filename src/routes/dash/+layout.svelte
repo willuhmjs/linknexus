@@ -4,14 +4,11 @@
 			margin: 0;
 			padding: 0;
 			background-color: #f7f7f7;
-		}
-		.container {
-			font-family: 'Arial', sans-serif;
 			color: #333;
-			background-color: #f7f7f7;
+			font-family: 'Arial', sans-serif;
 		}
 
-		.container h1 {
+        .container h1 {
 			font-size: 2rem;
 			margin-bottom: 1.3rem;
 		}
