@@ -1,18 +1,7 @@
 import { fail, type Cookies } from '@sveltejs/kit';
-import { getUserFromJWT } from '$lib/auth';
+import { checkAuth } from '$lib/auth';
 import * as validator from '$lib/validation';
 import type { IUser } from '$lib/mongo';
-
-const checkAuth = async (cookies: Cookies) => {
-	const token = cookies.get('session');
-
-	if (!token) {
-		return null;
-	}
-
-	const user = await getUserFromJWT(token, { password: 0 });
-	return user;
-};
 
 export const actions = {
 	theme: async ({ cookies, request }) => {

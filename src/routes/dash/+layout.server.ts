@@ -1,17 +1,6 @@
-import { type Cookies, redirect } from '@sveltejs/kit';
+import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
-import { getUserFromJWT } from '$lib/auth';
-
-const checkAuth = async (cookies: Cookies) => {
-	const token = cookies.get('session');
-
-	if (!token) {
-		return null;
-	}
-
-	const user = await getUserFromJWT(token, { password: 0 });
-	return user;
-};
+import { checkAuth } from '$lib/auth';
 
 export const load: PageServerLoad = async ({ cookies }) => {
 	const user = await checkAuth(cookies);

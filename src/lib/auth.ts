@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import { JWT_KEY } from '$config';
 import { User, type IUser } from '$lib/mongo';
 import type { ProjectionType } from 'mongoose';
+import type { Cookies } from '@sveltejs/kit';
 
 type Projection = ProjectionType<IUser>;
 
@@ -67,4 +68,15 @@ export const register = async (
 		console.error(error);
 		return { success: false };
 	}
+};
+
+export const checkAuth = async (cookies: Cookies) => {
+	const token = cookies.get('session');
+
+	if (!token) {
+		return null;
+	}
+
+	const user = await getUserFromJWT(token, { password: 0 });
+	return user;
 };
