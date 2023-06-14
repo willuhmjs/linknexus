@@ -49,7 +49,7 @@
 		headers.append('Cookie', document.cookie);
 
 		// Make the POST request
-		fetch('/dash?/links', {
+		fetch('/dash/links?/links', {
 			method: 'POST',
 			headers: headers,
 			body: urlEncodedData.toString()
