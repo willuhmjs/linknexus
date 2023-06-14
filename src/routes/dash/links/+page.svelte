@@ -1,7 +1,6 @@
 <script lang="ts">
 	export let data;
 	export let form: ActionData;
-	import Theme from '$lib/theme';
 	import type { ActionData } from './$types.js';
 	import Sortable from 'sortablejs';
 	import { onMount } from 'svelte';

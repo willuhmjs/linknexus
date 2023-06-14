@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import Theme from '$lib/theme';
+import { BackgroundType, ButtonStyle, Font } from '$lib/theme';
 
 // contains validation schemas
 export const username = z
@@ -43,7 +43,40 @@ export const bio = z
 	.min(1, { message: 'Bio must be at least 1 character long.' })
 	.max(160, { message: 'Bio must be at most 160 characters long.' });
 
-export const theme = z.nativeEnum(Theme);
+const colorSchema = z
+	.string({
+		required_error: 'Color is required.',
+		invalid_type_error: 'Color must be a string.'
+	})
+	.regex(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/, "Invalid hexadecimal color code");
+
+export const theme  = z.object({
+	background: z.object({
+		type: z.nativeEnum(BackgroundType, {
+			required_error: 'Background type is required.',
+			invalid_type_error: 'Background type must be a number.'
+		}),
+		// todo implement color check
+		color: colorSchema
+	}),
+	button: z.object({
+		radius: z.number({
+			required_error: 'Button radius is required.',
+			invalid_type_error: 'Button radius must be a number.'
+		}).min(0, { message: "Button radius must be at least 0." }).max(100, { message: "Button radius must be at most 100." }),
+		style: z.nativeEnum(ButtonStyle, { required_error: 'Button style is required.', invalid_type_error: 'Button style must be a number.' }),
+		// todo implement color check
+		color: colorSchema,
+		// todo implement color check
+		fontColor: colorSchema
+	}),
+	font: z.nativeEnum(Font, {
+		required_error: 'Font is required.',
+		invalid_type_error: 'Font must be a number.'
+	}),
+	// todo implement color check
+	fontColor: colorSchema
+})
 
 export const link = z
 	.string({
