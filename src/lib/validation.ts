@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { BackgroundType, ButtonStyle, Font } from '$lib/theme';
+import { BackgroundType, ButtonStyle, Font } from '$lib/types';
 
 // contains validation schemas
 export const username = z

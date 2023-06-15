@@ -2,7 +2,7 @@ import { fail } from '@sveltejs/kit';
 import { checkAuth } from '$lib/auth';
 import * as validator from '$lib/validation';
 import type { IUser } from '$lib/mongo';
-import type { ITheme } from '$lib/theme';
+import type { ITheme } from '$lib/types';
 
 export const actions = {
 	theme: async ({ cookies, request }) => {

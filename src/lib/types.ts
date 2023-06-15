@@ -1,5 +1,19 @@
 import type mongoose from "mongoose";
 
+export enum SpecialLink {
+	INSTAGRAM,
+	TWITTER,
+	DISCORD,
+	YOUTUBE,
+	TWITCH,
+	EMAIL,
+	TIKTOK,
+	PATREON,
+	SNAPCHAT,
+	LINKEDIN,
+	FACEBOOK
+}	
+
 export enum BackgroundType {
 	COLOR,
 	GRADIENT
@@ -20,6 +34,23 @@ export enum Font {
 	HELVETICA,
 	TAHOMA,
 	TIMES_NEW_ROMAN
+}
+
+export interface IUser extends mongoose.Document {
+	email: string;
+	password: string;
+	username: string;
+	bio?: string;
+	theme: ITheme;
+	links: {
+		title: string;
+		url: string;
+		icon?: string;
+	}[],
+	specials: {
+		type: SpecialLink,
+		url: string
+	}
 }
 
 export interface ITheme extends mongoose.Document {

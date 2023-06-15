@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 import { MONGO_URI } from '$config';
-import { BackgroundType, ButtonStyle, Font, type ITheme } from '$lib/theme';
+import { BackgroundType, ButtonStyle, Font, SpecialLink, type IUser } from '$lib/types';
 export const connect = async () => {
 	await mongoose.connect(MONGO_URI);
 	console.log('connected to mongo');
@@ -36,21 +36,14 @@ export const User = mongoose.model<IUser>(
 					url: { type: String, required: true },
 					icon: { type: String, required: false }
 				}
+			],
+			specials: [
+				{
+					type: { type: Number, required: true, enum: SpecialLink },
+					url: { type: String, required: true }
+				}
 			]
 		},
 		{ timestamps: true }
 	)
 );
-
-export interface IUser extends mongoose.Document {
-	email: string;
-	password: string;
-	username: string;
-	bio?: string;
-	theme: ITheme;
-	links: {
-		title: string;
-		url: string;
-		icon?: string;
-	}[];
-}

@@ -1,7 +1,7 @@
 <script lang="ts">
 	export let data;
 	export let form: ActionData;
-	import { Font, ButtonStyle, BackgroundType } from '$lib/theme';
+	import { Font, ButtonStyle, BackgroundType } from '$lib/types.js';
 	import type { ActionData } from './$types.js';
 </script>
 
