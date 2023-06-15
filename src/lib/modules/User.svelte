@@ -12,7 +12,6 @@
 	{#each user.links as link}
 		<li>
 			<a href={link.url} target="_blank" rel="noopener noreferrer">
-				{link.icon}
 				{link.title}
 			</a>
 		</li>

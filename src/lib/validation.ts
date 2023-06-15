@@ -95,20 +95,3 @@ export const title = z
 		message: 'Title cannot be empty.',
 		path: []
 	});
-
-export const icon = z
-	.string({
-		required_error: 'Emoji is required.',
-		invalid_type_error: 'Emoji must be a string.'
-	})
-	.refine((value) => {
-		const emojiRegex = /\p{So}/u;
-		const matches = value.match(emojiRegex);
-
-		// Check if there is exactly one emoji in the string
-		if (!matches || matches.length !== 1) {
-			throw new Error('Input must contain exactly one emoji.');
-		}
-
-		return value;
-	});
