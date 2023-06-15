@@ -12,12 +12,10 @@ export const actions = {
 		const data = await request.formData();
 		const title = data.get('title')?.toString();
 		const url = data.get('url')?.toString();
-		const icon = data.get('icon')?.toString();
 
 		try {
 			validator.link.parse(url);
 			validator.title.parse(title);
-			validator.icon.parse(icon);
 		} catch (e) {
 			return fail(403, {
 				ref: 'link',
@@ -25,7 +23,6 @@ export const actions = {
 				message: e.errors[0].message,
 				title,
 				url,
-				icon
 			});
 		}
 
@@ -38,15 +35,14 @@ export const actions = {
 				message: 'Link with same title already exists!',
 				title,
 				url,
-				icon
 			});
 		}
 
-		if (!title || !url || !icon) {
+		if (!title || !url) {
 			return;
 		}
 
-		validUser.links.push({ title, url, icon });
+		validUser.links.push({ title, url });
 		await validUser.save();
 
 		return { ref: 'link', error: false, message: 'Link added!' };
@@ -65,7 +61,6 @@ export const actions = {
 			for (let i = 0; i < links.length; i++) {
 				validator.link.parse(links[i].url);
 				validator.title.parse(links[i].title);
-				validator.icon.parse(links[i].icon);
 			}
 			await user.updateOne({ links: links });
 		} catch (e) {

@@ -34,7 +34,6 @@ export const User = mongoose.model<IUser>(
 				{
 					title: { type: String, required: true },
 					url: { type: String, required: true },
-					icon: { type: String, required: false }
 				}
 			],
 			specials: [

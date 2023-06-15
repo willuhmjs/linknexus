@@ -6,7 +6,7 @@
 	import { onMount } from 'svelte';
 
 	let linksElement: HTMLUListElement;
-	let links: { title: string; url: string; icon: string; _id: string }[] = data.user?.links;
+	let links: { title: string; url: string; _id: string }[] = data.user?.links;
 	let saveFailureMessage: string;
 
 	onMount(() => {
@@ -22,7 +22,7 @@
 						const linkId = li.querySelector('a')?.id || '';
 						return links.find((link) => link?._id === linkId);
 					})
-					.filter(Boolean) as { title: string; url: string; icon: string; _id: string }[];
+					.filter(Boolean) as { title: string; url: string; _id: string }[];
 				updateLinks();
 			}
 		});
@@ -68,14 +68,6 @@
 		{/if}
 		<input
 			type="text"
-			name="icon"
-			placeholder="Emoji"
-			autocomplete="off"
-			value={form?.icon || '🔗'}
-			required
-		/>
-		<input
-			type="text"
 			name="title"
 			placeholder="Title"
 			autocomplete="off"
@@ -101,7 +93,6 @@
 			{#each links as link (link._id)}
 				<li>
 					<a href={link.url} target="_blank" rel="noopener noreferrer" id={link._id}>
-						<span>{link.icon}</span>
 						<span>{link.title}</span>
 					</a>
 					<form on:submit|preventDefault={deleteLink}>

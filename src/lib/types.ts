@@ -45,7 +45,6 @@ export interface IUser extends mongoose.Document {
 	links: {
 		title: string;
 		url: string;
-		icon?: string;
 	}[],
 	specials: {
 		type: SpecialLink,
