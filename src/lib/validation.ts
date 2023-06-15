@@ -12,8 +12,8 @@ export const username = z
 	.regex(/^[a-zA-Z0-9]*$/, {
 		message: 'Username should only contain alphanumeric characters.'
 	})
-	.refine((value) => value !== 'dash', {
-		message: 'Username cannot be "dash".'
+	.refine((value) => value !== 'admin', {
+		message: 'Username cannot be "admin".'
 	});
 
 export const password = z

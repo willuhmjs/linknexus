@@ -7,7 +7,7 @@ import { SAAS } from '$config';
 
 export const load: PageServerLoad = async ({ cookies }) => {
 	const user = await checkAuth(cookies);
-	if (user) throw redirect(303, '/dash/');
+	if (user) throw redirect(303, '/admin/');
 };
 
 export const actions = {
@@ -42,7 +42,7 @@ export const actions = {
 				httpOnly: true,
 				maxAge: 60 * 60 * 24 * 7 // 1 week
 			});
-			throw redirect(303, '/dash/');
+			throw redirect(303, '/admin/');
 		} else {
 			return fail(403, { success, message: 'User already exists!', username, email });
 		}
@@ -64,7 +64,7 @@ export const actions = {
 				httpOnly: true,
 				maxAge: 60 * 60 * 24 * 7 // 1 week
 			});
-			throw redirect(303, '/dash/');
+			throw redirect(303, '/admin/');
 		} else {
 			return fail(403, { success, message: 'Invalid username or password!', username });
 		}

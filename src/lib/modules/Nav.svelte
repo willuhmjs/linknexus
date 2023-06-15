@@ -27,8 +27,8 @@
 </style>
 <div class="container">
     <ul class="navbar">
-        <li><a href="/dash/links">Links</a></li>
-        <li><a href="/dash/appearance">Appearance</a></li>
-        <li><a href="/dash/user">User</a></li>
+        <li><a href="/admin/links">Links</a></li>
+        <li><a href="/admin/appearance">Appearance</a></li>
+        <li><a href="/admin/user">User</a></li>
     </ul>
 </div>
