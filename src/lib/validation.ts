@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { BackgroundType, ButtonStyle, Font } from '$lib/types';
+import { BackgroundType, ButtonStyle, Font, SpecialLink } from '$lib/types';
 
 // contains validation schemas
 export const username = z
@@ -95,3 +95,13 @@ export const title = z
 		message: 'Title cannot be empty.',
 		path: []
 	});
+
+export const special = z.object({
+	type: z.nativeEnum(SpecialLink, {
+		required_error: 'Background type is required.',
+		invalid_type_error: 'Background type must be a number.'
+	}),
+	url: link.refine((url) => {
+		// check if the input 
+	})
+});

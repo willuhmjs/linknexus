@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { SpecialLink } from '$lib/types.js';
 	export let data;
 	export let form: ActionData;
 	import type { ActionData } from './$types.js';
@@ -83,6 +84,25 @@
 			value={form?.url || ''}
 		/>
 		<button type="submit">Add Link</button>
+	</form>
+	<form method="POST" action="?/special">
+		{#if form?.ref === 'special'}
+			<p class={form?.error ? 'error' : 'success'}>{form?.message}</p>
+		{/if}
+		<select name="type" required>
+			{#each Object.keys(SpecialLink).filter((value) => !isNaN(parseFloat(value))) as type}
+				<option selected={type == data.user.specials.type} value={type}>{SpecialLink[type]}</option>
+			{/each}
+		</select>
+		<input
+			required
+			type="url"
+			name="url"
+			placeholder="URL"
+			autocomplete="off"
+			value={form?.url || ''}
+		/>
+		<button type="submit">Add Special Link</button>
 	</form>
 
 	{#if saveFailureMessage}

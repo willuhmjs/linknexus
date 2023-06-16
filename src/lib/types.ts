@@ -49,7 +49,7 @@ export interface IUser extends mongoose.Document {
 	specials: {
 		type: SpecialLink,
 		url: string
-	}
+	}[]
 }
 
 export interface ITheme extends mongoose.Document {

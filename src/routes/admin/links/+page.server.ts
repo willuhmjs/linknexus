@@ -71,4 +71,45 @@ export const actions = {
 			});
 		}
 	},
+
+	special: async ({ cookies, request }) => {
+		const user = await checkAuth(cookies);
+		if (!user) {
+			return fail(403, { ref: 'special', error: true, message: 'Not authorized!' });
+		}
+
+		const data = await request.formData();
+		const type = parseInt(data.get('type')?.toString());
+		const url = data.get('url')?.toString();
+
+		try {
+			validator.special.parse({ type, url });
+		} catch (e) {
+			return fail(403, {
+				ref: 'special',
+				error: true,
+				message: e.errors[0].message,
+				type,
+				url,
+			});
+		}
+
+		const validUser = user as IUser;
+
+		if (validUser.specials.find((link) => link.type === type)) {
+			return fail(403, {
+				ref: 'special',
+				error: true,
+				message: 'Special link with same type already exists!',
+				type,
+				url,
+			});
+		}
+		if (!url) return;
+
+		validUser.specials.push({ type, url });
+		await validUser.save();
+
+		return { ref: 'special', error: false, message: 'Special link added!' };	
+	}
 };
