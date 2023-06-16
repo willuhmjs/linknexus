@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { IUser } from '$lib/mongo';
+	import type { IUser } from '$lib/types';
 
 	export let user: IUser;
 </script>

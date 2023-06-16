@@ -1,7 +1,8 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { JWT_KEY } from '$config';
-import { User, type IUser } from '$lib/mongo';
+import { User } from '$lib/mongo';
+import type { IUser } from '$lib/types';
 import type { ProjectionType } from 'mongoose';
 import type { Cookies } from '@sveltejs/kit';
 

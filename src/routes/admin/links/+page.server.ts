@@ -1,7 +1,7 @@
 import { fail } from '@sveltejs/kit';
 import { checkAuth } from '$lib/auth';
 import * as validator from '$lib/validation';
-import type { IUser } from '$lib/mongo';
+import type { IUser } from '$lib/types';
 export const actions = {
 	link: async ({ cookies, request }) => {
 		const user = await checkAuth(cookies);
@@ -70,5 +70,5 @@ export const actions = {
 				message: e.errors?.[0].message || 'Malformed input!'
 			});
 		}
-	}
+	},
 };

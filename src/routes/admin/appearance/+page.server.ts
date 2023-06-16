@@ -1,7 +1,7 @@
 import { fail } from '@sveltejs/kit';
 import { checkAuth } from '$lib/auth';
 import * as validator from '$lib/validation';
-import type { IUser } from '$lib/mongo';
+import type { IUser } from '$lib/types';
 import type { ITheme } from '$lib/types';
 
 export const actions = {
