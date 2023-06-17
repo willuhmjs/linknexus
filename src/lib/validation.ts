@@ -101,7 +101,6 @@ export const title = z
 		[SpecialLink.DISCORD]: /^[a-zA-Z0-9-_]{3,32}$/,
 		[SpecialLink.YOUTUBE]: /^[a-zA-Z0-9_-]+$/,
 		[SpecialLink.TWITCH]: /^[a-zA-Z0-9_]{4,25}$/,
-		[SpecialLink.EMAIL]: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
 		[SpecialLink.TIKTOK]: /^[a-zA-Z0-9._]+$/,
 		[SpecialLink.PATREON]: /^[a-zA-Z0-9_-]+$/,
 		[SpecialLink.SNAPCHAT]: /^[a-zA-Z0-9._-]+$/,
