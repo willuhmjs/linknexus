@@ -100,7 +100,6 @@
 			name="username"
 			placeholder="username"
 			autocomplete="off"
-			value={form?.url || ''}
 		/>
 		<button type="submit">Add Special Link</button>
 	</form>
