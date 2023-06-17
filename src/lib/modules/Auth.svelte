@@ -1,5 +1,7 @@
 <script lang="ts">
-	export let form;
+	import type { ActionData } from "../../routes/auth/$types";
+
+	export let form: ActionData;
 </script>
 
 {#if form?.success === false}
