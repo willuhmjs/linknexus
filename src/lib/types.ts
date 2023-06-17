@@ -6,7 +6,6 @@ export enum SpecialLink {
 	DISCORD,
 	YOUTUBE,
 	TWITCH,
-	EMAIL,
 	TIKTOK,
 	PATREON,
 	SNAPCHAT,
