@@ -91,14 +91,14 @@
 		{/if}
 		<select name="type" required>
 			{#each Object.keys(SpecialLink).filter((value) => !isNaN(parseFloat(value))) as type}
-				<option selected={type == data.user.specials.type} value={type}>{SpecialLink[type]}</option>
+				<option selected={type == data.user.specials.type} value={type}>{SpecialLink[parseInt(type)]}</option>
 			{/each}
 		</select>
 		<input
 			required
-			type="url"
-			name="url"
-			placeholder="URL"
+			type="text"
+			name="username"
+			placeholder="username"
 			autocomplete="off"
 			value={form?.url || ''}
 		/>

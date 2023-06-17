@@ -39,7 +39,7 @@ export const User = mongoose.model<IUser>(
 			specials: [
 				{
 					type: { type: Number, required: true, enum: SpecialLink },
-					url: { type: String, required: true }
+					username: { type: String, required: true }
 				}
 			]
 		},

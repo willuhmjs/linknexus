@@ -95,13 +95,28 @@ export const title = z
 		message: 'Title cannot be empty.',
 		path: []
 	});
-
-export const special = z.object({
-	type: z.nativeEnum(SpecialLink, {
-		required_error: 'Background type is required.',
-		invalid_type_error: 'Background type must be a number.'
-	}),
-	url: link.refine((url) => {
-		// check if the input 
-	})
-});
+	const usernameValidators: Record<SpecialLink, RegExp> = {
+		[SpecialLink.INSTAGRAM]: /^[a-zA-Z0-9._]+$/,
+		[SpecialLink.TWITTER]: /^[a-zA-Z0-9_]+$/,
+		[SpecialLink.DISCORD]: /^[a-zA-Z0-9-_]{3,32}$/,
+		[SpecialLink.YOUTUBE]: /^[a-zA-Z0-9_-]+$/,
+		[SpecialLink.TWITCH]: /^[a-zA-Z0-9_]{4,25}$/,
+		[SpecialLink.EMAIL]: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/i,
+		[SpecialLink.TIKTOK]: /^[a-zA-Z0-9._]+$/,
+		[SpecialLink.PATREON]: /^[a-zA-Z0-9_-]+$/,
+		[SpecialLink.SNAPCHAT]: /^[a-zA-Z0-9._-]+$/,
+		[SpecialLink.LINKEDIN]: /^[a-zA-Z0-9-]+$/,
+		[SpecialLink.FACEBOOK]: /^[a-zA-Z0-9.]+$/,
+		[SpecialLink.SPOTIFY]: /^[a-zA-Z0-9]+$/,
+	  };
+	  
+	  export const special = z.object({
+		type: z.nativeEnum(SpecialLink),
+		username: z.string()
+	  }).refine(ctx => {
+		const { type, username } = ctx;
+		const validator = usernameValidators[type as SpecialLink];
+		return validator ? validator.test(username) : true;
+	  }, {
+		message: 'Invalid username.',
+	  });

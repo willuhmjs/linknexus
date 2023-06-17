@@ -11,7 +11,8 @@ export enum SpecialLink {
 	PATREON,
 	SNAPCHAT,
 	LINKEDIN,
-	FACEBOOK
+	FACEBOOK,
+	SPOTIFY
 }	
 
 export enum BackgroundType {
@@ -48,7 +49,7 @@ export interface IUser extends mongoose.Document {
 	}[],
 	specials: {
 		type: SpecialLink,
-		url: string
+		username: string
 	}[]
 }
 

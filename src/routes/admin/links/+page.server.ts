@@ -80,34 +80,25 @@ export const actions = {
 
 		const data = await request.formData();
 		const type = parseInt(data.get('type')?.toString());
-		const url = data.get('url')?.toString();
+		const username = data.get('username')?.toString();
 
 		try {
-			validator.special.parse({ type, url });
+			validator.special.parse({ type, username });
 		} catch (e) {
 			return fail(403, {
 				ref: 'special',
 				error: true,
 				message: e.errors[0].message,
 				type,
-				url,
+				username,
 			});
 		}
 
 		const validUser = user as IUser;
 
-		if (validUser.specials.find((link) => link.type === type)) {
-			return fail(403, {
-				ref: 'special',
-				error: true,
-				message: 'Special link with same type already exists!',
-				type,
-				url,
-			});
-		}
-		if (!url) return;
+		if (!username) return;
 
-		validUser.specials.push({ type, url });
+		validUser.specials.push({ type, username });
 		await validUser.save();
 
 		return { ref: 'special', error: false, message: 'Special link added!' };	
