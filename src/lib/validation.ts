@@ -98,7 +98,7 @@ export const title = z
 	const usernameValidators: Record<SpecialLink, RegExp> = {
 		[SpecialLink.INSTAGRAM]: /^[a-zA-Z0-9._]+$/,
 		[SpecialLink.TWITTER]: /^[a-zA-Z0-9_]+$/,
-		[SpecialLink.DISCORD]: /^[a-zA-Z0-9-_]{3,32}$/,
+		[SpecialLink.DISCORD]: /^[a-zA-Z0-9._]{3,32}$/,
 		[SpecialLink.YOUTUBE]: /^[a-zA-Z0-9_-]+$/,
 		[SpecialLink.TWITCH]: /^[a-zA-Z0-9_]{4,25}$/,
 		[SpecialLink.TIKTOK]: /^[a-zA-Z0-9._]+$/,
