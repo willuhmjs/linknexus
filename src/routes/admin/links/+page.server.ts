@@ -22,7 +22,7 @@ export const actions = {
 				error: true,
 				message: e.errors[0].message,
 				title,
-				url,
+				url
 			});
 		}
 
@@ -34,7 +34,7 @@ export const actions = {
 				error: true,
 				message: 'Link with same title already exists!',
 				title,
-				url,
+				url
 			});
 		}
 
@@ -90,7 +90,7 @@ export const actions = {
 				error: true,
 				message: e.errors[0].message,
 				type,
-				username,
+				username
 			});
 		}
 
@@ -101,6 +101,6 @@ export const actions = {
 		validUser.specials.push({ type, username });
 		await validUser.save();
 
-		return { ref: 'special', error: false, message: 'Special link added!' };	
+		return { ref: 'special', error: false, message: 'Special link added!' };
 	}
 };

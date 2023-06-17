@@ -12,7 +12,7 @@ export const actions = {
 		}
 
 		const data = await request.formData();
-		
+
 		const theme = {
 			background: {
 				type: parseInt(data.get('backgroundType')?.toString() || ''),

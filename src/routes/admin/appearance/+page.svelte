@@ -14,14 +14,25 @@
 		<input type="color" name="backgroundColor" value={data.user.theme.background.color} required />
 		<select name="backgroundType" required>
 			{#each Object.keys(BackgroundType).filter((value) => !isNaN(parseFloat(value))) as type}
-				<option selected={type == data.user.theme.background.type} value={type}>{BackgroundType[type]}</option>
+				<option selected={type == data.user.theme.background.type} value={type}
+					>{BackgroundType[type]}</option
+				>
 			{/each}
 		</select>
 		<h2>Button</h2>
-		<input type="range" name="buttonRadius" min="1" max="100" value={data.user.theme.button.radius} required />
+		<input
+			type="range"
+			name="buttonRadius"
+			min="1"
+			max="100"
+			value={data.user.theme.button.radius}
+			required
+		/>
 		<select name="buttonStyle" required>
 			{#each Object.keys(ButtonStyle).filter((value) => !isNaN(parseFloat(value))) as style}
-				<option selected={style == data.user.theme.button.style} value={style}>{ButtonStyle[style]}</option>
+				<option selected={style == data.user.theme.button.style} value={style}
+					>{ButtonStyle[style]}</option
+				>
 			{/each}
 		</select>
 		<input type="color" name="buttonColor" value={data.user.theme.button.color} required />

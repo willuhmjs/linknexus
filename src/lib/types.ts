@@ -1,4 +1,4 @@
-import type mongoose from "mongoose";
+import type mongoose from 'mongoose';
 
 export enum SpecialLink {
 	INSTAGRAM,
@@ -12,7 +12,7 @@ export enum SpecialLink {
 	LINKEDIN,
 	FACEBOOK,
 	SPOTIFY
-}	
+}
 
 export enum BackgroundType {
 	COLOR,
@@ -45,24 +45,24 @@ export interface IUser extends mongoose.Document {
 	links: {
 		title: string;
 		url: string;
-	}[],
+	}[];
 	specials: {
-		type: SpecialLink,
-		username: string
-	}[]
+		type: SpecialLink;
+		username: string;
+	}[];
 }
 
 export interface ITheme extends mongoose.Document {
 	background: {
 		type: BackgroundType;
 		color: string;
-	},
+	};
 	button: {
 		radius: number;
 		style: ButtonStyle;
 		color: string;
 		fontColor: string;
-	},
+	};
 	font: Font;
 	fontColor: string;
-};
+}

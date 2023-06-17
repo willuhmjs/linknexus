@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Nav from "$lib/modules/Nav.svelte";
+	import Nav from '$lib/modules/Nav.svelte';
 </script>
 
 <svelte:head>
@@ -12,7 +12,7 @@
 			font-family: 'Arial', sans-serif;
 		}
 
-        .container h1 {
+		.container h1 {
 			font-size: 2rem;
 			margin-bottom: 1.3rem;
 		}
