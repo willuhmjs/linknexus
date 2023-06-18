@@ -56,7 +56,7 @@ export const theme = z.object({
 			required_error: 'Background type is required.',
 			invalid_type_error: 'Background type must be a number.'
 		}),
-		// todo implement color check
+		
 		color: colorSchema
 	}),
 	button: z.object({
@@ -71,16 +71,16 @@ export const theme = z.object({
 			required_error: 'Button style is required.',
 			invalid_type_error: 'Button style must be a number.'
 		}),
-		// todo implement color check
+		
 		color: colorSchema,
-		// todo implement color check
+		
 		fontColor: colorSchema
 	}),
 	font: z.nativeEnum(Font, {
 		required_error: 'Font is required.',
 		invalid_type_error: 'Font must be a number.'
 	}),
-	// todo implement color check
+	
 	fontColor: colorSchema
 });
 
