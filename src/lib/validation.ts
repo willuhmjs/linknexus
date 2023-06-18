@@ -56,7 +56,7 @@ export const theme = z.object({
 			required_error: 'Background type is required.',
 			invalid_type_error: 'Background type must be a number.'
 		}),
-		
+
 		color: colorSchema
 	}),
 	button: z.object({
@@ -71,16 +71,16 @@ export const theme = z.object({
 			required_error: 'Button style is required.',
 			invalid_type_error: 'Button style must be a number.'
 		}),
-		
+
 		color: colorSchema,
-		
+
 		fontColor: colorSchema
 	}),
 	font: z.nativeEnum(Font, {
 		required_error: 'Font is required.',
 		invalid_type_error: 'Font must be a number.'
 	}),
-	
+
 	fontColor: colorSchema
 });
 
@@ -134,5 +134,5 @@ export const special = z
 
 export const link = z.object({
 	url,
-	title,
-})
+	title
+});

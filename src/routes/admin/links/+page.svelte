@@ -5,7 +5,7 @@
 	import type { ActionData } from './$types.js';
 	import LinkEditor from '$lib/modules/LinkEditor.svelte';
 	let links: { title: string; url: string; _id: string }[] = data.user?.links;
-	let specials: { type: SpecialLink, username: string, _id: string}[] = data.user?.specials;
+	let specials: { type: SpecialLink; username: string; _id: string }[] = data.user?.specials;
 </script>
 
 <div class="container">
@@ -41,10 +41,10 @@
 				<option value={type}>
 					{SpecialLink[parseInt(type)]}
 				</option>
-			{/each}	
+			{/each}
 		</select>
 		<input required type="text" name="username" placeholder="username" autocomplete="off" />
-		<button type="submit">Add Special Link</button>		
+		<button type="submit">Add Special Link</button>
 	</form>
 	<LinkEditor {links} />
 	<LinkEditor links={specials} />

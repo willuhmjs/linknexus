@@ -65,10 +65,10 @@ export const actions = {
 			}
 			if (links.some((link) => link.title)) {
 				await user.updateOne({ links: links });
-				}
-				
+			}
+
 			if (links.some((link) => link.username)) {
-			await user.updateOne({ specials: links });
+				await user.updateOne({ specials: links });
 			}
 		} catch (e) {
 			return fail(403, {
