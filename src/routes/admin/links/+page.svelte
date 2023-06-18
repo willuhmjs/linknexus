@@ -3,62 +3,9 @@
 	export let data;
 	export let form: ActionData;
 	import type { ActionData } from './$types.js';
-	import Sortable from 'sortablejs';
-	import { onMount } from 'svelte';
-
-	let linksElement: HTMLUListElement;
+	import LinkEditor from '$lib/modules/LinkEditor.svelte';
 	let links: { title: string; url: string; _id: string }[] = data.user?.links;
-	let saveFailureMessage: string;
-
-	onMount(() => {
-		Sortable.create(linksElement, {
-			group: {
-				name: 'links',
-				put: true
-			},
-			animation: 200,
-			onUpdate: () => {
-				links = Array.from(linksElement.querySelectorAll('li'))
-					.map((li) => {
-						const linkId = li.querySelector('a')?.id || '';
-						return links.find((link) => link?._id === linkId);
-					})
-					.filter(Boolean) as { title: string; url: string; _id: string }[];
-				updateLinks();
-			}
-		});
-	});
-
-	function deleteLink(event: Event) {
-		const form = event.target as HTMLFormElement;
-		const formData = new FormData(form);
-		const id = formData.get('id') as string;
-		const linkIndex = links.findIndex((link) => link._id === id);
-		links.splice(linkIndex, 1);
-		const li = linksElement.querySelector(`li:nth-child(${linkIndex + 1})`);
-		li?.remove();
-		updateLinks();
-	}
-
-	function updateLinks() {
-		const urlEncodedData = new URLSearchParams();
-		urlEncodedData.append('links', JSON.stringify(links));
-		// Set the request headers
-		const headers = new Headers();
-		headers.append('Content-Type', 'application/x-www-form-urlencoded');
-		headers.append('Cookie', document.cookie);
-
-		// Make the POST request
-		fetch('/admin/links?/links', {
-			method: 'POST',
-			headers: headers,
-			body: urlEncodedData.toString()
-		})
-			.then((res) => res.json())
-			.then((res) => {
-				saveFailureMessage = JSON.parse(res.data)[3];
-			});
-	}
+	let specials: { type: SpecialLink, username: string, _id: string}[] = data.user?.specials;
 </script>
 
 <div class="container">
@@ -91,31 +38,14 @@
 		{/if}
 		<select name="type" required>
 			{#each Object.keys(SpecialLink).filter((value) => !isNaN(parseFloat(value))) as type}
-				<option selected={type == data.user.specials.type} value={type}
-					>{SpecialLink[parseInt(type)]}</option
-				>
-			{/each}
+				<option value={type}>
+					{SpecialLink[parseInt(type)]}
+				</option>
+			{/each}	
 		</select>
 		<input required type="text" name="username" placeholder="username" autocomplete="off" />
-		<button type="submit">Add Special Link</button>
+		<button type="submit">Add Special Link</button>		
 	</form>
-
-	{#if saveFailureMessage}
-		<p class="save-failure">{saveFailureMessage}</p>
-	{/if}
-	<ul bind:this={linksElement}>
-		{#if links?.length > 0}
-			{#each links as link (link._id)}
-				<li>
-					<a href={link.url} target="_blank" rel="noopener noreferrer" id={link._id}>
-						<span>{link.title}</span>
-					</a>
-					<form on:submit|preventDefault={deleteLink}>
-						<input type="hidden" name="id" value={link._id} />
-						<button type="submit">Delete</button>
-					</form>
-				</li>
-			{/each}
-		{/if}
-	</ul>
+	<LinkEditor {links} />
+	<LinkEditor links={specials} />
 </div>

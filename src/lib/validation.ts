@@ -84,7 +84,7 @@ export const theme = z.object({
 	fontColor: colorSchema
 });
 
-export const link = z
+const url = z
 	.string({
 		required_error: 'URL is required.',
 		invalid_type_error: 'URL must be a string.'
@@ -93,7 +93,7 @@ export const link = z
 		message: 'Must be a valid URL.'
 	});
 
-export const title = z
+const title = z
 	.string()
 	.min(1, { message: 'Title must be at least 1 character long.' })
 	.max(60, { message: 'Title must be at most 60 characters long.' })
@@ -131,3 +131,8 @@ export const special = z
 			message: 'Invalid username.'
 		}
 	);
+
+export const link = z.object({
+	url,
+	title,
+})

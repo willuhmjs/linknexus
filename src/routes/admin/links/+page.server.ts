@@ -14,8 +14,7 @@ export const actions = {
 		const url = data.get('url')?.toString();
 
 		try {
-			validator.link.parse(url);
-			validator.title.parse(title);
+			validator.link.parse({ title, url });
 		} catch (e) {
 			return fail(403, {
 				ref: 'link',
@@ -48,7 +47,7 @@ export const actions = {
 		return { ref: 'link', error: false, message: 'Link added!' };
 	},
 
-	links: async ({ cookies, request }) => {
+	update: async ({ cookies, request }) => {
 		const user = await checkAuth(cookies);
 		if (!user) {
 			return fail(403, { ref: 'links', error: true, message: 'Not authorized!' });
@@ -57,12 +56,20 @@ export const actions = {
 		const data = await request.formData();
 		try {
 			const links = JSON.parse(data.get('links')?.toString());
-
 			for (let i = 0; i < links.length; i++) {
-				validator.link.parse(links[i].url);
-				validator.title.parse(links[i].title);
+				if (links[i].title) {
+					validator.link.parse(links[i]);
+				} else if (links[i].username) {
+					validator.special.parse(links[i]);
+				}
 			}
-			await user.updateOne({ links: links });
+			if (links.some((link) => link.title)) {
+				await user.updateOne({ links: links });
+				}
+				
+			if (links.some((link) => link.username)) {
+			await user.updateOne({ specials: links });
+			}
 		} catch (e) {
 			return fail(403, {
 				ref: 'links',
