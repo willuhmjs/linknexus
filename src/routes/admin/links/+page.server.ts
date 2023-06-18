@@ -105,7 +105,12 @@ export const actions = {
 
 		if (!username) return;
 
-		validUser.specials.push({ type, username });
+		const existingSpecial = validUser.specials.find((special) => special.type === type);
+		if (existingSpecial) {
+			existingSpecial.username = username;
+		} else {
+			validUser.specials.push({ type, username });
+		}
 		await validUser.save();
 
 		return { ref: 'special', error: false, message: 'Special link added!' };
