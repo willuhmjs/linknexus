@@ -65,9 +65,7 @@ export const actions = {
 			}
 			if (links.some((link) => link.title)) {
 				await user.updateOne({ links: links });
-			}
-
-			if (links.some((link) => link.username)) {
+			} else if (links.some((link) => link.username)) {
 				await user.updateOne({ specials: links });
 			}
 		} catch (e) {
