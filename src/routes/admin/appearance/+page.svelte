@@ -15,7 +15,7 @@
 		<select name="backgroundType" required>
 			{#each Object.keys(BackgroundType).filter((value) => !isNaN(parseFloat(value))) as type}
 				<option selected={type == data.user.theme.background.type} value={type}
-					>{BackgroundType[type]}</option
+					>{BackgroundType[parseInt(type)]}</option
 				>
 			{/each}
 		</select>
@@ -31,7 +31,7 @@
 		<select name="buttonStyle" required>
 			{#each Object.keys(ButtonStyle).filter((value) => !isNaN(parseFloat(value))) as style}
 				<option selected={style == data.user.theme.button.style} value={style}
-					>{ButtonStyle[style]}</option
+					>{ButtonStyle[parseInt(style)]}</option
 				>
 			{/each}
 		</select>
@@ -40,7 +40,7 @@
 		<h2>General</h2>
 		<select name="font" required>
 			{#each Object.keys(Font).filter((value) => !isNaN(parseFloat(value))) as font}
-				<option selected={font == data.user.theme.font} value={font}>{Font[font]}</option>
+				<option selected={font == data.user.theme.font} value={font}>{Font[parseInt(font)]}</option>
 			{/each}
 		</select>
 		<input type="color" name="fontColor" value={data.user.theme.fontColor} required />
