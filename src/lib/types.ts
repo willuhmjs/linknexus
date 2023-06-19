@@ -3,7 +3,6 @@ import type mongoose from 'mongoose';
 export enum SpecialLink {
 	INSTAGRAM,
 	TWITTER,
-	DISCORD,
 	YOUTUBE,
 	TWITCH,
 	TIKTOK,
