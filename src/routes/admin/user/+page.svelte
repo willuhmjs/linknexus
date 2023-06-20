@@ -1,9 +1,10 @@
 <script lang="ts">
+	import Nav from '$lib/modules/Nav.svelte';
 	export let data;
 	export let form: ActionData;
 	import type { ActionData } from './$types.js';
 </script>
-
+<Nav active="user"/>
 <div class="container">
 	<h1>Account Information</h1>
 	<p><strong>Username:</strong> {data.user.username}</p>

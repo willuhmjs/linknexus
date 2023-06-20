@@ -1,8 +1,12 @@
+<script lang="ts">
+	export let active: string;
+</script>
+
 <nav>
 	<ul class="navbar">
-		<li><a href="/admin/links"><i class="fa-solid fa-link"></i>Links</a></li>
-		<li><a href="/admin/appearance"><i class="fa-solid fa-eye"></i>Appearance</a></li>
-		<li><a href="/admin/user"><i class="fa-solid fa-user"></i>User</a></li>
+		<li class={active==="links" ? "active" : ""}><a href="/admin/links"><i class="fa-solid fa-link"></i>Links</a></li>
+		<li class={active==="appearance" ? "active" : ""}><a href="/admin/appearance"><i class="fa-solid fa-eye"></i>Appearance</a></li>
+		<li class={active==="user" ? "active" : ""}><a href="/admin/user"><i class="fa-solid fa-user"></i>User</a></li>
 	</ul>
 </nav>
 
@@ -27,14 +31,19 @@
 		margin-right: 3px;
 	}
 
+	nav li .active, nav li.active a {
+		background-color: #e5e5e5;
+		color: inherit;
+	}
+
 	nav li:last-child {
 		margin-right: 0;
 	}
 
 	nav li a {
 		display: inline-block;
+		color: #676B5F;
 		text-decoration: none;
-		color: #333;
 		padding: 0.75rem 1rem;
 		border-bottom: 2px solid transparent;
 		border-radius: 10px;

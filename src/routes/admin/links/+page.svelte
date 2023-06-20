@@ -4,10 +4,11 @@
 	export let form: ActionData;
 	import type { ActionData } from './$types.js';
 	import LinkEditor from '$lib/modules/LinkEditor.svelte';
+	import Nav from '$lib/modules/Nav.svelte';
 	let links: { title: string; url: string; _id: string }[] = data.user?.links;
 	let specials: { type: SpecialLink; username: string; _id: string }[] = data.user?.specials;
 </script>
-
+<Nav active="links"/>
 <div class="container">
 	<h2>Links</h2>
 	<form method="POST" action="?/link">

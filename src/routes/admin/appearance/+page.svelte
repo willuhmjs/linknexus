@@ -1,10 +1,11 @@
 <script lang="ts">
+	import Nav from '$lib/modules/Nav.svelte';
 	export let data;
 	export let form: ActionData;
 	import { Font, ButtonStyle, BackgroundType } from '$lib/types.js';
 	import type { ActionData } from './$types.js';
 </script>
-
+<Nav active="appearance"/>
 <div class="container">
 	<form method="POST" action="?/theme">
 		{#if form?.ref === 'theme'}
