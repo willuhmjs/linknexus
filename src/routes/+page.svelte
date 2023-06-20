@@ -4,8 +4,4 @@
 	export let data: PageData;
 </script>
 
-{#if data.saas}
-	<h1>this is a service</h1>
-{:else}
-	<User user={data.user} />
-{/if}
+<User user={data.user} />
