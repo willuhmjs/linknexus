@@ -1,34 +1,33 @@
 <script lang="ts">
-	import Nav from "$lib/modules/Nav.svelte";
-    import { page } from "$app/stores";
+	import Nav from '$lib/modules/Nav.svelte';
+	import { page } from '$app/stores';
 </script>
+
 <svelte:head>
-    <style>
-        main {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-        }
+	<style>
+		main {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+		}
 
-        section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex: 1;
-            margin: 0 3rem;
-        }
+		section {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			flex: 1;
+			margin: 0 3rem;
+		}
 
-       section > * {
-            width: 100%;
-        }
-    </style>
+		section > * {
+			width: 100%;
+		}
+	</style>
 </svelte:head>
-<Nav active={$page.url.pathname}/>
+<Nav active={$page.url.pathname} />
 <main>
-    <section>
-        <slot />
-    </section>
-    <section>
-        asdfsdf
-    </section>
+	<section>
+		<slot />
+	</section>
+	<section>asdfsdf</section>
 </main>

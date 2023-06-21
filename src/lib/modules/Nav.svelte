@@ -4,9 +4,15 @@
 
 <nav>
 	<ul class="navbar">
-		<li class={active==="/admin/links" ? "active" : ""}><a href="/admin/links"><i class="fa-solid fa-link"></i>Links</a></li>
-		<li class={active==="/admin/appearance" ? "active" : ""}><a href="/admin/appearance"><i class="fa-solid fa-eye"></i>Appearance</a></li>
-		<li class={active==="/admin/user" ? "active" : ""}><a href="/admin/user"><i class="fa-solid fa-user"></i>User</a></li>
+		<li class={active === '/admin/links' ? 'active' : ''}>
+			<a href="/admin/links"><i class="fa-solid fa-link" />Links</a>
+		</li>
+		<li class={active === '/admin/appearance' ? 'active' : ''}>
+			<a href="/admin/appearance"><i class="fa-solid fa-eye" />Appearance</a>
+		</li>
+		<li class={active === '/admin/user' ? 'active' : ''}>
+			<a href="/admin/user"><i class="fa-solid fa-user" />User</a>
+		</li>
 	</ul>
 </nav>
 
@@ -31,7 +37,8 @@
 		margin-right: 3px;
 	}
 
-	nav li .active, nav li.active a {
+	nav li .active,
+	nav li.active a {
 		background-color: #e5e5e5;
 		color: inherit;
 	}
@@ -42,7 +49,7 @@
 
 	nav li a {
 		display: inline-block;
-		color: #676B5F;
+		color: #676b5f;
 		text-decoration: none;
 		padding: 0.75rem 1rem;
 		border-bottom: 2px solid transparent;
@@ -61,4 +68,3 @@
 		background-color: #e5e5e5;
 	}
 </style>
-

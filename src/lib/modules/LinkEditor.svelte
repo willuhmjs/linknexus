@@ -55,20 +55,30 @@
 			});
 	}
 
-    function socialLink(username: string, type: SpecialLink) {
-	    switch (type) {
-            case SpecialLink.INSTAGRAM: return `https://instagram.com/${username}`;
-            case SpecialLink.TWITTER: return `https://twitter.com/${username}`;
-            case SpecialLink.YOUTUBE: return `https://youtube.com/channel/${username}`;
-            case SpecialLink.TWITCH: return `https://twitch.tv/${username}`;
-            case SpecialLink.TIKTOK: return `https://tiktok.com/@${username}`;
-            case SpecialLink.PATREON: return `https://patreon.com/${username}`;
-            case SpecialLink.SNAPCHAT: return `https://snapchat.com/add/${username}`;
-            case SpecialLink.LINKEDIN: return `https://linkedin.com/in/${username}`;
-            case SpecialLink.FACEBOOK: return `https://facebook.com/${username}`;
-            case SpecialLink.SPOTIFY: return `https://open.spotify.com/user/${username}`;
-	    }
-    }
+	function socialLink(username: string, type: SpecialLink) {
+		switch (type) {
+			case SpecialLink.INSTAGRAM:
+				return `https://instagram.com/${username}`;
+			case SpecialLink.TWITTER:
+				return `https://twitter.com/${username}`;
+			case SpecialLink.YOUTUBE:
+				return `https://youtube.com/channel/${username}`;
+			case SpecialLink.TWITCH:
+				return `https://twitch.tv/${username}`;
+			case SpecialLink.TIKTOK:
+				return `https://tiktok.com/@${username}`;
+			case SpecialLink.PATREON:
+				return `https://patreon.com/${username}`;
+			case SpecialLink.SNAPCHAT:
+				return `https://snapchat.com/add/${username}`;
+			case SpecialLink.LINKEDIN:
+				return `https://linkedin.com/in/${username}`;
+			case SpecialLink.FACEBOOK:
+				return `https://facebook.com/${username}`;
+			case SpecialLink.SPOTIFY:
+				return `https://open.spotify.com/user/${username}`;
+		}
+	}
 </script>
 
 {#if saveFailureMessage}
@@ -78,7 +88,12 @@
 	{#if links?.length > 0}
 		{#each links as link (link._id)}
 			<li>
-				<a href={link.url ?? socialLink(link.username, link.type)} target="_blank" rel="noopener noreferrer" id={link._id}>
+				<a
+					href={link.url ?? socialLink(link.username, link.type)}
+					target="_blank"
+					rel="noopener noreferrer"
+					id={link._id}
+				>
 					<span>{link.title ?? SpecialLink[link.type]}</span>
 				</a>
 				<form on:submit|preventDefault={deleteLink}>
@@ -89,6 +104,7 @@
 		{/each}
 	{/if}
 </ul>
+
 <style>
 	ul {
 		list-style: none;
