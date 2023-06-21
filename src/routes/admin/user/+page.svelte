@@ -1,11 +1,8 @@
 <script lang="ts">
-	import Nav from '$lib/modules/Nav.svelte';
 	export let data;
 	export let form: ActionData;
 	import type { ActionData } from './$types.js';
 </script>
-<Nav active="user"/>
-<div class="container">
 	<h1>Account Information</h1>
 	<p><strong>Username:</strong> {data.user.username}</p>
 	<p><strong>Email:</strong> {data.user.email}</p>
@@ -20,4 +17,3 @@
 		<input required type="text" name="bio" placeholder={data?.user.bio || ''} autocomplete="off" />
 		<button type="submit">Update Bio</button>
 	</form>
-</div>

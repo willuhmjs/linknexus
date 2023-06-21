@@ -4,9 +4,9 @@
 
 <nav>
 	<ul class="navbar">
-		<li class={active==="links" ? "active" : ""}><a href="/admin/links"><i class="fa-solid fa-link"></i>Links</a></li>
-		<li class={active==="appearance" ? "active" : ""}><a href="/admin/appearance"><i class="fa-solid fa-eye"></i>Appearance</a></li>
-		<li class={active==="user" ? "active" : ""}><a href="/admin/user"><i class="fa-solid fa-user"></i>User</a></li>
+		<li class={active==="/admin/links" ? "active" : ""}><a href="/admin/links"><i class="fa-solid fa-link"></i>Links</a></li>
+		<li class={active==="/admin/appearance" ? "active" : ""}><a href="/admin/appearance"><i class="fa-solid fa-eye"></i>Appearance</a></li>
+		<li class={active==="/admin/user" ? "active" : ""}><a href="/admin/user"><i class="fa-solid fa-user"></i>User</a></li>
 	</ul>
 </nav>
 

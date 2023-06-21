@@ -89,3 +89,32 @@
 		{/each}
 	{/if}
 </ul>
+<style>
+	ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	li {
+		display: flex;
+		align-items: center;
+		padding: 0.5rem;
+		background-color: #fff;
+		border-radius: 4px;
+		margin-bottom: 0.5rem;
+	}
+
+	li a {
+		text-decoration: none;
+		color: #333;
+		margin-right: 1rem;
+		display: flex;
+		align-items: center;
+	}
+
+	li a span:first-child {
+		font-size: 1.5rem;
+		margin-right: 0.5rem;
+	}
+</style>

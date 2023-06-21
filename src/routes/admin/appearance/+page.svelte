@@ -1,12 +1,9 @@
 <script lang="ts">
-	import Nav from '$lib/modules/Nav.svelte';
 	export let data;
 	export let form: ActionData;
 	import { Font, ButtonStyle, BackgroundType } from '$lib/types.js';
 	import type { ActionData } from './$types.js';
 </script>
-<Nav active="appearance"/>
-<div class="container">
 	<form method="POST" action="?/theme">
 		{#if form?.ref === 'theme'}
 			<p class={form?.error ? 'error' : 'success'}>{form?.message}</p>
@@ -47,4 +44,3 @@
 		<input type="color" name="fontColor" value={data.user.theme.fontColor} required />
 		<button type="submit">Update Theme</button>
 	</form>
-</div>
