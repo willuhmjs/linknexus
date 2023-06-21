@@ -86,7 +86,6 @@
 		}
 
 		form input, form select {
-			margin-bottom: 0.5rem;
 			padding: 0.5rem;
 			border-radius: 4px;
 			border: 1px solid #ccc;
@@ -99,6 +98,5 @@
 			border: none;
 			border-radius: 4px;
 			cursor: pointer;
-			margin-bottom: 0.5rem;
 		}
 </style>
