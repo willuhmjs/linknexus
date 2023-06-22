@@ -108,6 +108,11 @@
 	li a span:first-child {
 		font-size: 1.5rem;
 		margin-right: 0.5rem;
+		word-break: break-all;
+	}
+
+	li form {
+		margin-left: auto;
 	}
 
 	.deleteButton {

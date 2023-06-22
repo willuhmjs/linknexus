@@ -103,6 +103,10 @@
 
 	}
 
+	li form {
+		margin-left: auto;
+	}
+
 	.deleteButton {
 		color: white;
 		background-color: #ff4d4d;
