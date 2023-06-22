@@ -13,71 +13,85 @@
 		type: 1,
 		username: 2
 	};
+
+	let showAddLink = false;
+
+	function toggleAddLink() {
+		showAddLink = !showAddLink;
+	}
 </script>
 
-<div class="addLink">
-	{#if form?.ref === 'link' || form?.ref === 'special'}
-		<p class={form?.error ? 'error' : 'success'}>{form?.message}</p>
-	{/if}
-	<form method="POST" action="?/link">
-		<label for="title" style="flex: ${labelProportions.title}">
-			<span>Title</span>
-			<input
-				id="title"
-				type="text"
-				name="title"
-				placeholder="My Awesome Website"
-				autocomplete="off"
-				value={form?.title || ''}
-				required
-			/>
-		</label>
-		<label for="url" style="flex: ${labelProportions.url}">
-			<span>URL</span>
-			<input
-				required
-				id="url"
-				type="url"
-				name="url"
-				placeholder="https://willuhmjs.com"
-				autocomplete="off"
-				value={form?.url || ''}
-			/>
-		</label>
-		<button type="submit"><i class="fa-solid fa-arrow-up-right-from-square" />Add Hyperlink</button>
-	</form>
-	<hr />
-	<div class="or-divider">OR</div>
-	<hr />
-	<form method="POST" action="?/special">
-		<label for="type" style="flex: ${labelProportions.type}">
-			<span>Type</span>
-			<select name="type" required>
-				{#each Object.keys(SpecialLink).filter((value) => !isNaN(parseFloat(value))) as type}
-					<option value={type}>
-						{SpecialLink[parseInt(type)]}
-					</option>
-				{/each}
-			</select>
-		</label>
-		<label for="username" style="flex: ${labelProportions.username}">
-			<span>Username</span>
-			<input required type="text" name="username" placeholder="willuhmjs" autocomplete="off" />
-		</label>
-		<button type="submit"><i class="fa-solid fa-user-plus" />Add Social Link</button>
-	</form>
-</div>
+<button class="addLinkButton" on:click={toggleAddLink}>
+	<i class="fa-solid fa-plus"></i>Add Link
+</button>
+
+{#if showAddLink}
+	<div class="addLink">
+		{#if form?.ref === 'link' || form?.ref === 'special'}
+			<p class={form?.error ? 'error' : 'success'}>{form?.message}</p>
+		{/if}
+		<form method="POST" action="?/link">
+			<label for="title" style="flex: ${labelProportions.title}">
+				<span>Title</span>
+				<input
+					id="title"
+					type="text"
+					name="title"
+					placeholder="My Awesome Website"
+					autocomplete="off"
+					value={form?.title || ''}
+					required
+				/>
+			</label>
+			<label for="url" style="flex: ${labelProportions.url}">
+				<span>URL</span>
+				<input
+					required
+					id="url"
+					type="url"
+					name="url"
+					placeholder="https://willuhmjs.com"
+					autocomplete="off"
+					value={form?.url || ''}
+				/>
+			</label>
+			<button type="submit"><i class="fa-solid fa-arrow-up-right-from-square" />Add Hyperlink</button>
+		</form>
+		<hr />
+		<div class="or-divider">OR</div>
+		<hr />
+		<form method="POST" action="?/special">
+			<label for="type" style="flex: ${labelProportions.type}">
+				<span>Type</span>
+				<select name="type" required>
+					{#each Object.keys(SpecialLink).filter((value) => !isNaN(parseFloat(value))) as type}
+						<option value={type}>
+							{SpecialLink[parseInt(type)]}
+						</option>
+					{/each}
+				</select>
+			</label>
+			<label for="username" style="flex: ${labelProportions.username}">
+				<span>Username</span>
+				<input required type="text" name="username" placeholder="willuhmjs" autocomplete="off" />
+			</label>
+			<button type="submit"><i class="fa-solid fa-user-plus" />Add Social Link</button>
+		</form>
+	</div>
+{/if}
+
 <LinkEditor {links} />
 <LinkEditor links={specials} />
 
 <style>
-	.addLink {
-		padding: 1rem;
-		background-color: #fafafa;
-		border: 2px solid #e8e8ed;
-		border-radius: 1rem;
-	}
-
+.addLink {
+	position: relative;
+	padding: 1rem;
+	background-color: #fafafa;
+	border: 2px solid #e8e8ed;
+	border-radius: 1rem;
+	margin-top: 1rem;
+}
 	.addLink > p {
 		margin-top: 0;
 	}
@@ -133,7 +147,7 @@
 		border: 1px solid #ccc;
 	}
 
-	form button {
+	button {
 		background-color: #4dbbff;
 		color: white;
 		padding: 0.5rem 1rem;
@@ -142,4 +156,5 @@
 		cursor: pointer;
 		margin-top: auto;
 	}
+
 </style>
