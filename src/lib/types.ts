@@ -1,6 +1,7 @@
 import type mongoose from 'mongoose';
 
 export enum SpecialLink {
+	GITHUB,
 	INSTAGRAM,
 	TWITTER,
 	YOUTUBE,
