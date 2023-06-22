@@ -91,7 +91,6 @@
 
 <style>
 	.addLink {
-		position: relative;
 		padding: 1rem;
 		background-color: #fafafa;
 		border: 2px solid #e8e8ed;
