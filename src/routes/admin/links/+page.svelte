@@ -22,7 +22,7 @@
 	}
 </script>
 
-<button class="addLinkButton" on:click={toggleAddLink}>
+<button class="bt-primary" on:click={toggleAddLink}>
 	<i class="fa-solid fa-plus" />Add Link
 </button>
 
@@ -56,7 +56,7 @@
 					value={form?.url || ''}
 				/>
 			</label>
-			<button type="submit"
+			<button class="bt-primary" type="submit"
 				><i class="fa-solid fa-arrow-up-right-from-square" />Add Hyperlink</button
 			>
 		</form>
@@ -78,7 +78,7 @@
 				<span>Username</span>
 				<input required type="text" name="username" placeholder="willuhmjs" autocomplete="off" />
 			</label>
-			<button type="submit"><i class="fa-solid fa-user-group" />Add Social Link</button>
+			<button class="bt-primary" type="submit"><i class="fa-solid fa-user-group" />Add Social Link</button>
 		</form>
 	</div>
 {/if}
@@ -138,11 +138,6 @@
 
 	i {
 		margin-right: 10px;
-	}
-
-	button {
-		background-color: #4dbbff;
-		color: white;
 	}
 
 	h2 {

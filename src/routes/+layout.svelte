@@ -9,6 +9,12 @@
 	<style>
 		@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
+		:root {
+			--good: #45e645;
+			--bad: #ff4d4d;
+			--primary: #4dbbff;
+		}
+
 		body {
 			margin: 0.75rem;
 			padding: 0;
@@ -24,11 +30,26 @@
 		}
 
 		.success {
-			color: #45e645;
+			color: var(--good);
 		}
 
 		.error {
-			color: #ff4d4d;
+			color: var(--bad);
+		}
+
+		.bt-good {
+			background-color: var(--good);
+			color: white;
+		}
+
+		.bt-bad {
+			color: white;
+			background-color: var(--bad);
+		}
+
+		.bt-primary {
+			color: white;
+			background-color: var(--primary);
 		}
 
 		button {
