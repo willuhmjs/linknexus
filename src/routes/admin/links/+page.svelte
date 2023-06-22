@@ -3,7 +3,8 @@
 	export let data;
 	export let form: ActionData;
 	import type { ActionData } from './$types.js';
-	import LinkEditor from '$lib/modules/LinkEditor.svelte';
+	import LinkEditor from '$lib/modules/Editor/LinkEditor.svelte';
+	import SpecialEditor from '$lib/modules/Editor/SpecialEditor.svelte';
 	let links: { title: string; url: string; _id: string }[] = data.user?.links;
 	let specials: { type: SpecialLink; username: string; _id: string }[] = data.user?.specials;
 
@@ -84,7 +85,7 @@
 <LinkEditor {links} />
 
 <h2>Social Links</h2>
-<LinkEditor links={specials} />
+<SpecialEditor {specials} />
 
 <style>
 .addLink {

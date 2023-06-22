@@ -1,12 +1,9 @@
 <script lang="ts">
-	import { SpecialLink } from '$lib/types.js';
 	import Sortable from 'sortablejs';
 	import { onMount } from 'svelte';
-
+	import "./editor.css";
 	let linksElement: HTMLUListElement;
-	export let links:
-		| { title: string; url: string; _id: string }[]
-		| { type: SpecialLink; username: string; _id: string }[];
+	export let links: { title: string; url: string; _id: string }[];
 	let saveFailureMessage: string;
 
 	onMount(() => {
@@ -37,12 +34,12 @@
 
 	function updateLinks() {
 		const urlEncodedData = new URLSearchParams();
-		urlEncodedData.append('links', JSON.stringify(links));
+		urlEncodedData.append('request', JSON.stringify({ref: "links", data: links}));
 		// Set the request headers
 		const headers = new Headers();
 		headers.append('Content-Type', 'application/x-www-form-urlencoded');
 		headers.append('Cookie', document.cookie);
-
+		console.log(urlEncodedData);
 		// Make the POST request
 		fetch('/admin/links?/update', {
 			method: 'POST',
@@ -54,33 +51,6 @@
 				saveFailureMessage = JSON.parse(res.data)[3];
 			});
 	}
-
-	function socialLink(username: string, type: SpecialLink) {
-		switch (type) {
-			case SpecialLink.Instagram:
-				return `https://instagram.com/${username}`;
-			case SpecialLink.Twitter:
-				return `https://twitter.com/${username}`;
-			case SpecialLink.Youtube:
-				return `https://youtube.com/channel/${username}`;
-			case SpecialLink.Twitch:
-				return `https://twitch.tv/${username}`;
-			case SpecialLink.TikTok:
-				return `https://tiktok.com/@${username}`;
-			case SpecialLink.Patreon:
-				return `https://patreon.com/${username}`;
-			case SpecialLink.Snapchat:
-				return `https://snapchat.com/add/${username}`;
-			case SpecialLink.LinkedIn:
-				return `https://linkedin.com/in/${username}`;
-			case SpecialLink.Facebook:
-				return `https://facebook.com/${username}`;
-			case SpecialLink.Spotify:
-				return `https://open.spotify.com/user/${username}`;
-			case SpecialLink.GitHub:
-				return `https://giuthub.com/${username}`;
-		}
-	}
 </script>
 
 {#if saveFailureMessage}
@@ -89,14 +59,14 @@
 <ul bind:this={linksElement}>
 	{#if links?.length > 0}
 		{#each links as link (link._id)}
-			<li>
+			<li class="linkItem">
 				<a
-					href={link.url ?? socialLink(link.username, link.type)}
+					href={link.url}
 					target="_blank"
 					rel="noopener noreferrer"
 					id={link._id}
 				>
-					<span>{link.title ?? SpecialLink[link.type]}</span>
+					<span>{link.title}</span>
 				</a>
 				<form on:submit|preventDefault={deleteLink}>
 					<input type="hidden" name="id" value={link._id} />
@@ -106,39 +76,3 @@
 		{/each}
 	{/if}
 </ul>
-
-<style>
-	ul {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-	}
-
-	li {
-		display: flex;
-		align-items: center;
-		padding: 0.5rem;
-		background-color: #fafafa;
-		border: 2px solid #e8e8ed;
-		border-radius: 0.5rem;
-		margin: 0.5rem 0;
-	}
-
-	li a {
-		text-decoration: none;
-		color: #333;
-		margin-right: 1rem;
-		display: flex;
-		align-items: center;
-	}
-
-	li a span:first-child {
-		font-size: 1.5rem;
-		margin-right: 0.5rem;
-	}
-
-	.deleteButton {
-		color: white;
-		background-color: #ff4d4d; 
-	}
-</style>

@@ -1,0 +1,107 @@
+<script lang="ts">
+	import { SpecialLink } from '$lib/types.js';
+	import Sortable from 'sortablejs';
+	import { onMount } from 'svelte';
+	import "./editor.css";
+
+	let specialsElement: HTMLUListElement;
+	export let specials: { type: SpecialLink; username: string; _id: string }[];
+	let saveFailureMessage: string;
+
+	onMount(() => {
+		Sortable.create(specialsElement, {
+			animation: 200,
+			onUpdate: () => {
+				specials = Array.from(specialsElement.querySelectorAll('li'))
+					.map((li) => {
+						const linkId = li.querySelector('a')?.id || '';
+						return specials.find((link: { _id: string }) => link?._id === linkId);
+					})
+					.filter(Boolean) as { type: SpecialLink, username:string, _id: string }[];
+				updateSpecials();
+			}
+		});
+	});
+
+	function deleteLink(event: Event) {
+		const form = event.target as HTMLFormElement;
+		const formData = new FormData(form);
+		const id = formData.get('id') as string;
+		const linkIndex = specials.findIndex((link) => link._id === id);
+		specials.splice(linkIndex, 1);
+		const li = specialsElement.querySelector(`li:nth-child(${linkIndex + 1})`);
+		li?.remove();
+		updateSpecials();
+	}
+
+	function updateSpecials() {
+		const urlEncodedData = new URLSearchParams();
+		urlEncodedData.append('request', JSON.stringify({ ref: "specials", data: specials}));
+		// Set the request headers
+		const headers = new Headers();
+		headers.append('Content-Type', 'application/x-www-form-urlencoded');
+		headers.append('Cookie', document.cookie);
+
+		// Make the POST request
+		fetch('/admin/links?/update', {
+			method: 'POST',
+			headers: headers,
+			body: urlEncodedData.toString()
+		})
+			.then((res) => res.json())
+			.then((res) => {
+				saveFailureMessage = JSON.parse(res.data)[3];
+			});
+	}
+
+	function socialLink(username: string, type: SpecialLink) {
+		switch (type) {
+			case SpecialLink.Instagram:
+				return `https://instagram.com/${username}`;
+			case SpecialLink.Twitter:
+				return `https://twitter.com/${username}`;
+			case SpecialLink.Youtube:
+				return `https://youtube.com/channel/${username}`;
+			case SpecialLink.Twitch:
+				return `https://twitch.tv/${username}`;
+			case SpecialLink.TikTok:
+				return `https://tiktok.com/@${username}`;
+			case SpecialLink.Patreon:
+				return `https://patreon.com/${username}`;
+			case SpecialLink.Snapchat:
+				return `https://snapchat.com/add/${username}`;
+			case SpecialLink.LinkedIn:
+				return `https://linkedin.com/in/${username}`;
+			case SpecialLink.Facebook:
+				return `https://facebook.com/${username}`;
+			case SpecialLink.Spotify:
+				return `https://open.spotify.com/user/${username}`;
+			case SpecialLink.GitHub:
+				return `https://giuthub.com/${username}`;
+		}
+	}
+</script>
+
+{#if saveFailureMessage}
+	<p class="save-failure">{saveFailureMessage}</p>
+{/if}
+<ul bind:this={specialsElement}>
+	{#if specials?.length > 0}
+		{#each specials as link (link._id)}
+			<li class="linkItem">
+				<a
+					href={socialLink(link.username, link.type)}
+					target="_blank"
+					rel="noopener noreferrer"
+					id={link._id}
+				>
+					<span>{SpecialLink[link.type]}</span>
+				</a>
+				<form on:submit|preventDefault={deleteLink}>
+					<input type="hidden" name="id" value={link._id} />
+					<button type="submit" class="deleteButton">Delete</button>
+				</form>
+			</li>
+		{/each}
+	{/if}
+</ul>
