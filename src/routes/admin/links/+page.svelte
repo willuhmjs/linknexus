@@ -14,7 +14,7 @@
 		username: 2
 	};
 
-	let showAddLink = false;
+	let showAddLink = form?.ref === 'link' || form?.ref === 'special';
 
 	function toggleAddLink() {
 		showAddLink = !showAddLink;
