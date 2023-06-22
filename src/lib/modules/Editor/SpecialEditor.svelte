@@ -67,7 +67,8 @@
 					rel="noopener noreferrer"
 					id={link._id}
 				>
-					<span><i class="fa-brands {SpecialProps[link.type].icon}" />{link.username}</span>
+				<i class="fa-brands {SpecialProps[link.type].icon}" />	
+				<span class="username">{link.username}</span>
 				</a>
 				<form on:submit|preventDefault={deleteLink}>
 					<input type="hidden" name="id" value={link._id} />
@@ -105,7 +106,11 @@
 		align-items: center;
 	}
 
-	li a span:first-child {
+	li a i {
+		font-size: 1.5rem;
+	}
+
+	li a .username {
 		font-size: 1.3rem;
 		margin-right: 0.5rem;
 		word-break: break-all;
