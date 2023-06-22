@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { SpecialLink } from '$lib/types.js';
+	import { SpecialLink, SpecialProps } from '$lib/types.js';
 	import Sortable from 'sortablejs';
 	import { onMount } from 'svelte';
 
@@ -52,33 +52,6 @@
 				saveFailureMessage = JSON.parse(res.data)[3];
 			});
 	}
-
-	function socialLink(username: string, type: SpecialLink) {
-		switch (type) {
-			case SpecialLink.Instagram:
-				return `https://instagram.com/${username}`;
-			case SpecialLink.Twitter:
-				return `https://twitter.com/${username}`;
-			case SpecialLink.Youtube:
-				return `https://youtube.com/channel/${username}`;
-			case SpecialLink.Twitch:
-				return `https://twitch.tv/${username}`;
-			case SpecialLink.TikTok:
-				return `https://tiktok.com/@${username}`;
-			case SpecialLink.Patreon:
-				return `https://patreon.com/${username}`;
-			case SpecialLink.Snapchat:
-				return `https://snapchat.com/add/${username}`;
-			case SpecialLink.LinkedIn:
-				return `https://linkedin.com/in/${username}`;
-			case SpecialLink.Facebook:
-				return `https://facebook.com/${username}`;
-			case SpecialLink.Spotify:
-				return `https://open.spotify.com/user/${username}`;
-			case SpecialLink.GitHub:
-				return `https://giuthub.com/${username}`;
-		}
-	}
 </script>
 
 {#if saveFailureMessage}
@@ -89,12 +62,12 @@
 		{#each specials as link (link._id)}
 			<li class="linkItem">
 				<a
-					href={socialLink(link.username, link.type)}
+					href={SpecialProps[link.type].template(link.username)}
 					target="_blank"
 					rel="noopener noreferrer"
 					id={link._id}
 				>
-					<span>{SpecialLink[link.type]}</span>
+					<span><i class="fa-brands {SpecialProps[link.type].icon}"></i>{SpecialLink[link.type]}</span>
 				</a>
 				<form on:submit|preventDefault={deleteLink}>
 					<input type="hidden" name="id" value={link._id} />
@@ -139,5 +112,9 @@ li a span:first-child {
 .deleteButton {
     color: white;
     background-color: #ff4d4d; 
+}
+
+i {
+	margin-right: 10px;
 }
 	</style>
