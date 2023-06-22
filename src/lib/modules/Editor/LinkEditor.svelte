@@ -82,7 +82,6 @@
 
 	li.linkItem {
 		display: flex;
-		align-items: center;
 		padding: 0.5rem;
 		background-color: #fafafa;
 		border: 2px solid #e8e8ed;
@@ -94,13 +93,14 @@
 		text-decoration: none;
 		color: #333;
 		margin-right: 1rem;
-		display: flex;
-		align-items: center;
+		display: flex;		
 	}
 
 	li a span:first-child {
 		font-size: 1.5rem;
 		margin-right: 0.5rem;
+		word-break: break-all;
+
 	}
 
 	.deleteButton {

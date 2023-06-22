@@ -17,7 +17,9 @@
 			align-items: center;
 			flex: 1;
 			margin: 0 3rem;
+			overflow: hidden;
 		}
+
 
 		section > * {
 			width: 100%;
