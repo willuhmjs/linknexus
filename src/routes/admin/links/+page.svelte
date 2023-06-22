@@ -96,11 +96,7 @@
 		margin-top: 0;
 	}
 
-	select,
-	input[type='text'],
-	input[type='url'] {
-		min-width: 0;
-	}
+
 
 	hr:first-of-type {
 		margin-top: 1.2rem;
@@ -140,21 +136,9 @@
 		margin-right: 10px;
 	}
 
-	form input,
-	form select {
-		padding: 0.5rem;
-		border-radius: 4px;
-		border: 1px solid #ccc;
-	}
-
 	button {
 		background-color: #4dbbff;
 		color: white;
-		padding: 0.5rem 1rem;
-		border: none;
-		border-radius: 4px;
-		cursor: pointer;
-		margin-top: auto;
 	}
 
 </style>
