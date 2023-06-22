@@ -67,7 +67,7 @@
 					rel="noopener noreferrer"
 					id={link._id}
 				>
-					<span><i class="fa-brands {SpecialProps[link.type].icon}"></i>{SpecialLink[link.type]}</span>
+					<span><i class="fa-brands {SpecialProps[link.type].icon}"></i>{link.username}</span>
 				</a>
 				<form on:submit|preventDefault={deleteLink}>
 					<input type="hidden" name="id" value={link._id} />
