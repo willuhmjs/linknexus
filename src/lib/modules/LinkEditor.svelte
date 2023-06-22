@@ -118,8 +118,9 @@
 		display: flex;
 		align-items: center;
 		padding: 0.5rem;
-		background-color: #fff;
-		border-radius: 4px;
+		background-color: #fafafa;
+		border: 2px solid #e8e8ed;
+		border-radius: 0.5rem;
 		margin: 0.5rem 0;
 	}
 

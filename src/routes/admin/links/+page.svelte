@@ -92,7 +92,7 @@
 	padding: 1rem;
 	background-color: #fafafa;
 	border: 2px solid #e8e8ed;
-	border-radius: 1rem;
+	border-radius: 0.5rem;
 	margin-top: 1rem;
 }
 	.addLink > p {
