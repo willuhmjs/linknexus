@@ -57,26 +57,28 @@
 
 	function socialLink(username: string, type: SpecialLink) {
 		switch (type) {
-			case SpecialLink.INSTAGRAM:
+			case SpecialLink.Instagram:
 				return `https://instagram.com/${username}`;
-			case SpecialLink.TWITTER:
+			case SpecialLink.Twitter:
 				return `https://twitter.com/${username}`;
-			case SpecialLink.YOUTUBE:
+			case SpecialLink.Youtube:
 				return `https://youtube.com/channel/${username}`;
-			case SpecialLink.TWITCH:
+			case SpecialLink.Twitch:
 				return `https://twitch.tv/${username}`;
-			case SpecialLink.TIKTOK:
+			case SpecialLink.TikTok:
 				return `https://tiktok.com/@${username}`;
-			case SpecialLink.PATREON:
+			case SpecialLink.Patreon:
 				return `https://patreon.com/${username}`;
-			case SpecialLink.SNAPCHAT:
+			case SpecialLink.Snapchat:
 				return `https://snapchat.com/add/${username}`;
-			case SpecialLink.LINKEDIN:
+			case SpecialLink.LinkedIn:
 				return `https://linkedin.com/in/${username}`;
-			case SpecialLink.FACEBOOK:
+			case SpecialLink.Facebook:
 				return `https://facebook.com/${username}`;
-			case SpecialLink.SPOTIFY:
+			case SpecialLink.Spotify:
 				return `https://open.spotify.com/user/${username}`;
+			case SpecialLink.GitHub:
+				return `https://giuthub.com/${username}`;
 		}
 	}
 </script>
