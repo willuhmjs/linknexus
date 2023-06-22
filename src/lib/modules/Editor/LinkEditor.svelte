@@ -64,7 +64,7 @@
 				</a>
 				<form on:submit|preventDefault={deleteLink}>
 					<input type="hidden" name="id" value={link._id} />
-					<button type="submit" class="deleteButton">Delete</button>
+					<button type="submit" class="deleteButton"><i class="fa-solid fa-trash"></i>Delete</button>
 				</form>
 			</li>
 		{/each}
@@ -82,6 +82,7 @@
 
 	li.linkItem {
 		display: flex;
+		align-items: center;
 		padding: 0.5rem;
 		background-color: #fafafa;
 		border: 2px solid #e8e8ed;
@@ -93,14 +94,14 @@
 		text-decoration: none;
 		color: #333;
 		margin-right: 1rem;
-		display: flex;		
+		display: flex;
+		align-items: center;
 	}
 
 	li a span:first-child {
 		font-size: 1.5rem;
 		margin-right: 0.5rem;
 		word-break: break-all;
-
 	}
 
 	li form {
@@ -109,6 +110,12 @@
 
 	.deleteButton {
 		color: white;
+		white-space: nowrap;
 		background-color: #ff4d4d;
 	}
+
+	i {
+		margin-right: 10px;
+	}
 </style>
+

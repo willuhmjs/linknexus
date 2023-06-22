@@ -71,7 +71,7 @@
 				</a>
 				<form on:submit|preventDefault={deleteLink}>
 					<input type="hidden" name="id" value={link._id} />
-					<button type="submit" class="deleteButton">Delete</button>
+					<button type="submit" class="deleteButton"><i class="fa-solid fa-trash"></i>Delete</button>
 				</form>
 			</li>
 		{/each}
@@ -118,6 +118,7 @@
 	.deleteButton {
 		color: white;
 		background-color: #ff4d4d;
+		white-space: nowrap;
 	}
 
 	i {
