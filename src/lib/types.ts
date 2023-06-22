@@ -1,17 +1,17 @@
 import type mongoose from 'mongoose';
 
 export enum SpecialLink {
-	GITHUB,
-	INSTAGRAM,
-	TWITTER,
-	YOUTUBE,
-	TWITCH,
-	TIKTOK,
-	PATREON,
-	SNAPCHAT,
-	LINKEDIN,
-	FACEBOOK,
-	SPOTIFY
+	GitHub,
+	Instagram,
+	Twitter,
+	Youtube,
+	Twitch,
+	TikTok,
+	Patreon,
+	Snapchat,
+	LinkedIn,
+	Facebook,
+	Spotify
 }
 
 export enum BackgroundType {
