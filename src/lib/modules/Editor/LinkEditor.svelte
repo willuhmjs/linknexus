@@ -73,6 +73,8 @@
 				</form>
 			</li>
 		{/each}
+	{:else}
+		<p>No hyperlinks yet.</p>
 	{/if}
 </ul>
 <style>

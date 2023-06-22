@@ -75,6 +75,8 @@
 				</form>
 			</li>
 		{/each}
+	{:else}
+		<p>No social links yet.</p>
 	{/if}
 </ul>
 <style>
