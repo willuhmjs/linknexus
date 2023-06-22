@@ -6,21 +6,20 @@
 	import LinkEditor from '$lib/modules/LinkEditor.svelte';
 	let links: { title: string; url: string; _id: string }[] = data.user?.links;
 	let specials: { type: SpecialLink; username: string; _id: string }[] = data.user?.specials;
-	
+
 	const labelProportions = {
 		title: 2,
 		url: 2,
 		type: 1,
-		username: 2,
+		username: 2
 	};
 </script>
 
 <div class="addLink">
 	{#if form?.ref === 'link' || form?.ref === 'special'}
-			<p class={form?.error ? 'error' : 'success'}>{form?.message}</p>
-		{/if}
+		<p class={form?.error ? 'error' : 'success'}>{form?.message}</p>
+	{/if}
 	<form method="POST" action="?/link">
-		
 		<label for="title" style="flex: ${labelProportions.title}">
 			<span>Title</span>
 			<input
@@ -45,7 +44,7 @@
 				value={form?.url || ''}
 			/>
 		</label>
-		<button type="submit"><i class="fa-solid fa-arrow-up-right-from-square"></i>Add Hyperlink</button>
+		<button type="submit"><i class="fa-solid fa-arrow-up-right-from-square" />Add Hyperlink</button>
 	</form>
 	<hr />
 	<div class="or-divider">OR</div>
@@ -65,7 +64,7 @@
 			<span>Username</span>
 			<input required type="text" name="username" placeholder="willuhmjs" autocomplete="off" />
 		</label>
-		<button type="submit"><i class="fa-solid fa-user-plus"></i>Add Social Link</button>
+		<button type="submit"><i class="fa-solid fa-user-plus" />Add Social Link</button>
 	</form>
 </div>
 <LinkEditor {links} />
@@ -143,5 +142,4 @@
 		cursor: pointer;
 		margin-top: auto;
 	}
-
 </style>
