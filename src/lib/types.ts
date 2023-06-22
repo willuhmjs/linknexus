@@ -14,7 +14,10 @@ export enum SpecialLink {
 	Spotify
 }
 
-export const SpecialProps: Record<SpecialLink, { template: (username: string) => string; icon: string }> = {
+export const SpecialProps: Record<
+	SpecialLink,
+	{ template: (username: string) => string; icon: string }
+> = {
 	[SpecialLink.GitHub]: {
 		template: (username: string) => `https://github.com/${username}`,
 		icon: 'fa-github'

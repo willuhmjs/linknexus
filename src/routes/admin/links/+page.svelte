@@ -23,7 +23,7 @@
 </script>
 
 <button class="addLinkButton" on:click={toggleAddLink}>
-	<i class="fa-solid fa-plus"></i>Add Link
+	<i class="fa-solid fa-plus" />Add Link
 </button>
 
 {#if showAddLink}
@@ -56,7 +56,9 @@
 					value={form?.url || ''}
 				/>
 			</label>
-			<button type="submit"><i class="fa-solid fa-arrow-up-right-from-square" />Add Hyperlink</button>
+			<button type="submit"
+				><i class="fa-solid fa-arrow-up-right-from-square" />Add Hyperlink</button
+			>
 		</form>
 		<hr />
 		<div class="or-divider">OR</div>
@@ -76,7 +78,7 @@
 				<span>Username</span>
 				<input required type="text" name="username" placeholder="willuhmjs" autocomplete="off" />
 			</label>
-			<button type="submit"><i class="fa-solid fa-user-group"></i>Add Social Link</button>
+			<button type="submit"><i class="fa-solid fa-user-group" />Add Social Link</button>
 		</form>
 	</div>
 {/if}
@@ -84,23 +86,21 @@
 <h2><i class="fa-solid fa-arrow-up-right-from-square" />Hyperlinks</h2>
 <LinkEditor {links} />
 
-<h2><i class="fa-solid fa-user-group"></i>Social Links</h2>
+<h2><i class="fa-solid fa-user-group" />Social Links</h2>
 <SpecialEditor {specials} />
 
 <style>
-.addLink {
-	position: relative;
-	padding: 1rem;
-	background-color: #fafafa;
-	border: 2px solid #e8e8ed;
-	border-radius: 0.5rem;
-	margin-top: 1rem;
-}
+	.addLink {
+		position: relative;
+		padding: 1rem;
+		background-color: #fafafa;
+		border: 2px solid #e8e8ed;
+		border-radius: 0.5rem;
+		margin-top: 1rem;
+	}
 	.addLink > p {
 		margin-top: 0;
 	}
-
-
 
 	hr:first-of-type {
 		margin-top: 1.2rem;

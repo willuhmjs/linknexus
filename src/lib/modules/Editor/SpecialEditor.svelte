@@ -16,7 +16,7 @@
 						const linkId = li.querySelector('a')?.id || '';
 						return specials.find((link: { _id: string }) => link?._id === linkId);
 					})
-					.filter(Boolean) as { type: SpecialLink, username:string, _id: string }[];
+					.filter(Boolean) as { type: SpecialLink; username: string; _id: string }[];
 				updateSpecials();
 			}
 		});
@@ -35,7 +35,7 @@
 
 	function updateSpecials() {
 		const urlEncodedData = new URLSearchParams();
-		urlEncodedData.append('request', JSON.stringify({ ref: "specials", data: specials}));
+		urlEncodedData.append('request', JSON.stringify({ ref: 'specials', data: specials }));
 		// Set the request headers
 		const headers = new Headers();
 		headers.append('Content-Type', 'application/x-www-form-urlencoded');
@@ -67,7 +67,7 @@
 					rel="noopener noreferrer"
 					id={link._id}
 				>
-					<span><i class="fa-brands {SpecialProps[link.type].icon}"></i>{link.username}</span>
+					<span><i class="fa-brands {SpecialProps[link.type].icon}" />{link.username}</span>
 				</a>
 				<form on:submit|preventDefault={deleteLink}>
 					<input type="hidden" name="id" value={link._id} />
@@ -79,44 +79,43 @@
 		<p>No social links yet.</p>
 	{/if}
 </ul>
+
 <style>
 	ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
 
+	li.linkItem {
+		display: flex;
+		align-items: center;
+		padding: 0.5rem;
+		background-color: #fafafa;
+		border: 2px solid #e8e8ed;
+		border-radius: 0.5rem;
+		margin: 0.5rem 0;
+	}
 
-li.linkItem {
-    display: flex;
-    align-items: center;
-    padding: 0.5rem;
-    background-color: #fafafa;
-    border: 2px solid #e8e8ed;
-    border-radius: 0.5rem;
-    margin: 0.5rem 0;
-}
+	li.linkItem a {
+		text-decoration: none;
+		color: #333;
+		margin-right: 1rem;
+		display: flex;
+		align-items: center;
+	}
 
+	li a span:first-child {
+		font-size: 1.5rem;
+		margin-right: 0.5rem;
+	}
 
-li.linkItem a {
-    text-decoration: none;
-    color: #333;
-    margin-right: 1rem;
-    display: flex;
-    align-items: center;
-}
+	.deleteButton {
+		color: white;
+		background-color: #ff4d4d;
+	}
 
-li a span:first-child {
-    font-size: 1.5rem;
-    margin-right: 0.5rem;
-}
-
-.deleteButton {
-    color: white;
-    background-color: #ff4d4d; 
-}
-
-i {
-	margin-right: 10px;
-}
-	</style>
+	i {
+		margin-right: 10px;
+	}
+</style>

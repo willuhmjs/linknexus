@@ -92,7 +92,7 @@ export const actions = {
 
 		const raw = await request.formData();
 		try {
-			const { ref, data } = JSON.parse(raw.get('request')?.toString() || "{}");
+			const { ref, data } = JSON.parse(raw.get('request')?.toString() || '{}');
 			const links = data;
 			for (let i = 0; i < links.length; i++) {
 				if (ref === 'links') {
@@ -106,7 +106,7 @@ export const actions = {
 			} else if (ref === 'specials') {
 				await user.updateOne({ specials: links });
 			}
-			} catch (e) {
+		} catch (e) {
 			return fail(403, {
 				ref: 'links',
 				error: true,

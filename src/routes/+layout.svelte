@@ -40,13 +40,12 @@
 		}
 
 		form input,
-	form select {
-		padding: 0.5rem;
-		border-radius: 4px;
-		border: 1px solid #ccc;
-		min-width: 0;
-
-	}
+		form select {
+			padding: 0.5rem;
+			border-radius: 4px;
+			border: 1px solid #ccc;
+			min-width: 0;
+		}
 	</style>
 </svelte:head>
 <slot />
