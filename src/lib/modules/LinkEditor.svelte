@@ -100,7 +100,7 @@
 				</a>
 				<form on:submit|preventDefault={deleteLink}>
 					<input type="hidden" name="id" value={link._id} />
-					<button type="submit">Delete</button>
+					<button type="submit" class="deleteButton">Delete</button>
 				</form>
 			</li>
 		{/each}
@@ -120,7 +120,7 @@
 		padding: 0.5rem;
 		background-color: #fff;
 		border-radius: 4px;
-		margin-bottom: 0.5rem;
+		margin: 0.5rem 0;
 	}
 
 	li a {
@@ -134,5 +134,10 @@
 	li a span:first-child {
 		font-size: 1.5rem;
 		margin-right: 0.5rem;
+	}
+
+	.deleteButton {
+		color: white;
+		background-color: #ff4d4d; 
 	}
 </style>

@@ -80,7 +80,10 @@
 	</div>
 {/if}
 
+<h2>Hyperlinks</h2>
 <LinkEditor {links} />
+
+<h2>Social Links</h2>
 <LinkEditor links={specials} />
 
 <style>
