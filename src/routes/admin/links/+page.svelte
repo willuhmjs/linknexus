@@ -16,10 +16,11 @@
 </script>
 
 <div class="addLink">
-	<form method="POST" action="?/link">
-		{#if form?.ref === 'link'}
+	{#if form?.ref === 'link' || form?.ref === 'special'}
 			<p class={form?.error ? 'error' : 'success'}>{form?.message}</p>
 		{/if}
+	<form method="POST" action="?/link">
+		
 		<label for="title" style="flex: ${labelProportions.title}">
 			<span>Title</span>
 			<input
@@ -50,9 +51,6 @@
 	<div class="or-divider">OR</div>
 	<hr />
 	<form method="POST" action="?/special">
-		{#if form?.ref === 'special'}
-			<p class={form?.error ? 'error' : 'success'}>{form?.message}</p>
-		{/if}
 		<label for="type" style="flex: ${labelProportions.type}">
 			<span>Type</span>
 			<select name="type" required>
@@ -79,6 +77,10 @@
 		background-color: #fafafa;
 		border: 2px solid #e8e8ed;
 		border-radius: 1rem;
+	}
+
+	.addLink > p {
+		margin-top: 0;
 	}
 
 	select,
