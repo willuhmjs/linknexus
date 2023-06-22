@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Sortable from 'sortablejs';
 	import { onMount } from 'svelte';
-	import "./editor.css";
 	let linksElement: HTMLUListElement;
 	export let links: { title: string; url: string; _id: string }[];
 	let saveFailureMessage: string;
@@ -76,3 +75,40 @@
 		{/each}
 	{/if}
 </ul>
+<style>
+	ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+li.linkItem {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: #fafafa;
+    border: 2px solid #e8e8ed;
+    border-radius: 0.5rem;
+    margin: 0.5rem 0;
+}
+
+
+li.linkItem a {
+    text-decoration: none;
+    color: #333;
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+li a span:first-child {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.deleteButton {
+    color: white;
+    background-color: #ff4d4d; 
+}
+</style>

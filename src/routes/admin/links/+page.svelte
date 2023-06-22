@@ -76,15 +76,15 @@
 				<span>Username</span>
 				<input required type="text" name="username" placeholder="willuhmjs" autocomplete="off" />
 			</label>
-			<button type="submit"><i class="fa-solid fa-user-plus" />Add Social Link</button>
+			<button type="submit"><i class="fa-solid fa-user-group"></i>Add Social Link</button>
 		</form>
 	</div>
 {/if}
 
-<h2>Hyperlinks</h2>
+<h2><i class="fa-solid fa-arrow-up-right-from-square" />Hyperlinks</h2>
 <LinkEditor {links} />
 
-<h2>Social Links</h2>
+<h2><i class="fa-solid fa-user-group"></i>Social Links</h2>
 <SpecialEditor {specials} />
 
 <style>
@@ -136,7 +136,7 @@
 		font-size: 0.85rem;
 	}
 
-	button > i {
+	i {
 		margin-right: 10px;
 	}
 
@@ -145,4 +145,7 @@
 		color: white;
 	}
 
+	h2 {
+		margin-bottom: 0.5rem;
+	}
 </style>
