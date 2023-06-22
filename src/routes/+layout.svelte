@@ -24,11 +24,11 @@
 		}
 
 		.success {
-			color: green;
+			color: #45e645;
 		}
 
 		.error {
-			color: red;
+			color: #ff4d4d;
 		}
 
 		button {
