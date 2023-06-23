@@ -1,6 +1,8 @@
 <script lang="ts">
 	import Nav from '$lib/modules/Nav.svelte';
+	import User from '$lib/modules/User.svelte';
 	import { page } from '$app/stores';
+	export let data;
 </script>
 
 <svelte:head>
@@ -31,5 +33,5 @@
 	<section>
 		<slot />
 	</section>
-	<section>asdfsdf</section>
+	<section><User user={data?.user} /></section>
 </main>

@@ -2,9 +2,12 @@
 	export let data;
 	export let form: ActionData;
 	import type { ActionData } from './$types.js';
+	import Gravatar from 'svelte-gravatar';
+	console.log(data)
 </script>
 
 <h1>Account Information</h1>
+<Gravatar email="{data.user.email}" size="{150}" default="mp" rating="g" />
 <p><strong>Username:</strong> {data.user.username}</p>
 <p><strong>Email:</strong> {data.user.email}</p>
 <p><strong>Credentials:</strong> Placeholder for credentials</p>
