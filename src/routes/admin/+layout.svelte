@@ -7,6 +7,9 @@
 
 <svelte:head>
 	<style>
+		.mcontainer {
+		}
+
 		main {
 			display: flex;
 			flex-direction: row;
@@ -19,19 +22,34 @@
 			align-items: center;
 			flex: 1;
 			margin: 0 3rem;
-			overflow: hidden;
+			overflow: auto;
+			max-height: calc(100vh - 8rem); /* Adjust the value as needed */
 		}
-
 
 		section > * {
 			width: 100%;
 		}
+
+		/* Media query for screens with a maximum width of 768px */
+		@media (max-width: 768px) {
+			main {
+				flex-direction: column;
+			}
+
+			section {
+				margin: 1rem;
+				max-height: none;
+			}
+		}
 	</style>
 </svelte:head>
-<Nav active={$page.url.pathname} />
-<main>
-	<section>
-		<slot />
-	</section>
-	<section><User user={data?.user} /></section>
-</main>
+
+<div class="mcontainer">
+	<Nav active={$page.url.pathname} />
+	<main>
+		<section>
+			<slot />
+		</section>
+		<section><User user={data?.user} /></section>
+	</main>
+</div>
