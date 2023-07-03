@@ -6,7 +6,7 @@
 </script>
 
 <h1>Account Information</h1>
-<Gravatar email={data.user.email} size={150} default="mp" rating="g" />
+<Gravatar email={data.user.email} size={150} default="mp" rating="g" style="border-radius: 50%;"/>
 <p><strong>Username:</strong> {data.user.username}</p>
 <p><strong>Email:</strong> {data.user.email}</p>
 <p><strong>Credentials:</strong> Placeholder for credentials</p>

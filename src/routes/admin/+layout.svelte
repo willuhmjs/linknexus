@@ -20,10 +20,17 @@
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-			flex: 1;
 			margin: 0 3rem;
 			overflow: auto;
 			max-height: calc(100vh - 8rem); /* Adjust the value as needed */
+		}
+
+		section:first-child {
+			flex: 3;
+		}
+
+		section:last-child {
+			flex: 2;
 		}
 
 		section > * {
