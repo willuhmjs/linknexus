@@ -78,7 +78,9 @@
 				<span>Username</span>
 				<input required type="text" name="username" placeholder="willuhmjs" autocomplete="off" />
 			</label>
-			<button class="bt-primary" type="submit"><i class="fa-solid fa-user-group" />Add Social Link</button>
+			<button class="bt-primary" type="submit"
+				><i class="fa-solid fa-user-group" />Add Social Link</button
+			>
 		</form>
 	</div>
 {/if}

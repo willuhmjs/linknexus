@@ -67,12 +67,12 @@
 					rel="noopener noreferrer"
 					id={link._id}
 				>
-				<i class="fa-brands {SpecialProps[link.type].icon}" />	
-				<span class="username">{link.username}</span>
+					<i class="fa-brands {SpecialProps[link.type].icon}" />
+					<span class="username">{link.username}</span>
 				</a>
 				<form on:submit|preventDefault={deleteLink}>
 					<input type="hidden" name="id" value={link._id} />
-					<button type="submit" class="deleteButton"><i class="fa-solid fa-trash"></i>Delete</button>
+					<button type="submit" class="deleteButton"><i class="fa-solid fa-trash" />Delete</button>
 				</form>
 			</li>
 		{/each}
