@@ -60,9 +60,8 @@
 			margin-top: auto;
 		}
 
-		form input,
-		form select {
-			padding: 0.5rem;
+		select, input {
+			height: 2rem;
 			border-radius: 4px;
 			border: 1px solid #ccc;
 			min-width: 0;
