@@ -4,6 +4,8 @@
 	let linksElement: HTMLUListElement;
 	export let links: { title: string; url: string; _id: string }[];
 	let saveFailureMessage: string;
+import wuser from "$lib/user";
+
 
 	onMount(() => {
 		Sortable.create(linksElement, {
@@ -48,6 +50,7 @@
 			.then((res) => {
 				saveFailureMessage = JSON.parse(res.data)[3];
 			});
+		$wuser.links = links
 	}
 </script>
 

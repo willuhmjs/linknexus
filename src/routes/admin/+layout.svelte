@@ -2,7 +2,9 @@
 	import Nav from '$lib/modules/Nav.svelte';
 	import User from '$lib/modules/User.svelte';
 	import { page } from '$app/stores';
+	import wuser from "$lib/user";
 	export let data;
+	$wuser = data.user;
 </script>
 
 <svelte:head>
@@ -57,6 +59,6 @@
 		<section>
 			<slot />
 		</section>
-		<section><User user={data?.user} /></section>
+		<section><User user={$wuser} /></section>
 	</main>
 </div>

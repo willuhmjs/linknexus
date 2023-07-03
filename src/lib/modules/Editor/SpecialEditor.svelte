@@ -2,6 +2,7 @@
 	import { SpecialLink, SpecialProps } from '$lib/types.js';
 	import Sortable from 'sortablejs';
 	import { onMount } from 'svelte';
+	import wuser from "$lib/user";
 
 	let specialsElement: HTMLUListElement;
 	export let specials: { type: SpecialLink; username: string; _id: string }[];
@@ -51,6 +52,7 @@
 			.then((res) => {
 				saveFailureMessage = JSON.parse(res.data)[3];
 			});
+		$wuser.specials = specials;
 	}
 </script>
 
