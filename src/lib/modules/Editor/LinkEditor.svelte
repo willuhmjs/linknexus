@@ -38,7 +38,6 @@
 		const headers = new Headers();
 		headers.append('Content-Type', 'application/x-www-form-urlencoded');
 		headers.append('Cookie', document.cookie);
-		console.log(urlEncodedData);
 		// Make the POST request
 		fetch('/admin/links?/update', {
 			method: 'POST',

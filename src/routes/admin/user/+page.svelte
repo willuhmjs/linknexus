@@ -3,7 +3,6 @@
 	export let form: ActionData;
 	import type { ActionData } from './$types.js';
 	import Gravatar from 'svelte-gravatar';
-	console.log(data)
 </script>
 
 <h1>Account Information</h1>
