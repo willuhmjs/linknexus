@@ -5,7 +5,7 @@
 </script>
 
 <div class="container">
-	<Gravatar email={user.email} size={120} default="mp" rating="pg" style="border-radius: 50%;"/>
+	<Gravatar email={user.email} size={120} default="mp" rating="pg" style="border-radius: 50%;" />
 
 	<h1>@{user.username}</h1>
 	{#if user.bio}
@@ -21,17 +21,17 @@
 		{/each}
 	</ul>
 	<ul class="specialContainer">
-			{#each user.specials as link}
-				<li class="specialItem">
-					<a
-						href={SpecialProps[link.type].template(link.username)}
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						<i class="fa-brands {SpecialProps[link.type].icon}" />
-					</a>
-				</li>
-			{/each}
+		{#each user.specials as link}
+			<li class="specialItem">
+				<a
+					href={SpecialProps[link.type].template(link.username)}
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					<i class="fa-brands {SpecialProps[link.type].icon}" />
+				</a>
+			</li>
+		{/each}
 	</ul>
 </div>
 

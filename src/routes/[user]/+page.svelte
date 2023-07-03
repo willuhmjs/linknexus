@@ -7,6 +7,7 @@
 <div class="container">
 	<User user={data.user} />
 </div>
+
 <style>
 	.container {
 		margin: 2.5rem 1rem;

@@ -2,7 +2,7 @@
 	import { SpecialLink, SpecialProps } from '$lib/types.js';
 	import Sortable from 'sortablejs';
 	import { onMount } from 'svelte';
-	import wuser from "$lib/user";
+	import wuser from '$lib/user';
 
 	let specialsElement: HTMLUListElement;
 	export let specials: { type: SpecialLink; username: string; _id: string }[];
