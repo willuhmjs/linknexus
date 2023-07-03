@@ -97,6 +97,7 @@
 		border-radius: 0.5rem;
 		margin-top: 1rem;
 	}
+
 	.addLink > p {
 		margin-top: 0;
 	}
@@ -141,5 +142,31 @@
 
 	h2 {
 		margin-bottom: 0.5rem;
+	}
+
+	@media (max-width: 768px) {
+		.addLink {
+			padding: 0.5rem;
+		}
+
+		form {
+			flex-direction: column;
+		}
+
+		label {
+			flex: 1;
+		}
+
+		label > span {
+			margin-bottom: 0.25rem;
+		}
+
+		.or-divider {
+			margin: 0.25rem 0;
+		}
+
+		form > * {
+			margin: 0.25rem 0;
+		}
 	}
 </style>
