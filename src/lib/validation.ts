@@ -60,13 +60,6 @@ export const theme = z.object({
 		color: colorSchema
 	}),
 	button: z.object({
-		radius: z
-			.number({
-				required_error: 'Button radius is required.',
-				invalid_type_error: 'Button radius must be a number.'
-			})
-			.min(0, { message: 'Button radius must be at least 0.' })
-			.max(100, { message: 'Button radius must be at most 100.' }),
 		style: z.nativeEnum(ButtonStyle, {
 			required_error: 'Button style is required.',
 			invalid_type_error: 'Button style must be a number.'

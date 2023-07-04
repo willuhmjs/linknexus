@@ -19,7 +19,6 @@ export const actions = {
 				color: data.get('backgroundColor')?.toString() || ''
 			},
 			button: {
-				radius: parseInt(data.get('buttonRadius')?.toString() || ''),
 				style: parseInt(data.get('buttonStyle')?.toString() || ''),
 				color: data.get('buttonColor')?.toString() || '',
 				fontColor: data.get('buttonFontColor')?.toString() || ''

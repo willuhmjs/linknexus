@@ -108,7 +108,6 @@ export interface ITheme extends mongoose.Document {
 		color: string;
 	};
 	button: {
-		radius: number;
 		style: ButtonStyle;
 		color: string;
 		fontColor: string;

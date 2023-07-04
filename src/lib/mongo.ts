@@ -15,18 +15,17 @@ const userSchema = new Schema(
 		theme: {
 			background: {
 				type: { type: Number, required: true, default: 0, enum: BackgroundType },
-				color: { type: String, required: true, default: '#000000' }
+				color: { type: String, required: true, default: '#f5f5fa' }
 			},
 			button: {
-				radius: { type: Number, required: true, default: 0, min: 0, max: 100 },
 				style: { type: Number, required: true, default: 0, enum: ButtonStyle },
 				// backgroundColor applies to both border and background colors
-				color: { type: String, required: true, default: '#000000' },
-				fontColor: { type: String, required: true, default: '#000000' }
+				color: { type: String, required: true, default: '#fafafa' },
+				fontColor: { type: String, required: true, default: '#333333' }
 			},
 			font: { type: Number, required: true, default: 0, enum: Font },
 			// fontColor is overriden by button.fontColor
-			fontColor: { type: String, required: true, default: '#000000' }
+			fontColor: { type: String, required: true, default: '#333333' }
 		},
 		links: [
 			{
