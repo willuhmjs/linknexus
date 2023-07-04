@@ -1,8 +1,3 @@
-<script>
-
-	import { not_equal } from "svelte/internal";
-
-</script>
 <svelte:head>
 	<link
 		rel="stylesheet"
@@ -21,7 +16,7 @@
 		}
 
 		body {
-			margin: 0.75rem;
+			margin: 0;
 			padding: 0;
 			background-color: #f5f5fa;
 			color: #292727;
