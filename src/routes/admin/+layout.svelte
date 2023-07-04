@@ -9,9 +9,6 @@
 
 <svelte:head>
 	<style>
-		.mcontainer {
-		}
-
 		main {
 			display: flex;
 			flex-direction: row;
@@ -25,7 +22,8 @@
 			align-items: center;
 			margin: 0 3rem;
 			overflow: auto;
-			max-height: calc(100vh - 8rem); /* Adjust the value as needed */
+			height: 100%;
+
 		}
 
 		section:first-child {
@@ -34,6 +32,9 @@
 
 		section:last-child {
 			flex: 2;
+			border-radius: 2rem;
+			border: 2px solid black;
+			height: 80vh;
 		}
 
 		section > * {
@@ -60,12 +61,10 @@
 	</style>
 </svelte:head>
 
-<div class="mcontainer">
-	<Nav active={$page.url.pathname} />
-	<main>
-		<section>
-			<slot />
-		</section>
-		<section><User user={$wuser} /></section>
-	</main>
-</div>
+<Nav active={$page.url.pathname} />
+<main>
+	<section>
+		<slot />
+	</section>
+	<section style="background-color: {$wuser.theme.background.color};"><User user={$wuser} /></section>
+</main>

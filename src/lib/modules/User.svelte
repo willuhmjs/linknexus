@@ -34,15 +34,18 @@
 		{/each}
 	</ul>
 </div>
-
 <style>
 	div.container {
 		text-align: center;
-		max-width: 600px;
+		max-width: 632px;
 		margin: 0 auto;
 		background-color: var(--bg-color, #f5f5fa);
 		color: var(--font-color, #333);
+		padding: 2rem;
+		height: 100%;
+		width: 100%;
 	}
+
 	ul {
 		list-style: none;
 		padding: 0;
@@ -71,7 +74,6 @@
 		color: black;
 		margin: 0 0.5rem;
 		color: var(--font-color);
-
 	}
 
 	.linkContainer {
@@ -83,6 +85,9 @@
 		align-items: center;
 		justify-content: center;
 		margin-top: 2rem;
+		overflow: auto;
+		flex-wrap: wrap;
+		line-height: 3rem;
 	}
 
 	h1 {
