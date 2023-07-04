@@ -53,8 +53,8 @@
 		}
 
 		@media (min-width: 1500px) {
-			section {
-				margin: 0 7rem;
+			section:first-child {
+				margin: 0 9rem;
 			}
 		}
 	</style>
