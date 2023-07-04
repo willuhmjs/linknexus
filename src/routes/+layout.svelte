@@ -23,6 +23,7 @@
 			font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu,
 				'Helvetica Neue', Oxygen, Cantarell, sans-serif;
 			font-weight: 500;
+			padding: 0.5rem;
 		}
 
 		* {
