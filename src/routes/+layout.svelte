@@ -1,3 +1,8 @@
+<script>
+
+	import { not_equal } from "svelte/internal";
+
+</script>
 <svelte:head>
 	<link
 		rel="stylesheet"
@@ -61,10 +66,10 @@
 		}
 
 		select, input {
-			height: 2rem;
 			border-radius: 4px;
 			border: 1px solid #ccc;
 			min-width: 0;
+			padding: 0.5rem;
 		}
 	</style>
 </svelte:head>

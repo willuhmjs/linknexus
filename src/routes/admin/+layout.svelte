@@ -16,6 +16,7 @@
 			display: flex;
 			flex-direction: row;
 			justify-content: space-between;
+			margin: 3rem 0;
 		}
 
 		section {
@@ -48,6 +49,12 @@
 			section {
 				margin: 1rem;
 				max-height: none;
+			}
+		}
+
+		@media (min-width: 1500px) {
+			section {
+				margin: 0 7rem;
 			}
 		}
 	</style>
