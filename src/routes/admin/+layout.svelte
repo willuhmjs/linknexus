@@ -34,7 +34,7 @@
 			flex: 2;
 			border-radius: 2rem;
 			border: 2px solid black;
-			height: 80vh;
+			height: calc(90vh - 6rem);
 		}
 
 		section > * {
