@@ -61,7 +61,8 @@
 			margin-top: auto;
 		}
 
-		select, input {
+		select,
+		input {
 			border-radius: 4px;
 			border: 1px solid #ccc;
 			min-width: 0;

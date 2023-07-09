@@ -12,7 +12,7 @@
 	<h2>Background</h2>
 	<p>Background Color</p>
 	<input type="color" name="backgroundColor" value={data.user.theme.background.color} required />
-	
+
 	<p>Background Type</p>
 	<select name="backgroundType" required>
 		{#each Object.keys(BackgroundType).filter((value) => !isNaN(parseFloat(value))) as type}
@@ -34,7 +34,7 @@
 
 	<p>Button Color</p>
 	<input type="color" name="buttonColor" value={data.user.theme.button.color} required />
-	
+
 	<p>Button Font Color</p>
 	<input type="color" name="buttonFontColor" value={data.user.theme.button.fontColor} required />
 	<h2>General</h2>
@@ -46,6 +46,6 @@
 	</select>
 	<p>Page Font Color</p>
 	<input type="color" name="fontColor" value={data.user.theme.fontColor} required />
-	<br>
+	<br />
 	<button type="submit">Update Theme</button>
 </form>

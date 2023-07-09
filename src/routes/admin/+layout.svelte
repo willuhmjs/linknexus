@@ -23,7 +23,6 @@
 			margin: 0 3rem;
 			overflow: auto;
 			height: 100%;
-
 		}
 
 		section:first-child {
@@ -66,5 +65,7 @@
 	<section>
 		<slot />
 	</section>
-	<section style="background-color: {$wuser.theme.background.color};"><User user={$wuser} /></section>
+	<section style="background-color: {$wuser.theme.background.color};">
+		<User user={$wuser} />
+	</section>
 </main>

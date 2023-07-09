@@ -4,7 +4,14 @@
 	export let user: IUser;
 </script>
 
-<div class="container" style="--bg-color: {user.theme.background.color}; --font-color: {user.theme.fontColor}; --bt-color: {user.theme.button.color}; --bt-font-color: {user.theme.button.fontColor}; --font-color: {user.theme.fontColor}; --bt-style: {ButtonStyle[user.theme.button.style]}">
+<div
+	class="container"
+	style="--bg-color: {user.theme.background.color}; --font-color: {user.theme
+		.fontColor}; --bt-color: {user.theme.button.color}; --bt-font-color: {user.theme.button
+		.fontColor}; --font-color: {user.theme.fontColor}; --bt-style: {ButtonStyle[
+		user.theme.button.style
+	]}"
+>
 	<Gravatar email={user.email} size={120} default="mp" rating="pg" style="border-radius: 50%;" />
 
 	<h1>@{user.username}</h1>
@@ -34,6 +41,7 @@
 		{/each}
 	</ul>
 </div>
+
 <style>
 	div.container {
 		text-align: center;
