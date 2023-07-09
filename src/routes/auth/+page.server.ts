@@ -1,6 +1,5 @@
 import { fail, redirect } from '@sveltejs/kit';
-import type { PageServerLoad } from './$types';
-import { login, register, checkAuth } from '$lib/auth';
+import { login, register } from '$lib/auth';
 import * as validator from '$lib/validation';
 import { User } from '$lib/mongo';
 import { SAAS } from '$config';

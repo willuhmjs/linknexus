@@ -43,7 +43,7 @@ export const actions = {
 		return { ref: 'link', error: false, message: 'Link added!' };
 	},
 
-	special: async ({ cookies, request, locals }) => {
+	special: async ({ request, locals }) => {
 		const user = locals.user
 
 		const data = await request.formData();

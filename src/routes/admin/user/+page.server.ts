@@ -3,7 +3,7 @@ import * as validator from '$lib/validation';
 import type { IUser } from '$lib/types';
 
 export const actions = {
-	bio: async ({ cookies, request, locals }) => {
+	bio: async ({ request, locals }) => {
 		const user = locals.user;
 
 		const data = await request.formData();

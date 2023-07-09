@@ -5,7 +5,7 @@ import type { ITheme } from '$lib/types';
 
 export const actions = {
 	theme: async ({ locals, request }) => {
-		const user = locals.user
+		const user = locals.user;
 
 		const data = await request.formData();
 
