@@ -1,14 +1,10 @@
 import { fail } from '@sveltejs/kit';
-import { checkAuth } from '$lib/auth';
 import * as validator from '$lib/validation';
 import type { IUser } from '$lib/types';
 
 export const actions = {
-	bio: async ({ cookies, request }) => {
-		const user = await checkAuth(cookies);
-		if (!user) {
-			return fail(403, { ref: 'bio', error: true, message: 'Not authorized!' });
-		}
+	bio: async ({ cookies, request, locals }) => {
+		const user = locals.user;
 
 		const data = await request.formData();
 		const bio = data.get('bio')?.toString();

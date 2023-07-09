@@ -1,13 +1,9 @@
 import { fail } from '@sveltejs/kit';
-import { checkAuth } from '$lib/auth';
 import * as validator from '$lib/validation';
 import type { IUser } from '$lib/types';
 export const actions = {
-	link: async ({ cookies, request }) => {
-		const user = await checkAuth(cookies);
-		if (!user) {
-			return fail(403, { ref: 'link', error: true, message: 'Not authorized!' });
-		}
+	link: async ({ request, locals }) => {
+		const user = locals.user
 
 		const data = await request.formData();
 		const title = data.get('title')?.toString();
@@ -47,11 +43,8 @@ export const actions = {
 		return { ref: 'link', error: false, message: 'Link added!' };
 	},
 
-	special: async ({ cookies, request }) => {
-		const user = await checkAuth(cookies);
-		if (!user) {
-			return fail(403, { ref: 'special', error: true, message: 'Not authorized!' });
-		}
+	special: async ({ cookies, request, locals }) => {
+		const user = locals.user
 
 		const data = await request.formData();
 		const type = parseInt(data.get('type')?.toString());
@@ -84,11 +77,8 @@ export const actions = {
 		return { ref: 'special', error: false, message: 'Special link added!' };
 	},
 
-	update: async ({ cookies, request }) => {
-		const user = await checkAuth(cookies);
-		if (!user) {
-			return fail(403, { ref: 'links', error: true, message: 'Not authorized!' });
-		}
+	update: async ({ locals, request }) => {
+		const user = locals.user
 
 		const raw = await request.formData();
 		try {

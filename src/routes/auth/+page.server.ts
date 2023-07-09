@@ -5,11 +5,6 @@ import * as validator from '$lib/validation';
 import { User } from '$lib/mongo';
 import { SAAS } from '$config';
 
-export const load: PageServerLoad = async ({ cookies }) => {
-	const user = await checkAuth(cookies);
-	if (user) throw redirect(303, '/admin/');
-};
-
 export const actions = {
 	register: async ({ cookies, request }) => {
 		if (!SAAS) {

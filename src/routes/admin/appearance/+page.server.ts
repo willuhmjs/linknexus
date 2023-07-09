@@ -1,15 +1,11 @@
 import { fail } from '@sveltejs/kit';
-import { checkAuth } from '$lib/auth';
 import * as validator from '$lib/validation';
 import type { IUser } from '$lib/types';
 import type { ITheme } from '$lib/types';
 
 export const actions = {
-	theme: async ({ cookies, request }) => {
-		const user = await checkAuth(cookies);
-		if (!user) {
-			return fail(403, { ref: 'theme', error: true, message: 'Not authorized!' });
-		}
+	theme: async ({ locals, request }) => {
+		const user = locals.user
 
 		const data = await request.formData();
 
