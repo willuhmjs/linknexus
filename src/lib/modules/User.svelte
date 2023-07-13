@@ -2,11 +2,12 @@
 	import { SpecialProps, type IUser, ButtonStyle } from '$lib/types';
 	import Gravatar from 'svelte-gravatar';
 	export let user: IUser;
+	console.log(user);
 </script>
 
 <div
 	class="container"
-	style="--bg-color: {user.theme.background.color}; --font-color: {user.theme
+	style="--bg-color: #241f31; --font-color: {user.theme
 		.fontColor}; --bt-color: {user.theme.button.color}; --bt-font-color: {user.theme.button
 		.fontColor}; --font-color: {user.theme.fontColor}; --bt-style: {ButtonStyle[
 		user.theme.button.style

@@ -4,4 +4,6 @@
 	import type { ActionData } from './$types';
 </script>
 
-<Auth {form} />
+<div style="padding: 0.5rem;">
+	<Auth {form} />
+</div>

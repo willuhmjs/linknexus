@@ -67,6 +67,7 @@
 	</style>
 </svelte:head>
 
+<div style="padding: 0.5rem;">
 <Nav active={$page.url.pathname} />
 <main>
 	<section>
@@ -78,3 +79,4 @@
 		</div>
 	</section>
 </main>
+</div>
