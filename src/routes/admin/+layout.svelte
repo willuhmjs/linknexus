@@ -38,11 +38,16 @@
 			height: calc(90vh - 6rem);
 		}
 
+		section:last-child > div.container {
+			display: block;
+			transform: scale(0.8);
+  			transform-origin: 0 1;
+		}
+
 		section > * {
 			width: 100%;
 		}
 
-		/* Media query for screens with a maximum width of 768px */
 		@media (max-width: 768px) {
 			main {
 				flex-direction: column;
@@ -60,9 +65,9 @@
 			}
 		}
 
-		@media (min-width: 1500px) {
-			section:first-child {
-				margin: 0 9rem;
+		@media (min-width: 1200px) {
+			main {
+				gap: 10rem;
 			}
 		}
 	</style>
