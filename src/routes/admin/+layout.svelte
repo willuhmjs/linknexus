@@ -14,24 +14,27 @@
 		main {
 			display: flex;
 			flex-direction: row;
-			margin: 2rem 0;
+			justify-content: space-between;
+			height: calc(100vh - 10rem);
 		}
 
 		section {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
 			margin: 0 3rem;
-			overflow: auto;
-			height: 100%;
 		}
 
 		section:first-child {
 			flex: 2;
+			overflow-y: auto;
+			padding: 0 5rem;
+
 		}
 
 		section:last-child {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
 			flex: 1;
+			align-items: center;
 
 		}
 
