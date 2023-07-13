@@ -95,10 +95,12 @@ export interface IUser extends mongoose.Document {
 	links: {
 		title: string;
 		url: string;
+		_id: string;
 	}[];
 	specials: {
 		type: SpecialLink;
 		username: string;
+		_id: string;
 	}[];
 }
 

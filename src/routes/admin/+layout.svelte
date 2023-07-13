@@ -4,7 +4,9 @@
 	import { page } from '$app/stores';
 	import wuser from '$lib/user';
 	export let data;
-	$wuser = data.user;
+	if (data.user) {
+		$wuser = data.user;
+	}
 </script>
 
 <svelte:head>
@@ -13,7 +15,7 @@
 			display: flex;
 			flex-direction: row;
 			justify-content: space-between;
-			margin: 3rem 0;
+			margin: 2rem 0;
 		}
 
 		section {
@@ -49,6 +51,12 @@
 			section {
 				margin: 1rem;
 				max-height: none;
+			}
+		}
+
+		@media (min-width: 769px) {
+			section:last-child {
+				flex: 1;
 			}
 		}
 

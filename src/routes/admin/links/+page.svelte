@@ -1,13 +1,14 @@
 <script lang="ts">
 	import { SpecialLink } from '$lib/types.js';
 	export let data;
-	export let form: ActionData;
-	import type { ActionData } from './$types.js';
+	import wuser from "$lib/user";
 	import LinkEditor from '$lib/modules/Editor/LinkEditor.svelte';
 	import SpecialEditor from '$lib/modules/Editor/SpecialEditor.svelte';
-	let links: { title: string; url: string; _id: string }[] = data.user?.links;
-	let specials: { type: SpecialLink; username: string; _id: string }[] = data.user?.specials;
-
+	import api from "$lib/api";
+	//let links: { title: string; url: string; _id: string }[] = $wuser?.links;
+	//let specials: { type: SpecialLink; username: string; _id: string }[] = $wuser?.specials;
+	$: links = $wuser.links;
+	$: specials = $wuser.specials;
 	const labelProportions = {
 		title: 2,
 		url: 2,
@@ -15,8 +16,7 @@
 		username: 2
 	};
 
-	let showAddLink = form?.ref === 'link' || form?.ref === 'special';
-
+	let showAddLink = true;
 	function toggleAddLink() {
 		showAddLink = !showAddLink;
 	}
@@ -28,10 +28,8 @@
 
 {#if showAddLink}
 	<div class="addLink">
-		{#if form?.ref === 'link' || form?.ref === 'special'}
-			<p class={form?.error ? 'error' : 'success'}>{form?.message}</p>
-		{/if}
-		<form method="POST" action="?/link">
+		<p class={data?.error ? 'error' : 'success'}>{data?.message}</p>
+		<form on:submit|preventDefault={async (e) => data = await api("/admin/links/link", e)}>
 			<label for="title" style="flex: ${labelProportions.title}">
 				<span>Title</span>
 				<input
@@ -40,7 +38,7 @@
 					name="title"
 					placeholder="My Awesome Website"
 					autocomplete="off"
-					value={form?.title || ''}
+					value={data?.title || ''}
 					required
 				/>
 			</label>
@@ -53,7 +51,7 @@
 					name="url"
 					placeholder="https://willuhmjs.com"
 					autocomplete="off"
-					value={form?.url || ''}
+					value={data?.url || ''}
 				/>
 			</label>
 			<button class="bt-primary" type="submit"
@@ -63,7 +61,7 @@
 		<hr />
 		<div class="or-divider">OR</div>
 		<hr />
-		<form method="POST" action="?/special">
+		<form on:submit|preventDefault={async (e) => data = await api("/admin/links/special", e)}>
 			<label for="type" style="flex: ${labelProportions.type}">
 				<span>Type</span>
 				<select name="type" required>
@@ -87,6 +85,7 @@
 
 <h2><i class="fa-solid fa-arrow-up-right-from-square" />Hyperlinks</h2>
 <LinkEditor {links} />
+
 
 <h2><i class="fa-solid fa-user-group" />Social Links</h2>
 <SpecialEditor {specials} />

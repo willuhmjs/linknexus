@@ -16,7 +16,8 @@
 						return links.find((link: { _id: string }) => link?._id === linkId);
 					})
 					.filter(Boolean) as { title: string; url: string; _id: string }[];
-				updateLinks();
+					
+					updateLinks();
 			}
 		});
 	});
@@ -33,21 +34,13 @@
 	}
 
 	function updateLinks() {
-		const urlEncodedData = new URLSearchParams();
-		urlEncodedData.append('request', JSON.stringify({ ref: 'links', data: links }));
-		// Set the request headers
-		const headers = new Headers();
-		headers.append('Content-Type', 'application/x-www-form-urlencoded');
-		headers.append('Cookie', document.cookie);
-		// Make the POST request
-		fetch('/admin/links?/update', {
+		fetch('/admin/links/update', {
 			method: 'POST',
-			headers: headers,
-			body: urlEncodedData.toString()
+			body: JSON.stringify({ ref: 'links', links })
 		})
 			.then((res) => res.json())
 			.then((res) => {
-				saveFailureMessage = JSON.parse(res.data)[3];
+				saveFailureMessage = res.message;
 			});
 		$wuser.links = links;
 	}

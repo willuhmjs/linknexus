@@ -68,6 +68,13 @@
 			min-width: 0;
 			padding: 0.5rem;
 		}
+
+		/* first h1 and h2 element have no margin top */
+		h1:first-child,
+		h2:first-child {
+			margin-top: 0;
+		}
+		
 	</style>
 </svelte:head>
 <slot />

@@ -4,7 +4,7 @@ import { redirect } from '@sveltejs/kit';
 await connect();
 
 export async function handle({ event, resolve }) {
-	if (event.url.pathname.startsWith('/admin') || event.url.pathname.startsWith('/api')) {
+	if (event.url.pathname.startsWith('/admin')) {
 		const user = await checkAuth(event.cookies);
 		if (!user) {
 			event.cookies.delete('session');

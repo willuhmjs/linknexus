@@ -35,22 +35,13 @@
 	}
 
 	function updateSpecials() {
-		const urlEncodedData = new URLSearchParams();
-		urlEncodedData.append('request', JSON.stringify({ ref: 'specials', data: specials }));
-		// Set the request headers
-		const headers = new Headers();
-		headers.append('Content-Type', 'application/x-www-form-urlencoded');
-		headers.append('Cookie', document.cookie);
-
-		// Make the POST request
-		fetch('/admin/links?/update', {
+		fetch('/admin/links/update', {
 			method: 'POST',
-			headers: headers,
-			body: urlEncodedData.toString()
+			body: JSON.stringify({ ref: 'specials', links: specials })
 		})
 			.then((res) => res.json())
 			.then((res) => {
-				saveFailureMessage = JSON.parse(res.data)[3];
+				saveFailureMessage = res.message;
 			});
 		$wuser.specials = specials;
 	}
