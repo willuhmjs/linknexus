@@ -28,7 +28,9 @@
 
 {#if showAddLink}
 	<div class="addLink">
-		<p class={data?.error ? 'error' : 'success'}>{data?.message}</p>
+		{#if data?.message}
+			<p class={data?.error ? 'error' : 'success'}>{data?.message}</p>
+		{/if}
 		<form on:submit|preventDefault={async (e) => data = await api("/admin/links/link", e)}>
 			<label for="title" style="flex: ${labelProportions.title}">
 				<span>Title</span>

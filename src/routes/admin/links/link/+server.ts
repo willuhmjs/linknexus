@@ -15,7 +15,7 @@ export async function POST({ request, locals }) {
 			validUser.links.push(data);
 		}
         await validUser.save();
-            return json({ ref: 'link', error: false, message: 'Link added!', ...data, user: validUser }, { status: 201 });
+            return json({ error: false, message: 'Link added!', ...data, user: validUser }, { status: 201 });
     } catch (e) {
         return json({ error: true, message: e.errors[0].message, ...data, user: validUser }, { status: 200 });
     }

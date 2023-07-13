@@ -16,7 +16,7 @@ export async function POST({ request, locals }) {
 			validUser.specials.push(data);
 		}
         await validUser.save();
-        return json({ ref: 'special', error: false, message: 'Social link added!', user: validUser }, { status: 201 });
+        return json({ error: false, message: 'Social link added!', user: validUser }, { status: 201 });
     } catch (e) {
         console.error(e);
         return json({ error: true, message: e.errors[0].message, ...data, user: validUser }, { status: 200 });

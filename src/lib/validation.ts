@@ -96,17 +96,17 @@ const title = z
 	});
 
 const usernameValidators: Record<SpecialLink, RegExp> = {
-	[SpecialLink.INSTAGRAM]: /^[a-zA-Z0-9._]+$/,
-	[SpecialLink.TWITTER]: /^[a-zA-Z0-9_]+$/,
-	[SpecialLink.DISCORD]: /^[a-zA-Z0-9._]{3,32}$/,
-	[SpecialLink.YOUTUBE]: /^[a-zA-Z0-9_-]+$/,
-	[SpecialLink.TWITCH]: /^[a-zA-Z0-9_]{4,25}$/,
-	[SpecialLink.TIKTOK]: /^[a-zA-Z0-9._]+$/,
-	[SpecialLink.PATREON]: /^[a-zA-Z0-9_-]+$/,
-	[SpecialLink.SNAPCHAT]: /^[a-zA-Z0-9._-]+$/,
-	[SpecialLink.LINKEDIN]: /^[a-zA-Z0-9-]+$/,
-	[SpecialLink.FACEBOOK]: /^[a-zA-Z0-9.]+$/,
-	[SpecialLink.SPOTIFY]: /^[a-zA-Z0-9]+$/
+	[SpecialLink.GitHub]: /^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i,
+	[SpecialLink.Instagram]: /^[a-zA-Z0-9._]+$/,
+	[SpecialLink.Twitter]: /^[a-zA-Z0-9_]+$/,
+	[SpecialLink.YouTube]: /^[a-zA-Z0-9_-]+$/,
+	[SpecialLink.Twitch]: /^[a-zA-Z0-9_]{4,25}$/,
+	[SpecialLink.TikTok]: /^[a-zA-Z0-9._]+$/,
+	[SpecialLink.Patreon]: /^[a-zA-Z0-9_-]+$/,
+	[SpecialLink.Snapchat]: /^[a-zA-Z0-9._-]+$/,
+	[SpecialLink.LinkedIn]: /^[a-zA-Z0-9-]+$/,
+	[SpecialLink.Facebook]: /^[a-zA-Z0-9.]+$/,
+	[SpecialLink.Spotify]: /^[a-zA-Z0-9]+$/
 };
 
 export const special = z

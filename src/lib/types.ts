@@ -4,7 +4,7 @@ export enum SpecialLink {
 	GitHub,
 	Instagram,
 	Twitter,
-	Youtube,
+	YouTube,
 	Twitch,
 	TikTok,
 	Patreon,
@@ -30,7 +30,7 @@ export const SpecialProps: Record<
 		template: (username: string) => `https://twitter.com/${username}`,
 		icon: 'fa-twitter'
 	},
-	[SpecialLink.Youtube]: {
+	[SpecialLink.YouTube]: {
 		template: (username: string) => `https://youtube.com/channel/${username}`,
 		icon: 'fa-youtube'
 	},
