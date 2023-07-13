@@ -14,7 +14,6 @@
 		main {
 			display: flex;
 			flex-direction: row;
-			justify-content: space-between;
 			margin: 2rem 0;
 		}
 
@@ -28,20 +27,26 @@
 		}
 
 		section:first-child {
-			flex: 3;
+			flex: 2;
 		}
 
 		section:last-child {
-			flex: 2;
-			border-radius: 2rem;
-			border: 2px solid black;
-			height: calc(90vh - 6rem);
+			flex: 1;
+
 		}
 
-		section:last-child > div.container {
+
+		section:last-child div.container {
 			display: block;
-			transform: scale(0.8);
+			transform: scale(0.6);
   			transform-origin: 0 1;
+		}
+
+		section:last-child div.uw {
+			width: 200px;
+			height: 400px;
+			border-radius: 2rem;
+			border: 4px solid black;
 		}
 
 		section > * {
@@ -58,18 +63,6 @@
 				max-height: none;
 			}
 		}
-
-		@media (min-width: 769px) {
-			section:last-child {
-				flex: 1;
-			}
-		}
-
-		@media (min-width: 1200px) {
-			main {
-				gap: 10rem;
-			}
-		}
 	</style>
 </svelte:head>
 
@@ -79,6 +72,8 @@
 		<slot />
 	</section>
 	<section style="background-color: {$wuser.theme.background.color};">
+		<div class='uw'>
 		<User user={$wuser} />
+		</div>
 	</section>
 </main>
