@@ -25,8 +25,6 @@
 		section:first-child {
 			flex: 2;
 			overflow-y: auto;
-			padding: 0 5rem;
-
 		}
 
 		section:last-child {
@@ -41,7 +39,7 @@
 
 		section:last-child div.container {
 			display: block;
-			transform: scale(0.6);
+			transform: scale(0.7);
   			transform-origin: 0 1;
 		}
 
