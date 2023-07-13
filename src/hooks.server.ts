@@ -4,7 +4,7 @@ import { redirect, type Handle, type RequestEvent } from '@sveltejs/kit';
 await connect();
 
 const requestCounter = new Map();
-const maxReqs = 5;
+const maxReqs = 100;
 
 setInterval(() => requestCounter.clear(), 60 * 1000);
 
