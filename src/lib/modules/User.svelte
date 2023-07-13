@@ -49,7 +49,6 @@
 		margin: 0 auto;
 		background-color: var(--bg-color, #f5f5fa);
 		color: var(--font-color, #333);
-		padding: 2rem 0;
 		height: 100%;
 		width: 100%;
 	}
