@@ -72,8 +72,8 @@
 	<section>
 		<slot />
 	</section>
-	<section style="background-color: {$wuser.theme.background.color};">
-		<div class='uw'>
+	<section>
+		<div style="background-color: {$wuser.theme.background.color};" class='uw'>
 		<User user={$wuser} />
 		</div>
 	</section>
