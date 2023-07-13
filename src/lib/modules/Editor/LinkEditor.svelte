@@ -16,8 +16,8 @@
 						return links.find((link: { _id: string }) => link?._id === linkId);
 					})
 					.filter(Boolean) as { title: string; url: string; _id: string }[];
-					
-					updateLinks();
+
+				updateLinks();
 			}
 		});
 	});

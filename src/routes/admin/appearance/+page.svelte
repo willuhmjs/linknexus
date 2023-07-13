@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { Font, ButtonStyle, BackgroundType } from '$lib/types.js';
 	import type { IUser } from '$lib/types.js';
-	export let data: {message: string, error: boolean, user: IUser };
+	export let data: { message: string; error: boolean; user: IUser };
 	import wuser from '$lib/user';
-	import api from "$lib/api";
+	import api from '$lib/api';
 </script>
 
-<form on:submit|preventDefault={async (e) => data = await api("/admin/appearance/theme", e)}>
-	{#if data.message} 
+<form on:submit|preventDefault={async (e) => (data = await api('/admin/appearance/theme', e))}>
+	{#if data.message}
 		<p class={data?.error ? 'error' : 'success'}>{data?.message}</p>
 	{/if}
 	<h2>Background</h2>
@@ -42,7 +42,9 @@
 	<p>Page Font</p>
 	<select name="font" required>
 		{#each Object.keys(Font).filter((value) => !isNaN(parseFloat(value))) as font}
-			<option selected={font == $wuser.theme.font.toString()} value={font}>{Font[parseInt(font)]}</option>
+			<option selected={font == $wuser.theme.font.toString()} value={font}
+				>{Font[parseInt(font)]}</option
+			>
 		{/each}
 	</select>
 	<p>Page Font Color</p>

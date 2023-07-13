@@ -73,7 +73,6 @@
 		h2:first-child {
 			margin-top: 0;
 		}
-		
 	</style>
 </svelte:head>
 <slot />

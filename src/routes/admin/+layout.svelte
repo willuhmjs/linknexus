@@ -33,14 +33,12 @@
 			justify-content: center;
 			flex: 1;
 			align-items: center;
-
 		}
-
 
 		section:last-child div.container {
 			display: block;
 			transform: scale(0.7);
-  			transform-origin: 0 1;
+			transform-origin: 0 1;
 		}
 
 		section:last-child div.uw {
@@ -68,15 +66,15 @@
 </svelte:head>
 
 <div style="padding: 0.5rem;">
-<Nav active={$page.url.pathname} />
-<main>
-	<section>
-		<slot />
-	</section>
-	<section>
-		<div style="background-color: {$wuser.theme.background.color};" class='uw'>
-		<User user={$wuser} />
-		</div>
-	</section>
-</main>
+	<Nav active={$page.url.pathname} />
+	<main>
+		<section>
+			<slot />
+		</section>
+		<section>
+			<div style="background-color: {$wuser.theme.background.color};" class="uw">
+				<User user={$wuser} />
+			</div>
+		</section>
+	</main>
 </div>

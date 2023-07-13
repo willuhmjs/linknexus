@@ -13,9 +13,13 @@ setInterval(() => {
 export const handle: Handle = async ({ event, resolve }) => {
 	const request = event.request;
 	// todo make this better
-	const ip = request.headers.get('cf-connecting-ip') || request.headers.get('x-real-ip') || request.headers.get('x-forwarded-for') || event.getClientAddress();
+	const ip =
+		request.headers.get('cf-connecting-ip') ||
+		request.headers.get('x-real-ip') ||
+		request.headers.get('x-forwarded-for') ||
+		event.getClientAddress();
 	if (!ip) {
-		throw error(400, 'Invalid request. IP address is missing.')
+		throw error(400, 'Invalid request. IP address is missing.');
 	}
 
 	const count = requestCounter.set(ip, (requestCounter.get(ip) || 0) + 1).get(ip);
@@ -33,4 +37,4 @@ export const handle: Handle = async ({ event, resolve }) => {
 	}
 
 	return await resolve(event);
-}
+};

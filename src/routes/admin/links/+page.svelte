@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { SpecialLink } from '$lib/types.js';
 	export let data;
-	import wuser from "$lib/user";
+	import wuser from '$lib/user';
 	import LinkEditor from '$lib/modules/Editor/LinkEditor.svelte';
 	import SpecialEditor from '$lib/modules/Editor/SpecialEditor.svelte';
-	import api from "$lib/api";
+	import api from '$lib/api';
 	//let links: { title: string; url: string; _id: string }[] = $wuser?.links;
 	//let specials: { type: SpecialLink; username: string; _id: string }[] = $wuser?.specials;
 	$: links = $wuser.links;
@@ -31,7 +31,7 @@
 		{#if data?.message}
 			<p class={data?.error ? 'error' : 'success'}>{data?.message}</p>
 		{/if}
-		<form on:submit|preventDefault={async (e) => data = await api("/admin/links/link", e)}>
+		<form on:submit|preventDefault={async (e) => (data = await api('/admin/links/link', e))}>
 			<label for="title" style="flex: ${labelProportions.title}">
 				<span>Title</span>
 				<input
@@ -63,7 +63,7 @@
 		<hr />
 		<div class="or-divider">OR</div>
 		<hr />
-		<form on:submit|preventDefault={async (e) => data = await api("/admin/links/special", e)}>
+		<form on:submit|preventDefault={async (e) => (data = await api('/admin/links/special', e))}>
 			<label for="type" style="flex: ${labelProportions.type}">
 				<span>Type</span>
 				<select name="type" required>
@@ -87,7 +87,6 @@
 
 <h2><i class="fa-solid fa-arrow-up-right-from-square" />Hyperlinks</h2>
 <LinkEditor {links} />
-
 
 <h2><i class="fa-solid fa-user-group" />Social Links</h2>
 <SpecialEditor {specials} />

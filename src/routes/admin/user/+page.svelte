@@ -1,8 +1,8 @@
 <script lang="ts">
 	import type { IUser } from '$lib/types.js';
-	export let data: { message: string, error: boolean, user: IUser }
+	export let data: { message: string; error: boolean; user: IUser };
 	import Gravatar from 'svelte-gravatar';
-	import api from "$lib/api";
+	import api from '$lib/api';
 	import wuser from '$lib/user';
 </script>
 
@@ -14,8 +14,8 @@
 <form method="POST" action="/auth?/logout">
 	<button type="submit" class="logout-button">Logout</button>
 </form>
-<form on:submit|preventDefault={async (e) => data = await api("/admin/user/bio", e)}>
-		<p class={data?.error ? 'error' : 'success'}>{data?.message || ''}</p>
+<form on:submit|preventDefault={async (e) => (data = await api('/admin/user/bio', e))}>
+	<p class={data?.error ? 'error' : 'success'}>{data?.message || ''}</p>
 	<input required type="text" name="bio" placeholder={data?.user.bio || ''} autocomplete="off" />
 	<button type="submit">Update Bio</button>
 </form>
