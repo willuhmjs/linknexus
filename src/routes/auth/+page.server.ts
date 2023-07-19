@@ -3,7 +3,6 @@ import { login, register } from '$lib/auth';
 import * as validator from '$lib/validation';
 import { User } from '$lib/mongo';
 import { SAAS } from '$config';
-
 export const actions = {
 	register: async ({ cookies, request }) => {
 		if (!SAAS) {
@@ -46,16 +45,16 @@ export const actions = {
 		const data = await request.formData();
 		const username = data.get('username')?.toString();
 		const password = data.get('password')?.toString();
-
 		if (!username || !password) {
 			return fail(403, { success: false, message: 'Invalid username or password!' });
 		}
 
 		const { success, token } = await login(username, password);
-
+		console.log(token);
 		if (token) {
 			cookies.set('session', token, {
 				httpOnly: true,
+				secure: process.env.NODE_ENV === 'production',
 				maxAge: 60 * 60 * 24 * 7 // 1 week
 			});
 			throw redirect(303, '/admin/');
