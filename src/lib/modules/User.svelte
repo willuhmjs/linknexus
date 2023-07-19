@@ -6,7 +6,7 @@
 
 <div
 	class="container"
-	style="--bg-color: #241f31; --font-color: {user.theme.fontColor}; --bt-color: {user.theme.button
+	style="--bg-color: {user.theme.background.color}; --font-color: {user.theme.fontColor}; --bt-color: {user.theme.button
 		.color}; --bt-font-color: {user.theme.button.fontColor}; --font-color: {user.theme
 		.fontColor}; --bt-style: {ButtonStyle[user.theme.button.style]}"
 >

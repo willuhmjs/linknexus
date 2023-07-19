@@ -42,10 +42,12 @@
 		}
 
 		section:last-child div.uw {
-			width: 200px;
-			height: 400px;
+			aspect-ratio: 1/2;
+			max-width: 60%;
+			border-style: solid;
+			border-color: black;
+			border-width: thick;
 			border-radius: 2rem;
-			border: 4px solid black;
 		}
 
 		section > * {
