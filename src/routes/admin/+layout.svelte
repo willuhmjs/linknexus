@@ -43,10 +43,10 @@
 
 		section:last-child div.uw {
 			aspect-ratio: 1/2;
-			max-width: 60%;
+			max-width: 55%;
 			border-style: solid;
 			border-color: black;
-			border-width: thick;
+			border-width: 0.5vw;
 			border-radius: 2rem;
 		}
 
