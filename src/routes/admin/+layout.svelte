@@ -45,9 +45,7 @@
 
 		section:last-child div.uw {
 			aspect-ratio: 1/2;
-			border-style: solid;
-			border-color: black;
-			border-width: 1rem;
+			border: 1rem solid black;
 			border-radius: 2rem;
 			overflow-y: scroll;
 			-ms-overflow-style: none; /* Internet Explorer 10+ */
