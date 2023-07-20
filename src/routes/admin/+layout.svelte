@@ -40,7 +40,8 @@
 		section:last-child div.container {
 			display: block;
 			transform: scale(0.9);
-			padding: 1rem;
+			transform-origin: top;
+			padding: 2rem 1rem;
 		}
 
 		section:last-child div.uw {
