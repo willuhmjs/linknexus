@@ -40,8 +40,8 @@
 
 		section:last-child div.container {
 			display: block;
-			transform: scale(0.7);
-			transform-origin: 0 1;
+			transform: scale(0.9);
+			padding: 0 1rem;
 		}
 
 		section:last-child div.uw {
@@ -50,7 +50,13 @@
 			border-color: black;
 			border-width: 1rem;
 			border-radius: 2rem;
+			overflow-y: scroll;
+			-ms-overflow-style: none;  /* Internet Explorer 10+ */
+    		scrollbar-width: none;  /* Firefox */
 		}
+section:last-child div.uw::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
 
 		section > * {
 			width: 100%;
@@ -71,6 +77,15 @@
 			}
 		}
 
+		@media screen and (min-width: 993px) and (max-width: 1200px) {
+			section:first-child div.gw {
+				max-width: 90%;
+			}
+
+			section:last-child div.uw {
+				max-width: 80%;
+			}
+		}
 		
 		@media screen and (min-width: 1201px) and (max-width: 1400px) {
 			section:last-child div.uw {
