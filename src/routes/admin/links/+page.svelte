@@ -16,7 +16,7 @@
 		username: 2
 	};
 
-	let showAddLink = true;
+	let showAddLink = false;
 	function toggleAddLink() {
 		showAddLink = !showAddLink;
 	}
@@ -28,8 +28,8 @@
 
 {#if showAddLink}
 	<div class="addLink">
-		{#if data?.message}
-			<p class={data?.error ? 'error' : 'success'}>{data?.message}</p>
+		{#if data?.message && data?.error}
+			<p class="error">{data?.message}</p>
 		{/if}
 		<form on:submit|preventDefault={async (e) => (data = await api('/admin/links/link', e))}>
 			<label for="title" style="flex: ${labelProportions.title}">
