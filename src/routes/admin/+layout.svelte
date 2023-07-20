@@ -19,7 +19,13 @@
 		}
 
 		section {
-			margin: 0 3rem;
+			padding: 0 3rem;
+			-ms-overflow-style: none; /* Internet Explorer 10+ */
+			scrollbar-width: none; /* Firefox */
+		}
+		
+		section::-webkit-scrollbar {
+			display: none; /* Safari and Chrome */
 		}
 
 		section:first-child {
@@ -60,7 +66,13 @@
 			width: 100%;
 		}
 
-		@media screen and (min-width: 0px) and (max-width: 992px) {
+		@media screen and (min-width: 1051px) {
+			section:last-child {
+					border-left: 2px solid #e8e8ed;
+			}
+		}
+
+		@media screen and (min-width: 0px) and (max-width: 1050px) {
 			main {
 				display: block;
 			}
@@ -75,7 +87,7 @@
 			}
 		}
 
-		@media screen and (min-width: 993px) and (max-width: 1200px) {
+		@media screen and (min-width: 1051px) and (max-width: 1200px) {
 			section:first-child div.gw {
 				max-width: 90%;
 			}
