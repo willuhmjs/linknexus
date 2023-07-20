@@ -50,7 +50,6 @@ export const actions = {
 		}
 
 		const { success, token } = await login(username, password);
-		console.log(token);
 		if (token) {
 			cookies.set('session', token, {
 				httpOnly: true,
