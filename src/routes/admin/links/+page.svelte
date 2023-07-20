@@ -22,7 +22,7 @@
 	}
 </script>
 
-<button class="bt-primary" on:click={toggleAddLink}>
+<button class="bt-primary" style="width: 100%;" on:click={toggleAddLink}>
 	<i class="fa-solid fa-plus" />Add Link
 </button>
 

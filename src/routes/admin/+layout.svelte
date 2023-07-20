@@ -25,7 +25,10 @@
 		section:first-child {
 			flex: 2;
 			overflow-y: auto;
+			display: flex;
+			justify-content: center;
 		}
+
 
 		section:last-child {
 			display: flex;
@@ -43,10 +46,9 @@
 
 		section:last-child div.uw {
 			aspect-ratio: 1/2;
-			max-width: 55%;
 			border-style: solid;
 			border-color: black;
-			border-width: 0.5vw;
+			border-width: 1rem;
 			border-radius: 2rem;
 		}
 
@@ -54,16 +56,38 @@
 			width: 100%;
 		}
 
-		@media (max-width: 768px) {
+		@media screen and (min-width: 0px) and (max-width: 992px) {
 			main {
-				flex-direction: column;
+				display: block;
 			}
 
 			section {
-				margin: 1rem;
+				margin: 0 1rem;
 				max-height: none;
 			}
+
+			section:last-child div.uw {
+				max-width: 50%;
+			}
 		}
+
+		
+		@media screen and (min-width: 1201px) and (max-width: 1400px) {
+			section:last-child div.uw {
+				max-width: 80%;
+			}
+
+		}
+
+		@media (min-width: 1401px) {
+			section:first-child div.gw {
+				max-width: 70%;
+			}
+
+			section:last-child div.uw {
+				max-width: 65%;
+			}
+
 	</style>
 </svelte:head>
 
@@ -71,7 +95,9 @@
 	<Nav active={$page.url.pathname} />
 	<main>
 		<section>
-			<slot />
+			<div class="gw">
+				<slot />
+			</div>
 		</section>
 		<section>
 			<div style="background-color: {$wuser.theme.background.color};" class="uw">
