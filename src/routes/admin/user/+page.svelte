@@ -17,5 +17,5 @@
 <form on:submit|preventDefault={async (e) => (data = await api('/admin/user/bio', e))}>
 	<p class={data?.error ? 'error' : 'success'}>{data?.message || ''}</p>
 	<input required type="text" name="bio" placeholder={data?.user.bio || ''} autocomplete="off" />
-	<button type="submit">Update Bio</button>
+	<button type="submit" class="bt-primary">Update Bio</button>
 </form>

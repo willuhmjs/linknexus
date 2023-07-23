@@ -50,5 +50,5 @@
 	<p>Page Font Color</p>
 	<input type="color" name="fontColor" value={$wuser.theme.fontColor} required />
 	<br />
-	<button type="submit">Update Theme</button>
+	<button type="submit" class="bt-primary">Update Theme</button>
 </form>
