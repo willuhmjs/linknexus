@@ -15,7 +15,7 @@
 			display: flex;
 			flex-direction: row;
 			justify-content: space-between;
-			height: calc(100vh - 10rem);
+			height: calc(100vh - 8rem);
 		}
 
 		section {
@@ -99,7 +99,7 @@
 
 		@media screen and (min-width: 1201px) and (max-width: 1400px) {
 			section:last-child div.uw {
-				max-width: 80%;
+				max-width: 70%;
 			}
 		}
 

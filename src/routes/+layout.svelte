@@ -18,6 +18,7 @@
 		body {
 			margin: 0;
 			padding: 0;
+			min-height: 100vh;
 			background-color: #f5f5fa;
 			color: #292727;
 			font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu,
