@@ -22,7 +22,10 @@
 		{#each user.links as link}
 			<li class="linkItem">
 				<a href={link.url} target="_blank" rel="noopener noreferrer">
-					{link.title}
+				{#if link.image}
+					<img src={link.image} alt={link.title} width="40" />
+				{/if}
+					<span>{link.title}</span>
 				</a>
 			</li>
 		{/each}
@@ -58,9 +61,6 @@
 	}
 
 	li.linkItem {
-		display: flex;
-		align-items: center;
-		padding: 0.5rem;
 		background-color: var(--bt-color, #fafafa);
 		border: 2px var(--bt-style) #e8e8ed;
 		border-radius: 0.5rem;
@@ -68,14 +68,22 @@
 	}
 
 	li.linkItem a {
+		display: flex;
+		align-items: center;
+		padding: 0.4rem;
 		text-decoration: none;
+
+	}
+
+	li.linkItem a span {
 		color: var(--bt-font-color, #333);
 		display: block;
 		width: 100%;
+		margin-right: 40px;
 	}
 
 	li.specialItem a {
-		font-size: 2rem;
+		font-size: 2.2rem;
 		color: black;
 		margin: 0 0.5rem;
 		color: var(--font-color);

@@ -2,8 +2,7 @@
 	import Sortable from 'sortablejs';
 	import { onMount } from 'svelte';
 	let linksElement: HTMLUListElement;
-	export let links: { title: string; url: string; _id: string }[];
-	let saveFailureMessage: string;
+	export let links: { title: string; url: string; _id: string, image?: string }[];
 	import wuser from '$lib/user';
 
 	onMount(() => {
@@ -38,21 +37,17 @@
 			method: 'POST',
 			body: JSON.stringify({ ref: 'links', links })
 		})
-			.then((res) => res.json())
-			.then((res) => {
-				saveFailureMessage = res.message;
-			});
 		$wuser.links = links;
 	}
 </script>
 
-{#if saveFailureMessage}
-	<p class="save-failure">{saveFailureMessage}</p>
-{/if}
 <ul bind:this={linksElement}>
 	{#if links?.length > 0}
 		{#each links as link (link._id)}
 			<li class="linkItem">
+				{#if link.image}
+					<img style="margin-right: 0.8rem;" src={link.image} alt={link.title} width="40" />
+				{/if}
 				<a href={link.url} target="_blank" rel="noopener noreferrer" id={link._id}>
 					<span>{link.title}</span>
 				</a>

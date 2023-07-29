@@ -6,6 +6,7 @@ export async function POST({ request, locals }) {
 	const user = locals.user;
 	const data = await request.json();
 	const validUser = user as IUser;
+	data.image = data.image || undefined;
 	try {
 		validator.link.parse(data);
 		const existingLink = validUser.links.find((link) => link.title === data.title);
@@ -21,7 +22,7 @@ export async function POST({ request, locals }) {
 		);
 	} catch (e) {
 		return json(
-			{ error: true, message: e.errors[0].message, ...data, user: validUser },
+			{ error: true, message: e.errors?.[0]?.message || "Invalid input!", ...data, user: validUser },
 			{ status: 200 }
 		);
 	}

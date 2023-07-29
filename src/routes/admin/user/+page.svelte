@@ -12,7 +12,7 @@
 <p><strong>Email:</strong> {$wuser.email}</p>
 <p><strong>Credentials:</strong> Placeholder for credentials</p>
 <form method="POST" action="/auth?/logout">
-	<button type="submit" class="logout-button">Logout</button>
+	<button type="submit" class="bt-bad">Logout</button>
 </form>
 <form on:submit|preventDefault={async (e) => (data = await api('/admin/user/bio', e))}>
 	<p class={data?.error ? 'error' : 'success'}>{data?.message || ''}</p>

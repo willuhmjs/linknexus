@@ -127,5 +127,6 @@ export const special = z
 
 export const link = z.object({
 	url,
-	title
+	title,
+	image: z.string().url().optional()
 });

@@ -1,88 +1,101 @@
 <script lang="ts">
-	import { SpecialLink } from '$lib/types.js';
-	export let data;
-	import wuser from '$lib/user';
-	import LinkEditor from '$lib/modules/Editor/LinkEditor.svelte';
-	import SpecialEditor from '$lib/modules/Editor/SpecialEditor.svelte';
-	import api from '$lib/api';
-	//let links: { title: string; url: string; _id: string }[] = $wuser?.links;
-	//let specials: { type: SpecialLink; username: string; _id: string }[] = $wuser?.specials;
-	$: links = $wuser.links;
-	$: specials = $wuser.specials;
-	const labelProportions = {
-		title: 2,
-		url: 2,
-		type: 1,
-		username: 2
-	};
+  import { SpecialLink } from '$lib/types.js';
+  export let data;
+  import wuser from '$lib/user';
+  import LinkEditor from '$lib/modules/Editor/LinkEditor.svelte';
+  import SpecialEditor from '$lib/modules/Editor/SpecialEditor.svelte';
+  import api from '$lib/api';
+  //let links: { title: string; url: string; _id: string }[] = $wuser?.links;
+  //let specials: { type: SpecialLink; username: string; _id: string }[] = $wuser?.specials;
+  $: links = $wuser.links;
+  $: specials = $wuser.specials;
+  const labelProportions = {
+    title: 2,
+    url: 2,
+    type: 1,
+    username: 2
+  };
 
-	let showAddLink = false;
-	function toggleAddLink() {
-		showAddLink = !showAddLink;
-	}
+  let showAddLink = false;
+  function toggleAddLink() {
+    showAddLink = !showAddLink;
+  }
 </script>
 
 <button class="bt-primary" style="width: 100%;" on:click={toggleAddLink}>
-	<i class="fa-solid fa-plus" />Add Link
+  <i class="fa-solid fa-plus" />Add Link
 </button>
 
 {#if showAddLink}
-	<div class="addLink">
-		{#if data?.message && data?.error}
-			<p class="error">{data?.message}</p>
-		{/if}
-		<form on:submit|preventDefault={async (e) => (data = await api('/admin/links/link', e))}>
-			<label for="title" style="flex: ${labelProportions.title}">
-				<span>Title</span>
-				<input
-					id="title"
-					type="text"
-					name="title"
-					placeholder="My Awesome Website"
-					autocomplete="off"
-					value={data?.title || ''}
-					required
-				/>
-			</label>
-			<label for="url" style="flex: ${labelProportions.url}">
-				<span>URL</span>
-				<input
-					required
-					id="url"
-					type="url"
-					name="url"
-					placeholder="https://willuhmjs.com"
-					autocomplete="off"
-					value={data?.url || ''}
-				/>
-			</label>
-			<button class="bt-primary" type="submit"
-				><i class="fa-solid fa-arrow-up-right-from-square" />Add Hyperlink</button
-			>
-		</form>
-		<hr />
-		<div class="or-divider">OR</div>
-		<hr />
-		<form on:submit|preventDefault={async (e) => (data = await api('/admin/links/special', e))}>
-			<label for="type" style="flex: ${labelProportions.type}">
-				<span>Type</span>
-				<select name="type" required>
-					{#each Object.keys(SpecialLink).filter((value) => !isNaN(parseFloat(value))) as type}
-						<option value={type}>
-							{SpecialLink[parseInt(type)]}
-						</option>
-					{/each}
-				</select>
-			</label>
-			<label for="username" style="flex: ${labelProportions.username}">
-				<span>Username</span>
-				<input required type="text" name="username" placeholder="willuhmjs" autocomplete="off" />
-			</label>
-			<button class="bt-primary" type="submit"
-				><i class="fa-solid fa-user-group" />Add Social Link</button
-			>
-		</form>
-	</div>
+<div class="addLink">
+  {#if data?.message && data?.error}
+    <p class="error">{data?.message}</p>
+  {/if}
+  <form on:submit|preventDefault={async (e) => (data = await api('/admin/links/link', e))}>
+    <div class="form-row">
+      <label for="title" style="flex: ${labelProportions.title}">
+        <span>Title</span>
+        <input
+          id="title"
+          type="text"
+          name="title"
+          placeholder="My Awesome Website"
+          autocomplete="off"
+          value={data?.title || ''}
+          required
+        />
+      </label>
+      <label for="url" style="flex: ${labelProportions.url}">
+        <span>URL</span>
+        <input
+          required
+          id="url"
+          type="url"
+          name="url"
+          placeholder="https://willuhmjs.com"
+          autocomplete="off"
+          value={data?.url || ''}
+        />
+      </label>
+      <label for="image" style="flex: ${labelProportions.url}; margin-bottom: 0;">
+        <span>Image URL</span>
+        <input
+          id="image"
+          type="url"
+          name="image"
+          placeholder="https://willuhmjs.com/logo.png"
+          autocomplete="off"
+          value={data?.image || ''}
+        />
+      </label>
+      <button class="bt-primary" type="submit">
+        <i class="fa-solid fa-arrow-up-right-from-square" />Add Hyperlink
+      </button>
+    </div>
+  </form>
+  <hr />
+  <div class="or-divider">OR</div>
+  <hr />
+  <form on:submit|preventDefault={async (e) => (data = await api('/admin/links/special', e))}>
+    <label for="type" style="flex: ${labelProportions.type}">
+      <span>Type</span>
+      <select name="type" required>
+        {#each Object.keys(SpecialLink).filter((value) => !isNaN(parseFloat(value))) as type}
+          <option value={type}>
+            {SpecialLink[parseInt(type)]}
+          </option>
+        {/each}
+      </select>
+    </label>
+    <label for="username" style="flex: ${labelProportions.username}">
+      <span>Username</span>
+      <input required type="text" name="username" placeholder="willuhmjs" autocomplete="off" />
+    </label>
+    <button class="bt-primary" type="submit">
+      <i class="fa-solid fa-user-group" />Add Social Link
+    </button>
+  </form>
+</div>
 {/if}
 
 <h2><i class="fa-solid fa-arrow-up-right-from-square" />Hyperlinks</h2>
@@ -126,6 +139,21 @@
 		display: flex;
 		gap: 0.25rem;
 	}
+
+	.form-row {
+    display: flex;
+    gap: 0.25rem;
+    align-items: flex-end;
+  }
+
+  .form-row label {
+    flex: 1;
+  }
+
+  /* Adjust the button width to take up all available space */
+  .form-row button {
+    width: 100%;
+  }
 
 	label {
 		display: flex;

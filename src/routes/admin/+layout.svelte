@@ -45,7 +45,7 @@
 
 		section:last-child div.container {
 			display: block;
-			transform: scale(0.9);
+			transform: scale(0.75);
 			transform-origin: top;
 			padding: 2rem 1rem;
 		}
@@ -100,7 +100,7 @@
 		@media screen and (min-width: 1201px) and (max-width: 1400px) {
 			section:last-child div.uw {
 				max-width: 70%;
-			}
+			}				
 		}
 
 		@media (min-width: 1401px) {
@@ -110,6 +110,10 @@
 
 			section:last-child div.uw {
 				max-width: 65%;
+			}
+
+			section:last-child div.container {
+				transform: scale(0.9);
 			}
 		}
 	</style>
