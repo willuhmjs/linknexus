@@ -46,7 +46,7 @@
 		{#each links as link (link._id)}
 			<li class="linkItem">
 				{#if link.image}
-					<img style="margin-right: 0.8rem;" src={link.image} alt={link.title} width="40" />
+					<img class="previewImg" src={link.image} alt={link.title} />
 				{/if}
 				<a href={link.url} target="_blank" rel="noopener noreferrer" id={link._id}>
 					<span>{link.title}</span>
@@ -105,5 +105,12 @@
 
 	i {
 		margin-right: 10px;
+	}
+
+	.previewImg {
+		border-radius: 4px;
+		margin-right: 10px;
+		width: 48px;
+		height: 48px;
 	}
 </style>

@@ -116,6 +116,8 @@
 				transform: scale(0.9);
 			}
 		}
+
+	
 	</style>
 </svelte:head>
 

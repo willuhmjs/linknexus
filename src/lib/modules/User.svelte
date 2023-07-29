@@ -23,9 +23,9 @@
 			<li class="linkItem">
 				<a href={link.url} target="_blank" rel="noopener noreferrer">
 				{#if link.image}
-					<img src={link.image} alt={link.title} width="40" />
+					<img class="previewImg" src={link.image} alt={link.title} />
 				{/if}
-					<span>{link.title}</span>
+					<span style={link.image ? "margin-right: 55px": ""}>{link.title}</span>
 				</a>
 			</li>
 		{/each}
@@ -65,6 +65,7 @@
 		border: 2px var(--bt-style) #e8e8ed;
 		border-radius: 0.5rem;
 		margin: 0.5rem 0;
+		height: 3.7rem;
 	}
 
 	li.linkItem a {
@@ -72,14 +73,20 @@
 		align-items: center;
 		padding: 0.4rem;
 		text-decoration: none;
-
+		height: 100%;
 	}
 
 	li.linkItem a span {
 		color: var(--bt-font-color, #333);
 		display: block;
 		width: 100%;
-		margin-right: 40px;
+	}
+
+	.previewImg {
+		border-radius: 4px;
+		margin-right: 10px;
+		width: 48px;
+		height: 48px;
 	}
 
 	li.specialItem a {
