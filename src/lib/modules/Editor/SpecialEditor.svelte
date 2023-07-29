@@ -89,6 +89,7 @@
 		border: 2px solid #e8e8ed;
 		border-radius: 0.5rem;
 		margin: 0.5rem 0;
+		height: 4rem;
 	}
 
 	li.linkItem a {
@@ -100,12 +101,12 @@
 	}
 
 	li a i {
-		font-size: 1.5rem;
+		font-size: 35px;
 	}
 
 	li a .username {
 		font-size: 1.3rem;
-		margin-right: 0.5rem;
+		margin-right: 10px;
 		word-break: break-all;
 	}
 
