@@ -65,7 +65,11 @@
 		border: 2px var(--bt-style) #e8e8ed;
 		border-radius: 0.5rem;
 		margin: 0.5rem 0;
-		height: 3.7rem;
+		display: flex;
+		align-items: center;
+		height: 3.75rem;
+		text-align: center;
+
 	}
 
 	li.linkItem a {
@@ -74,6 +78,8 @@
 		padding: 0.4rem;
 		text-decoration: none;
 		height: 100%;
+		text-align: center;
+		flex: 1;
 	}
 
 	li.linkItem a span {
