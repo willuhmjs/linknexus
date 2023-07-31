@@ -70,6 +70,7 @@ export enum BackgroundType {
 }
 
 export enum ButtonStyle {
+	NONE,
 	SOLID,
 	DASHED,
 	DOTTED
