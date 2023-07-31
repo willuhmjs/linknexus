@@ -47,7 +47,7 @@ export const getUserFromUsername = async (
 };
 
 export const getFirstUser = async (): Promise<IUser | null> => {
-	return User.findOne({}, { password: 0, email: 0 });
+	return User.findOne({}, { password: 0 });
 };
 
 export const register = async (
