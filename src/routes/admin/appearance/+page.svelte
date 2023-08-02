@@ -24,7 +24,7 @@
 	</select>
 	<h2>Button</h2>
 
-	<p>Button Style</p>
+	<p>Button Border</p>
 	<select name="buttonStyle" required>
 		{#each Object.keys(ButtonStyle).filter((value) => !isNaN(parseFloat(value))) as style}
 			<option selected={style == $wuser.theme.button.style.toString()} value={style}
@@ -32,6 +32,9 @@
 			>
 		{/each}
 	</select>
+
+	<p>Button Border Color</p>
+	<input type="color" name="buttonBorderColor" value={$wuser.theme.button.borderColor} required />
 
 	<p>Button Color</p>
 	<input type="color" name="buttonColor" value={$wuser.theme.button.color} required />

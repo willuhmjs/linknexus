@@ -9,8 +9,7 @@
 	style="--bg-color: {user.theme.background.color}; --font-color: {user.theme
 		.fontColor}; --bt-color: {user.theme.button.color}; --bt-font-color: {user.theme.button
 		.fontColor}; --font-color: {user.theme.fontColor}; --bt-border: {ButtonStyle[
-		user.theme.button.style
-	]}"
+		user.theme.button.style]}; --bt-border-color: {user.theme.button.borderColor};"
 >
 	<Gravatar email={user.email} size={120} default="mp" rating="pg" style="border-radius: 50%;" />
 
@@ -62,7 +61,7 @@
 
 	li.linkItem {
 		background-color: var(--bt-color, #fafafa);
-		border: 2px var(--bt-border) #e8e8ed;
+		border: 2px var(--bt-border) var(--bt-border-color, #e8e8ed);
 		border-radius: 0.5rem;
 		margin: 0.5rem 0;
 		display: flex;

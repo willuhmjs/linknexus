@@ -21,8 +21,8 @@ const userSchema = new Schema(
 			},
 			button: {
 				style: { type: Number, required: true, default: 0, enum: ButtonStyle },
-				// backgroundColor applies to both border and background colors
 				color: { type: String, required: true, default: '#fafafa',  maxLength: 100 },
+				borderColor: { type: String, required: true, default: '#333333',  maxLength: 100 },
 				fontColor: { type: String, required: true, default: '#333333',  maxLength: 100 }
 			},
 			font: { type: Number, required: true, default: 0, enum: Font },

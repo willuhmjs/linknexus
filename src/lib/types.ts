@@ -115,6 +115,7 @@ export interface ITheme extends mongoose.Document {
 	button: {
 		style: ButtonStyle;
 		color: string;
+		borderColor: string;
 		fontColor: string;
 	};
 	font: Font;

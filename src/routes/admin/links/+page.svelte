@@ -144,6 +144,7 @@
     display: flex;
     gap: 0.25rem;
     align-items: flex-end;
+
   }
 
   .form-row label {
@@ -183,8 +184,15 @@
 			flex-direction: column;
 		}
 
+
+    .form-row {
+      flex-direction: column;
+    }
+
 		label {
 			flex: 1;
+      width: 100%;
+      margin-bottom: 0.5rem;
 		}
 
 		label > span {

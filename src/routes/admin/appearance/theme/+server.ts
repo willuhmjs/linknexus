@@ -15,7 +15,8 @@ export async function POST({ request, locals }) {
 		button: {
 			style: parseInt(data.buttonStyle || ''),
 			color: data.buttonColor || '',
-			fontColor: data.buttonFontColor || ''
+			fontColor: data.buttonFontColor || '',
+			borderColor: data.buttonBorderColor || ''
 		},
 		font: parseInt(data.font || ''),
 		fontColor: data.fontColor || ''
