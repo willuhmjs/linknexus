@@ -65,26 +65,25 @@ export const SpecialProps: Record<
 };
 
 export enum BackgroundType {
-	COLOR,
-	GRADIENT
+	Color,
+	Gradient
 }
 
 export enum ButtonStyle {
-	NONE,
-	SOLID,
-	DASHED,
-	DOTTED
+	None,
+	Solid,
+	Dashed,
+	Dotted
 }
 
 export enum Font {
-	ARIAL,
-	ROBOTO,
-	VERDANA,
-	CALIBRI,
-	SEGOE_UI,
-	HELVETICA,
-	TAHOMA,
-	TIMES_NEW_ROMAN
+	Arial,
+	Roboto,
+	Verdana,
+	Calibri,
+	Helvetica,
+	Tahoma,
+	Times
 }
 
 export interface IUser extends mongoose.Document {
