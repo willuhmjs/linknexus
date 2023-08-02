@@ -33,7 +33,9 @@
 		</select>
 
 		<h4>Color</h4>
+		<div class="colorBox">
 		<input type="color" name="backgroundColor" value={$wuser.theme.background.color} required />
+		</div>
 	</div>
 	
 	<h2>Button</h2>
@@ -47,13 +49,18 @@
 			{/each}
 		</select>
 		<h4>Border Color</h4>
+		<div class="colorBox">
+
 		<input type="color" name="buttonBorderColor" value={$wuser.theme.button.borderColor} required />
-
+</div>
 		<h4>Background Color</h4>
+		<div class="colorBox">
 		<input type="color" name="buttonColor" value={$wuser.theme.button.color} required />
-
+		</div>
 		<h4>Font Color</h4>
+		<div class="colorBox">
 		<input type="color" name="buttonFontColor" value={$wuser.theme.button.fontColor} required />
+	</div>
 	</div>
 
 	<h2>General</h2>
@@ -67,7 +74,9 @@
 		{/each}
 	</select>
 	<h4>Page Font Color</h4>
+	<div class="colorBox">
 	<input type="color" name="fontColor" value={$wuser.theme.fontColor} required />
+	</div>
 </div>
 </form>
 
@@ -86,4 +95,24 @@
 	.category h4 {
 		margin-bottom: 0.7rem;
 	}
+
+	.colorBox {
+		width: 50px;
+  height: 50px;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 2px solid #e5e5e5;
+
+	}
+
+	.colorBox > input[type='color'] {
+		border: 0;
+  padding: 0;
+  width: 200%;
+  height: 200%;
+  cursor: pointer;
+  transform: translate(-25%, -25%);
+		}
+
+
 </style>
