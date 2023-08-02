@@ -1,8 +1,7 @@
 import wuser from '$lib/user';
 
-export default async function api(path: string, event: SubmitEvent) {
-	event.preventDefault();
-	const formData = new FormData(event.target as HTMLFormElement);
+export default async function api(path: string, form: HTMLFormElement) {
+	const formData = new FormData(form);
 	const data = Object.fromEntries(formData.entries());
 	const rawRes = await fetch(path, {
 		method: 'POST',

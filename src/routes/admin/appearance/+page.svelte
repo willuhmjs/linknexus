@@ -4,11 +4,23 @@
 	export let data: { message: string; error: boolean; user: IUser };
 	import wuser from '$lib/user';
 	import api from '$lib/api';
+	import { onMount } from 'svelte';
+	// on:submit|preventDefault={async (e) => (data = await api('/admin/appearance/theme', e))}
+
+	onMount(() => {
+		let form: HTMLFormElement = document.getElementById('form') as HTMLFormElement;
+		const inputs = form.querySelectorAll('input, select');
+			inputs.forEach((input) => {
+			input.addEventListener('change', async () => {
+				data = await api('/admin/appearance/theme', form);
+			});
+		});
+	})
 </script>
 
-<form on:submit|preventDefault={async (e) => (data = await api('/admin/appearance/theme', e))}>
-	{#if data.message}
-		<p class={data?.error ? 'error' : 'success'}>{data?.message}</p>
+<form id="form" on:submit|preventDefault>
+	{#if data.error}
+		<p class="error">{data?.message}</p>
 	{/if}
 	<h2>Background</h2>
 	<p>Background Color</p>
@@ -52,6 +64,4 @@
 	</select>
 	<p>Page Font Color</p>
 	<input type="color" name="fontColor" value={$wuser.theme.fontColor} required />
-	<br />
-	<button type="submit" class="bt-primary">Update Theme</button>
 </form>

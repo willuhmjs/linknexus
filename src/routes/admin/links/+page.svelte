@@ -31,7 +31,7 @@
   {#if data?.message && data?.error}
     <p class="error">{data?.message}</p>
   {/if}
-  <form on:submit|preventDefault={async (e) => (data = await api('/admin/links/link', e))}>
+  <form on:submit|preventDefault={async (e) => (data = await api('/admin/links/link', e.target))}>
     <div class="form-row">
       <label for="title" style="flex: ${labelProportions.title}">
         <span>Title</span>
@@ -76,7 +76,7 @@
   <hr />
   <div class="or-divider">OR</div>
   <hr />
-  <form on:submit|preventDefault={async (e) => (data = await api('/admin/links/special', e))}>
+  <form on:submit|preventDefault={async (e) => (data = await api('/admin/links/special', e.target))}>
     <label for="type" style="flex: ${labelProportions.type}">
       <span>Type</span>
       <select name="type" required>

@@ -14,7 +14,7 @@
 <form method="POST" action="/auth?/logout">
 	<button type="submit" class="bt-bad">Logout</button>
 </form>
-<form on:submit|preventDefault={async (e) => (data = await api('/admin/user/bio', e))}>
+<form on:submit|preventDefault={async (e) => (data = await api('/admin/user/bio', e.target))}>
 	<p class={data?.error ? 'error' : 'success'}>{data?.message || ''}</p>
 	<input required type="text" name="bio" placeholder={data?.user.bio || ''} autocomplete="off" />
 	<button type="submit" class="bt-primary">Update Bio</button>
