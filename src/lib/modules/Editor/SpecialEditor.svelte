@@ -89,7 +89,7 @@
 		border: 2px solid #e8e8ed;
 		border-radius: 0.5rem;
 		margin: 0.5rem 0;
-		height: 4rem;
+		height: 3.8rem;
 	}
 
 	li.linkItem a {
@@ -101,7 +101,8 @@
 	}
 
 	li a i {
-		font-size: 35px;
+		font-size: 2rem;
+		margin-right: 12px;
 	}
 
 	li a .username {
@@ -120,7 +121,7 @@
 		white-space: nowrap;
 	}
 
-	i {
+	button i {
 		margin-right: 10px;
 	}
 </style>

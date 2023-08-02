@@ -76,7 +76,7 @@
 		background-color: #fafafa;
 		border: 2px solid #e8e8ed;
 		border-radius: 0.5rem;
-		height: 4rem;
+		height: 3.8rem;
 		margin: 0.5rem 0;
 	}
 
@@ -89,7 +89,7 @@
 	}
 
 	li a span:first-child {
-		font-size: 1.3rem;
+		font-size: 1.2rem;
 		margin-right: 0.5rem;
 		word-break: break-all;
 	}
