@@ -77,14 +77,14 @@ export enum ButtonStyle {
 }
 
 export enum Font {
-	Arial,
-	Roboto,
-	Verdana,
+	Inter,
 	Calibri,
-	Helvetica,
-	Tahoma,
+	Montserrat,
+	Roboto,
+	Sans,
 	Times
 }
+
 
 export interface IUser extends mongoose.Document {
 	email: string;
