@@ -87,7 +87,7 @@
 			}
 		}
 
-		@media screen and (min-width: 501px) and (max-width: 1050px) {
+		@media screen and (min-width: 501px) and (max-width: 650px) {
 			main {
 				display: block;
 			}
@@ -102,7 +102,7 @@
 			}
 		}
 
-		@media screen and (min-width: 1051px) and (max-width: 1200px) {
+		@media screen and (min-width: 651px) and (max-width: 1200px) {
 			section:first-child div.gw {
 				max-width: 90%;
 			}

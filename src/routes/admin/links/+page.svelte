@@ -9,13 +9,6 @@
   //let specials: { type: SpecialLink; username: string; _id: string }[] = $wuser?.specials;
   $: links = $wuser.links;
   $: specials = $wuser.specials;
-  const labelProportions = {
-    title: 2,
-    url: 2,
-    type: 1,
-    username: 2
-  };
-
   let showAddLink = false;
   function toggleAddLink() {
     showAddLink = !showAddLink;
@@ -33,7 +26,7 @@
   {/if}
   <form on:submit|preventDefault={async (e) => (data = await api('/admin/links/link', e.target))}>
     <div class="form-row">
-      <label for="title" style="flex: ${labelProportions.title}">
+      <label for="title">
         <span>Title</span>
         <input
           id="title"
@@ -45,7 +38,7 @@
           required
         />
       </label>
-      <label for="url" style="flex: ${labelProportions.url}">
+      <label for="url">
         <span>URL</span>
         <input
           required
@@ -57,7 +50,7 @@
           value={data?.url || ''}
         />
       </label>
-      <label for="image" style="flex: ${labelProportions.url}; margin-bottom: 0;">
+      <label for="image" style=" margin-bottom: 0;">
         <span>Image URL</span>
         <input
           id="image"
@@ -68,16 +61,17 @@
           value={data?.image || ''}
         />
       </label>
-      <button class="bt-primary" type="submit">
-        <i class="fa-solid fa-arrow-up-right-from-square" />Add Hyperlink
-      </button>
     </div>
+    <button class="bt-primary" type="submit">
+      <i class="fa-solid fa-user-group" />Add HyperLink
+    </button>
   </form>
   <hr />
   <div class="or-divider">OR</div>
   <hr />
   <form on:submit|preventDefault={async (e) => (data = await api('/admin/links/special', e.target))}>
-    <label for="type" style="flex: ${labelProportions.type}">
+    <div class="form-row">
+    <label for="type">
       <span>Type</span>
       <select name="type" required>
         {#each Object.keys(SpecialLink).filter((value) => !isNaN(parseFloat(value))) as type}
@@ -87,10 +81,12 @@
         {/each}
       </select>
     </label>
-    <label for="username" style="flex: ${labelProportions.username}">
+    <label for="username">
       <span>Username</span>
       <input required type="text" name="username" placeholder="willuhmjs" autocomplete="off" />
     </label>
+  </div>
+
     <button class="bt-primary" type="submit">
       <i class="fa-solid fa-user-group" />Add Social Link
     </button>
@@ -136,7 +132,6 @@
 
 	form {
 		margin: 0.5rem 0;
-		display: flex;
 		gap: 0.25rem;
 	}
 
@@ -144,16 +139,14 @@
     display: flex;
     gap: 0.25rem;
     align-items: flex-end;
-
+    width: 100%;
   }
 
-  .form-row label {
-    flex: 1;
-  }
 
   /* Adjust the button width to take up all available space */
-  .form-row button {
+  form button {
     width: 100%;
+    margin-top: 10px;
   }
 
 	label {
