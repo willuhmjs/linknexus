@@ -126,4 +126,19 @@
 		margin-top: 0.5rem;
 		font-size: 1rem;
 	}
+
+	/* when a link hovers, enlarge it via an animation */
+	li.linkItem:hover, li.specialItem:hover {
+		animation: enlarge 0.2s ease-in-out forwards;
+	}
+
+	@keyframes enlarge {
+		0% {
+			transform: scale(1);
+		}
+		
+		100% {
+			transform: scale(1.03);
+		}
+	}
 </style>
