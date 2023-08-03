@@ -72,7 +72,22 @@
 			}
 		}
 
-		@media screen and (min-width: 0px) and (max-width: 1050px) {
+		@media screen and (max-width: 500px) {
+			main {
+				display: block;
+			}
+
+			section {
+				margin: 0;
+				max-height: none;
+			}
+
+			section:last-child div.uw {
+				max-width: 100%;
+			}
+		}
+
+		@media screen and (min-width: 501px) and (max-width: 1050px) {
 			main {
 				display: block;
 			}

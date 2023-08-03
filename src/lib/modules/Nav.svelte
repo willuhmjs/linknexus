@@ -67,4 +67,25 @@
 	nav li:hover a {
 		background-color: #e5e5e5;
 	}
+
+	@media screen and (max-width: 400px) {
+		/* vertical navbar */
+		nav {
+			padding: 0.5rem;
+		}
+
+		nav li {
+			display: block;
+			margin-right: 0;
+			margin-bottom: 3px;
+			width: 100%;
+		}
+
+		nav li a {
+			display: block;
+			padding: 0.75rem;
+			border: none;
+			border-bottom: 2px solid transparent;
+		}
+	}
 </style>

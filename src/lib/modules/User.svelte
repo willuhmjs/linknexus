@@ -68,7 +68,7 @@
 		margin: 0.5rem 0;
 		display: flex;
 		align-items: center;
-		height: 3.75rem;
+		min-height: 3.75rem;
 		text-align: center;
 
 	}

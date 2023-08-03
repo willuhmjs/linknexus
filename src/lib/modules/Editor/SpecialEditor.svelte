@@ -63,7 +63,7 @@
 					<i class="fa-brands {SpecialProps[link.type].icon}" />
 					<span class="username">{link.username}</span>
 				</a>
-				<form on:submit|preventDefault={deleteLink}>
+				<form on:submit|preventDefault={deleteLink} class="deleteBtn">
 					<input type="hidden" name="id" value={link._id} />
 					<button type="submit" class="deleteButton"><i class="fa-solid fa-trash" />Delete</button>
 				</form>
@@ -89,7 +89,7 @@
 		border: 2px solid #e8e8ed;
 		border-radius: 0.5rem;
 		margin: 0.5rem 0;
-		height: 3.8rem;
+		min-height: 3.8rem;
 	}
 
 	li.linkItem a {
@@ -123,5 +123,11 @@
 
 	button i {
 		margin-right: 10px;
+	}
+
+	@media screen and (min-width: 0px) and (max-width: 1050px) {
+		.deleteBtn {
+			display: none;
+		}
 	}
 </style>

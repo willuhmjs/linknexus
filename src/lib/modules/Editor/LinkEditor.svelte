@@ -51,7 +51,7 @@
 				<a href={link.url} target="_blank" rel="noopener noreferrer" id={link._id}>
 					<span>{link.title}</span>
 				</a>
-				<form on:submit|preventDefault={deleteLink}>
+				<form on:submit|preventDefault={deleteLink} class="deleteBtn">
 					<input type="hidden" name="id" value={link._id} />
 					<button type="submit" class="deleteButton"><i class="fa-solid fa-trash" />Delete</button>
 				</form>
@@ -76,7 +76,7 @@
 		background-color: #fafafa;
 		border: 2px solid #e8e8ed;
 		border-radius: 0.5rem;
-		height: 3.8rem;
+		min-height: 3.8rem;
 		margin: 0.5rem 0;
 	}
 
@@ -113,5 +113,11 @@
 		margin-right: 10px;
 		width: 48px;
 		height: 48px;
+	}
+
+	@media screen and (min-width: 0px) and (max-width: 1050px) {
+		.deleteBtn {
+			display: none;
+		}
 	}
 </style>
