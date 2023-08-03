@@ -52,7 +52,7 @@
 
 		section:last-child div.uw {
 			aspect-ratio: 1/2;
-			border: 1rem solid black;
+			border: 0.9rem solid black;
 			border-radius: 2rem;
 			overflow-y: scroll;
 			-ms-overflow-style: none; /* Internet Explorer 10+ */
@@ -87,13 +87,13 @@
 			}
 		}
 
-		@media screen and (min-width: 501px) and (max-width: 650px) {
+		@media screen and (min-width: 501px) and (max-width: 800px) {
 			main {
 				display: block;
 			}
 
 			section {
-				margin: 0 1rem;
+				margin: 0 1	rem;
 				max-height: none;
 			}
 
@@ -102,17 +102,17 @@
 			}
 		}
 
-		@media screen and (min-width: 651px) and (max-width: 1200px) {
-			section:first-child div.gw {
-				max-width: 90%;
-			}
-
+		@media screen and (min-width: 801px) and (max-width: 1200px) {
 			section:last-child div.uw {
 				max-width: 80%;
 			}
 		}
 
 		@media screen and (min-width: 1201px) and (max-width: 1400px) {
+			section:first-child div.gw {
+				max-width: 80%;
+			}
+
 			section:last-child div.uw {
 				max-width: 70%;
 			}				

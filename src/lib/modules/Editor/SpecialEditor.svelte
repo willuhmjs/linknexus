@@ -84,12 +84,12 @@
 	li.linkItem {
 		display: flex;
 		align-items: center;
-		padding: 0.5rem;
+		padding: 0 0.5rem;
 		background-color: #fafafa;
 		border: 2px solid #e8e8ed;
 		border-radius: 0.5rem;
 		margin: 0.5rem 0;
-		min-height: 3.8rem;
+		min-height: 3.5rem;
 	}
 
 	li.linkItem a {
@@ -113,12 +113,6 @@
 
 	li form {
 		margin-left: auto;
-	}
-
-	.deleteButton {
-		color: white;
-		background-color: #ff4d4d;
-		white-space: nowrap;
 	}
 
 	button i {

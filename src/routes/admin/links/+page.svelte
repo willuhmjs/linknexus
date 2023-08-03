@@ -26,17 +26,17 @@
   {/if}
   <form on:submit|preventDefault={async (e) => (data = await api('/admin/links/link', e.target))}>
     <div class="form-row">
-      <label for="title">
+      <label for="url">
         <span>Title</span>
-        <input
-          id="title"
-          type="text"
-          name="title"
-          placeholder="My Awesome Website"
-          autocomplete="off"
-          value={data?.title || ''}
-          required
-        />
+      <input
+        id="title"
+        type="text"
+        name="title"
+        placeholder="My Awesome Website"
+        autocomplete="off"
+        value={data?.title || ''}
+        required
+      />
       </label>
       <label for="url">
         <span>URL</span>
@@ -50,21 +50,16 @@
           value={data?.url || ''}
         />
       </label>
-      <label for="image" style=" margin-bottom: 0;">
-        <span>Image URL</span>
-        <input
-          id="image"
-          type="url"
-          name="image"
-          placeholder="https://willuhmjs.com/logo.png"
-          autocomplete="off"
-          value={data?.image || ''}
-        />
-      </label>
+      <input
+        id="image"
+        type="hidden"
+        name="image"
+        value={data?.image || ''}
+      />
+      <button class="bt-primary" type="submit">
+        <i class="fa-solid fa-user-group" />Add Hyperlink
+      </button>
     </div>
-    <button class="bt-primary" type="submit">
-      <i class="fa-solid fa-user-group" />Add HyperLink
-    </button>
   </form>
   <hr />
   <div class="or-divider">OR</div>
@@ -85,11 +80,10 @@
       <span>Username</span>
       <input required type="text" name="username" placeholder="willuhmjs" autocomplete="off" />
     </label>
-  </div>
-
     <button class="bt-primary" type="submit">
       <i class="fa-solid fa-user-group" />Add Social Link
     </button>
+  </div>
   </form>
 </div>
 {/if}
@@ -102,7 +96,7 @@
 
 <style>
 	.addLink {
-		padding: 1rem;
+		padding: 0.7rem;
 		background-color: #fafafa;
 		border: 2px solid #e8e8ed;
 		border-radius: 0.5rem;
@@ -142,13 +136,6 @@
     width: 100%;
   }
 
-
-  /* Adjust the button width to take up all available space */
-  form button {
-    width: 100%;
-    margin-top: 10px;
-  }
-
 	label {
 		display: flex;
 		flex-direction: column;
@@ -168,7 +155,7 @@
 		margin-bottom: 0.5rem;
 	}
 
-	@media (max-width: 768px) {
+	@media (max-width: 900px) {
 		.addLink {
 			padding: 0.5rem;
 		}
@@ -199,5 +186,9 @@
 		form > * {
 			margin: 0.25rem 0;
 		}
+
+    button {
+    width: 100%;
+  }
 	}
 </style>

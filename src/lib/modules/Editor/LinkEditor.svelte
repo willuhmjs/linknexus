@@ -21,6 +21,15 @@
 		});
 	});
 
+	let editor: HTMLDivElement;
+
+	function toggleEditor(event: Event) {
+		// access the div with the class "editor" relative to the form and toggle its display betwene block and none
+		const form = event.target as HTMLFormElement;
+		const editor = form.parentElement?.parentElement?.parentElement?.querySelector('.editor') as HTMLDivElement;
+		editor.style.display = editor.style.display === 'block' ? 'none' : 'block';
+	}
+
 	function deleteLink(event: Event) {
 		const form = event.target as HTMLFormElement;
 		const formData = new FormData(form);
@@ -45,16 +54,27 @@
 	{#if links?.length > 0}
 		{#each links as link (link._id)}
 			<li class="linkItem">
-				{#if link.image}
+				<div class="preview">
+					{#if link.image}
 					<img class="previewImg" src={link.image} alt={link.title} />
 				{/if}
 				<a href={link.url} target="_blank" rel="noopener noreferrer" id={link._id}>
 					<span>{link.title}</span>
 				</a>
-				<form on:submit|preventDefault={deleteLink} class="deleteBtn">
-					<input type="hidden" name="id" value={link._id} />
-					<button type="submit" class="deleteButton"><i class="fa-solid fa-trash" />Delete</button>
-				</form>
+				<div class="btnDiv">
+					<form on:submit|preventDefault={toggleEditor} class="editBtn">
+						<input type="hidden" name="id" value={link._id} />
+						<button type="submit" class="bt-primary"><i class="fa-solid fa-pencil" /></button>
+					</form>
+					<form on:submit|preventDefault={deleteLink} class="deleteBtn">
+						<input type="hidden" name="id" value={link._id} />
+						<button type="submit" class="bt-bad"><i class="fa-solid fa-trash" /></button>
+					</form>
+			</div>
+			</div>
+			<div class="editor">
+				stuff
+			</div>
 			</li>
 		{/each}
 	{:else}
@@ -70,14 +90,24 @@
 	}
 
 	li.linkItem {
-		display: flex;
-		align-items: center;
-		padding: 0.5rem;
 		background-color: #fafafa;
 		border: 2px solid #e8e8ed;
 		border-radius: 0.5rem;
-		min-height: 3.8rem;
-		margin: 0.5rem 0;
+		min-height: 3.5rem;
+		margin: 0.25rem 0;
+		padding: 0.5rem;
+	}
+
+	li.linkItem div.preview {
+		display: flex;
+		align-items: center;
+		margin: auto;
+	}
+
+	li.linkItem .btnDiv {
+		margin-left: auto;
+		display: flex;
+		gap: 7px;
 	}
 
 	li.linkItem a {
@@ -98,21 +128,16 @@
 		margin-left: auto;
 	}
 
-	.deleteButton {
-		color: white;
-		white-space: nowrap;
-		background-color: #ff4d4d;
-	}
-
-	i {
-		margin-right: 10px;
-	}
-
 	.previewImg {
 		border-radius: 4px;
 		margin-right: 10px;
-		width: 48px;
-		height: 48px;
+		width: 43px;
+		height: 43px;
+	}
+
+	.editor {
+		display: block;
+		margin-top: 15px;
 	}
 
 	@media screen and (min-width: 0px) and (max-width: 1050px) {
