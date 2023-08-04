@@ -8,6 +8,7 @@ export async function POST({ request, locals }) {
 	try {
 		for (let i = 0; i < links.length; i++) {
 			if (ref === 'links') {
+				links[i].image = links[i].image || undefined;
 				validator.link.parse(links[i]);
 			} else if (ref === 'specials') {
 				validator.special.parse(links[i]);
