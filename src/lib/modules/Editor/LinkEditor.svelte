@@ -88,12 +88,15 @@
 			<div class="editor">
 				<form on:submit|preventDefault={updateSingle}>
 					<input type="hidden" name="id" value={link._id} />
-					<label for="title">Title</label>
-					<input type="text" name="title" value={link.title} />
-					<label for="url">URL</label>
-					<input type="text" name="url" value={link.url} />
-					<label for="image">Image URL</label>
-					<input type="text" name="image" value={link.image} />
+					<label for="title"><span>Title</span>
+					<input type="text" name="title" value={link.title} placeholder="My Awesome Website" />
+				</label>
+					<label for="url"><span>URL</span>
+					<input type="text" name="url" value={link.url} placeholder="https://willuhmjs.com"/>
+				</label>
+					<label for="image"><span>Image URL</span>
+					<input type="text" name="image" value={link.image || ''} placeholder="https://willuhmjs.com/image.png" />
+				</label>
 					<button type="submit" class="bt-primary">Update</button>
 				</form>
 			</div>
@@ -105,6 +108,26 @@
 </ul>
 
 <style>
+
+.editor input {
+	margin-bottom: 0.8rem;
+}
+
+.editor button {
+	width: 100%;
+}
+
+label {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+	}
+
+	label > span {
+		margin-bottom: 0.5rem;
+		font-size: 0.85rem;
+	}
+
 	ul {
 		list-style: none;
 		padding: 0;
@@ -158,13 +181,7 @@
 	}
 
 	.editor {
-		display: block;
+		display: none;
 		margin-top: 15px;
-	}
-
-	@media screen and (min-width: 0px) and (max-width: 1050px) {
-		.deleteBtn {
-			display: none;
-		}
 	}
 </style>
