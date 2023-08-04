@@ -101,12 +101,17 @@
 		margin-top: 0;
 	}
 
+  hr {
+    border: 0;
+    border-top: 2px solid #e8e8ed;
+  }
+
 	hr:first-of-type {
-		margin-top: 1.2rem;
+		margin-top: 1rem;
 	}
 
 	hr:last-of-type {
-		margin-bottom: 1.2rem;
+		margin-bottom: 1rem;
 	}
 
 	.or-divider {
