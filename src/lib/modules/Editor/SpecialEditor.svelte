@@ -65,7 +65,7 @@
 				</a>
 				<form on:submit|preventDefault={deleteLink} class="deleteBtn">
 					<input type="hidden" name="id" value={link._id} />
-					<button type="submit" class="deleteButton"><i class="fa-solid fa-trash" />Delete</button>
+					<button type="submit" class="bt-bad"><i class="fa-solid fa-trash" /></button>
 				</form>
 			</li>
 		{/each}
@@ -113,15 +113,5 @@
 
 	li form {
 		margin-left: auto;
-	}
-
-	button i {
-		margin-right: 10px;
-	}
-
-	@media screen and (min-width: 0px) and (max-width: 1050px) {
-		.deleteBtn {
-			display: none;
-		}
 	}
 </style>
