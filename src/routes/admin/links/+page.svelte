@@ -50,12 +50,6 @@
           value={data?.url || ''}
         />
       </label>
-      <input
-        id="image"
-        type="hidden"
-        name="image"
-        value={data?.image || ''}
-      />
       <button class="bt-primary" type="submit">
         <i class="fa-solid fa-user-group" />Add Hyperlink
       </button>

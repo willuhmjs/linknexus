@@ -48,6 +48,19 @@
 		})
 		$wuser.links = links;
 	}
+
+	function updateSingle(event: Event) {
+		// update the array and then call updateLinks
+		const form = event.target as HTMLFormElement;
+		const formData = new FormData(form);
+		const id = formData.get('id') as string;
+		const linkIndex = links.findIndex((link) => link._id === id);
+		const link = links[linkIndex];
+		link.title = formData.get('title') as string;
+		link.url = formData.get('url') as string;
+		link.image = formData.get('image') as string;
+		updateLinks();
+	}
 </script>
 
 <ul bind:this={linksElement}>
@@ -73,7 +86,16 @@
 			</div>
 			</div>
 			<div class="editor">
-				stuff
+				<form on:submit|preventDefault={updateSingle}>
+					<input type="hidden" name="id" value={link._id} />
+					<label for="title">Title</label>
+					<input type="text" name="title" value={link.title} />
+					<label for="url">URL</label>
+					<input type="text" name="url" value={link.url} />
+					<label for="image">Image URL</label>
+					<input type="text" name="image" value={link.image} />
+					<button type="submit" class="bt-primary">Update</button>
+				</form>
 			</div>
 			</li>
 		{/each}
