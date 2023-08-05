@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Font, ButtonStyle, BackgroundType } from '$lib/types.js';
+	import { Font, ButtonStyle, BackgroundType, BackgroundProps } from '$lib/types.js';
 	import type { IUser } from '$lib/types.js';
 	export let data: { message: string; error: boolean; user: IUser };
 	import wuser from '$lib/user';
@@ -24,14 +24,15 @@
 	<h2>Background</h2>
 	<div class="category">
 		<h4>Type</h4>
-		<select name="backgroundType" required>
 			{#each Object.keys(BackgroundType).filter((value) => !isNaN(parseFloat(value))) as type}
-				<option selected={type == $wuser.theme.background.type.toString()} value={type}
-					>{BackgroundType[parseInt(type)]}</option
-				>
+			<div>
+			<label for="backgroundType-{type}">
+				<input type="radio" id="backgroundType-{type}" name="backgroundType" checked={type == $wuser.theme.background.type.toString()} value={type}/>
+				{BackgroundType[parseInt(type)]}
+			<div class="miniphone" style="{BackgroundProps[parseInt(type)]}" />
+			</label>
+			</div>
 			{/each}
-		</select>
-
 		<h4>Color</h4>
 		<div class="colorBox">
 		<input type="color" name="backgroundColor" value={$wuser.theme.background.color} required />
@@ -114,5 +115,10 @@
   transform: translate(-25%, -25%);
 		}
 
-
+		.miniphone {
+			width: 90px;
+			height: 160px;
+			border-radius: 0.5rem;
+			border: 2px solid #e5e5e5;
+		}
 </style>

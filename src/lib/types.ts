@@ -69,6 +69,12 @@ export enum BackgroundType {
 	Gradient
 }
 
+export const BackgroundProps: Record<BackgroundType, string> = {
+	[BackgroundType.Color]: 'background-color: #3d444b;',
+	[BackgroundType.Gradient]: 'background: linear-gradient(0deg, rgba(61,68,75,1) 0%, rgba(104,109,115,1) 100%);'
+}
+
+
 export enum ButtonStyle {
 	None,
 	Solid,
