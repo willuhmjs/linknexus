@@ -1,4 +1,5 @@
 import type mongoose from 'mongoose';
+import lighten from './lighten';
 
 export enum SpecialLink {
 	GitHub,
@@ -69,11 +70,10 @@ export enum BackgroundType {
 	Gradient
 }
 
-export const BackgroundProps: Record<BackgroundType, string> = {
-	[BackgroundType.Color]: 'background-color: #3d444b;',
-	[BackgroundType.Gradient]: 'background: linear-gradient(0deg, rgba(61,68,75,1) 0%, rgba(104,109,115,1) 100%);'
+export const BackgroundProps: Record<BackgroundType, (color: string) => string> = {
+	[BackgroundType.Color]: (color: string) => `${color}`,
+	[BackgroundType.Gradient]: (color: string) => `linear-gradient(0deg, ${lighten(color, 75)} 0%, ${color} 100%);`
 }
-
 
 export enum ButtonStyle {
 	None,

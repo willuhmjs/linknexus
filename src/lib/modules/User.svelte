@@ -1,18 +1,17 @@
 <script lang="ts">
-	import { SpecialProps, type IUser, ButtonStyle, Font } from '$lib/types';
+	import { SpecialProps, type IUser, ButtonStyle, Font, BackgroundProps } from '$lib/types';
 	import Gravatar from 'svelte-gravatar';
 	export let user: IUser;
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<div class="container" style="--bg-color: {BackgroundProps[user.theme.background.type](user.theme.background.color)}; --font-color: {user.theme
+	.fontColor}; --bt-color: {user.theme.button.color}; --bt-font-color: {user.theme.button
+	.fontColor}; --font-color: {user.theme.fontColor}; --bt-border: {ButtonStyle[
+	user.theme.button.style]}; --bt-border-color: {user.theme.button.borderColor}; font-family: {Font[user.theme.font] === 'Times' ? "Times New Roman": Font[user.theme.font]}, sans-serif;">
 <div
-	class="container"
-	style="--bg-color: {user.theme.background.color}; --font-color: {user.theme
-		.fontColor}; --bt-color: {user.theme.button.color}; --bt-font-color: {user.theme.button
-		.fontColor}; --font-color: {user.theme.fontColor}; --bt-border: {ButtonStyle[
-		user.theme.button.style]}; --bt-border-color: {user.theme.button.borderColor}; font-family: {Font[user.theme.font] === 'Times' ? "Times New Roman": Font[user.theme.font]}, sans-serif;"
->
+	class="main">
 	<Gravatar email={user.email} size={120} default="mp" rating="pg" style="border-radius: 50%;" />
 
 	<h1>@{user.username}</h1>
@@ -45,14 +44,19 @@
 		{/each}
 	</ul>
 </div>
+</div>
 
 <style>
 	div.container {
+		background: var(--bg-color, #f5f5fa);
+		color: var(--font-color, #333);
+	}
+
+	div.main {
 		text-align: center;
 		max-width: 632px;
 		margin: 0 auto;
-		background-color: var(--bg-color, #f5f5fa);
-		color: var(--font-color, #333);
+		
 	}
 
 	ul {

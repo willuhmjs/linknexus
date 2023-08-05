@@ -24,12 +24,11 @@
 	<h2>Background</h2>
 	<div class="category">
 		<h4>Type</h4>
-			{#each Object.keys(BackgroundType).filter((value) => !isNaN(parseFloat(value))) as type}
+			{#each Object.keys(BackgroundType).filter((value) => !isNaN(parseFloat(value))) as type}			
 			<div>
 			<label for="backgroundType-{type}">
 				<input type="radio" id="backgroundType-{type}" name="backgroundType" checked={type == $wuser.theme.background.type.toString()} value={type}/>
-				{BackgroundType[parseInt(type)]}
-			<div class="miniphone" style="{BackgroundProps[parseInt(type)]}" />
+			<div class="miniphone" style="background: {BackgroundProps[parseInt(type)]($wuser.theme.background.color)}" />
 			</label>
 			</div>
 			{/each}
