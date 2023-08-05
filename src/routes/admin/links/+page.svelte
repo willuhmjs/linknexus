@@ -1,85 +1,87 @@
 <script lang="ts">
-  import { SpecialLink } from '$lib/types.js';
-  export let data;
-  import wuser from '$lib/user';
-  import LinkEditor from '$lib/modules/Editor/LinkEditor.svelte';
-  import SpecialEditor from '$lib/modules/Editor/SpecialEditor.svelte';
-  import api from '$lib/api';
-  //let links: { title: string; url: string; _id: string }[] = $wuser?.links;
-  //let specials: { type: SpecialLink; username: string; _id: string }[] = $wuser?.specials;
-  $: links = $wuser.links;
-  $: specials = $wuser.specials;
-  let showAddLink = false;
-  function toggleAddLink() {
-    showAddLink = !showAddLink;
-  }
+	import { SpecialLink } from '$lib/types.js';
+	export let data;
+	import wuser from '$lib/user';
+	import LinkEditor from '$lib/modules/Editor/LinkEditor.svelte';
+	import SpecialEditor from '$lib/modules/Editor/SpecialEditor.svelte';
+	import api from '$lib/api';
+	//let links: { title: string; url: string; _id: string }[] = $wuser?.links;
+	//let specials: { type: SpecialLink; username: string; _id: string }[] = $wuser?.specials;
+	$: links = $wuser.links;
+	$: specials = $wuser.specials;
+	let showAddLink = false;
+	function toggleAddLink() {
+		showAddLink = !showAddLink;
+	}
 </script>
 
 <button class="bt-primary" style="width: 100%;" on:click={toggleAddLink}>
-  <i class="fa-solid fa-plus" />Add Link
+	<i class="fa-solid fa-plus" />Add Link
 </button>
 
 {#if showAddLink}
-<div class="addLink">
-  {#if data?.message && data?.error}
-    <p class="error">{data?.message}</p>
-  {/if}
-  <form on:submit|preventDefault={async (e) => (data = await api('/admin/links/link', e.target))}>
-    <div class="form-row">
-      <label for="url">
-        <span>Title</span>
-      <input
-        id="title"
-        type="text"
-        name="title"
-        placeholder="My Awesome Website"
-        autocomplete="off"
-        value={data?.title || ''}
-        required
-      />
-      </label>
-      <label for="url">
-        <span>URL</span>
-        <input
-          required
-          id="url"
-          type="url"
-          name="url"
-          placeholder="https://willuhmjs.com"
-          autocomplete="off"
-          value={data?.url || ''}
-        />
-      </label>
-      <button class="bt-primary" type="submit">
-        <i class="fa-solid fa-user-group" />Add Hyperlink
-      </button>
-    </div>
-  </form>
-  <hr />
-  <div class="or-divider">OR</div>
-  <hr />
-  <form on:submit|preventDefault={async (e) => (data = await api('/admin/links/special', e.target))}>
-    <div class="form-row">
-    <label for="type">
-      <span>Type</span>
-      <select name="type" required>
-        {#each Object.keys(SpecialLink).filter((value) => !isNaN(parseFloat(value))) as type}
-          <option value={type}>
-            {SpecialLink[parseInt(type)]}
-          </option>
-        {/each}
-      </select>
-    </label>
-    <label for="username">
-      <span>Username</span>
-      <input required type="text" name="username" placeholder="willuhmjs" autocomplete="off" />
-    </label>
-    <button class="bt-primary" type="submit">
-      <i class="fa-solid fa-user-group" />Add Social Link
-    </button>
-  </div>
-  </form>
-</div>
+	<div class="addLink">
+		{#if data?.message && data?.error}
+			<p class="error">{data?.message}</p>
+		{/if}
+		<form on:submit|preventDefault={async (e) => (data = await api('/admin/links/link', e.target))}>
+			<div class="form-row">
+				<label for="url">
+					<span>Title</span>
+					<input
+						id="title"
+						type="text"
+						name="title"
+						placeholder="My Awesome Website"
+						autocomplete="off"
+						value={data?.title || ''}
+						required
+					/>
+				</label>
+				<label for="url">
+					<span>URL</span>
+					<input
+						required
+						id="url"
+						type="url"
+						name="url"
+						placeholder="https://willuhmjs.com"
+						autocomplete="off"
+						value={data?.url || ''}
+					/>
+				</label>
+				<button class="bt-primary" type="submit">
+					<i class="fa-solid fa-user-group" />Add Hyperlink
+				</button>
+			</div>
+		</form>
+		<hr />
+		<div class="or-divider">OR</div>
+		<hr />
+		<form
+			on:submit|preventDefault={async (e) => (data = await api('/admin/links/special', e.target))}
+		>
+			<div class="form-row">
+				<label for="type">
+					<span>Type</span>
+					<select name="type" required>
+						{#each Object.keys(SpecialLink).filter((value) => !isNaN(parseFloat(value))) as type}
+							<option value={type}>
+								{SpecialLink[parseInt(type)]}
+							</option>
+						{/each}
+					</select>
+				</label>
+				<label for="username">
+					<span>Username</span>
+					<input required type="text" name="username" placeholder="willuhmjs" autocomplete="off" />
+				</label>
+				<button class="bt-primary" type="submit">
+					<i class="fa-solid fa-user-group" />Add Social Link
+				</button>
+			</div>
+		</form>
+	</div>
 {/if}
 
 <h2><i class="fa-solid fa-arrow-up-right-from-square" />Hyperlinks</h2>
@@ -101,10 +103,10 @@
 		margin-top: 0;
 	}
 
-  hr {
-    border: 0;
-    border-top: 2px solid #e8e8ed;
-  }
+	hr {
+		border: 0;
+		border-top: 2px solid #e8e8ed;
+	}
 
 	hr:first-of-type {
 		margin-top: 1rem;
@@ -129,11 +131,11 @@
 	}
 
 	.form-row {
-    display: flex;
-    gap: 0.25rem;
-    align-items: flex-end;
-    width: 100%;
-  }
+		display: flex;
+		gap: 0.25rem;
+		align-items: flex-end;
+		width: 100%;
+	}
 
 	label {
 		display: flex;
@@ -163,15 +165,14 @@
 			flex-direction: column;
 		}
 
-
-    .form-row {
-      flex-direction: column;
-    }
+		.form-row {
+			flex-direction: column;
+		}
 
 		label {
 			flex: 1;
-      width: 100%;
-      margin-bottom: 0.5rem;
+			width: 100%;
+			margin-bottom: 0.5rem;
 		}
 
 		label > span {
@@ -186,8 +187,8 @@
 			margin: 0.25rem 0;
 		}
 
-    button {
-    width: 100%;
-  }
+		button {
+			width: 100%;
+		}
 	}
 </style>

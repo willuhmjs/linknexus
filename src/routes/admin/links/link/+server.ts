@@ -22,7 +22,12 @@ export async function POST({ request, locals }) {
 		);
 	} catch (e) {
 		return json(
-			{ error: true, message: e.errors?.[0]?.message || "Invalid input!", ...data, user: validUser },
+			{
+				error: true,
+				message: e.errors?.[0]?.message || 'Invalid input!',
+				...data,
+				user: validUser
+			},
 			{ status: 200 }
 		);
 	}

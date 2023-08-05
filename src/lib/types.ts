@@ -72,8 +72,9 @@ export enum BackgroundType {
 
 export const BackgroundProps: Record<BackgroundType, (color: string) => string> = {
 	[BackgroundType.Color]: (color: string) => `${color}`,
-	[BackgroundType.Gradient]: (color: string) => `linear-gradient(0deg, ${lighten(color, 75)} 0%, ${color} 100%);`
-}
+	[BackgroundType.Gradient]: (color: string) =>
+		`linear-gradient(0deg, ${lighten(color, 75)} 0%, ${color} 100%);`
+};
 
 export enum ButtonStyle {
 	None,
@@ -91,7 +92,6 @@ export enum Font {
 	Times
 }
 
-
 export interface IUser extends mongoose.Document {
 	email: string;
 	password: string;
@@ -103,7 +103,7 @@ export interface IUser extends mongoose.Document {
 		title: string;
 		url: string;
 		_id: string;
-		image?: string,
+		image?: string;
 	}[];
 	specials: {
 		type: SpecialLink;

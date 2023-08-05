@@ -3,47 +3,57 @@
 	import Gravatar from 'svelte-gravatar';
 	export let user: IUser;
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-<div class="container" style="--bg-color: {BackgroundProps[user.theme.background.type](user.theme.background.color)}; --font-color: {user.theme
-	.fontColor}; --bt-color: {user.theme.button.color}; --bt-font-color: {user.theme.button
-	.fontColor}; --font-color: {user.theme.fontColor}; --bt-border: {ButtonStyle[
-	user.theme.button.style]}; --bt-border-color: {user.theme.button.borderColor}; font-family: {Font[user.theme.font] === 'Times' ? "Times New Roman": Font[user.theme.font]}, sans-serif;">
-<div
-	class="main">
-	<Gravatar email={user.email} size={120} default="mp" rating="pg" style="border-radius: 50%;" />
 
-	<h1>@{user.username}</h1>
-	{#if user.bio}
-		<p>{user.bio}</p>
-	{/if}
-	<ul class="linkContainer">
-		{#each user.links as link}
-			<li class="linkItem">
-				<a href={link.url} target="_blank" rel="noopener noreferrer">
-				{#if link.image}
-					<img class="previewImg" src={link.image} alt={link.title} />
-				{/if}
-					<span style={link.image ? "margin-right: 55px": ""}>{link.title}</span>
-				</a>
-			</li>
-		{/each}
-	</ul>
-	<ul class="specialContainer">
-		{#each user.specials as link}
-			<li class="specialItem">
-				<a
-					href={SpecialProps[link.type].template(link.username)}
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<i class="fa-brands {SpecialProps[link.type].icon}" />
-				</a>
-			</li>
-		{/each}
-	</ul>
-</div>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+	href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+	rel="stylesheet"
+/>
+<div
+	class="container"
+	style="--bg-color: {BackgroundProps[user.theme.background.type](
+		user.theme.background.color
+	)}; --font-color: {user.theme.fontColor}; --bt-color: {user.theme.button
+		.color}; --bt-font-color: {user.theme.button.fontColor}; --font-color: {user.theme
+		.fontColor}; --bt-border: {ButtonStyle[user.theme.button.style]}; --bt-border-color: {user.theme
+		.button.borderColor}; font-family: {Font[user.theme.font] === 'Times'
+		? 'Times New Roman'
+		: Font[user.theme.font]}, sans-serif;"
+>
+	<div class="main">
+		<Gravatar email={user.email} size={120} default="mp" rating="pg" style="border-radius: 50%;" />
+
+		<h1>@{user.username}</h1>
+		{#if user.bio}
+			<p>{user.bio}</p>
+		{/if}
+		<ul class="linkContainer">
+			{#each user.links as link}
+				<li class="linkItem">
+					<a href={link.url} target="_blank" rel="noopener noreferrer">
+						{#if link.image}
+							<img class="previewImg" src={link.image} alt={link.title} />
+						{/if}
+						<span style={link.image ? 'margin-right: 55px' : ''}>{link.title}</span>
+					</a>
+				</li>
+			{/each}
+		</ul>
+		<ul class="specialContainer">
+			{#each user.specials as link}
+				<li class="specialItem">
+					<a
+						href={SpecialProps[link.type].template(link.username)}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<i class="fa-brands {SpecialProps[link.type].icon}" />
+					</a>
+				</li>
+			{/each}
+		</ul>
+	</div>
 </div>
 
 <style>
@@ -56,7 +66,6 @@
 		text-align: center;
 		max-width: 632px;
 		margin: 0 auto;
-		
 	}
 
 	ul {
@@ -74,7 +83,6 @@
 		align-items: center;
 		min-height: 3.75rem;
 		text-align: center;
-
 	}
 
 	li.linkItem a {
@@ -132,7 +140,8 @@
 	}
 
 	/* when a link hovers, enlarge it via an animation */
-	li.linkItem:hover, li.specialItem:hover {
+	li.linkItem:hover,
+	li.specialItem:hover {
 		animation: enlarge 0.2s ease-in-out forwards;
 	}
 
@@ -140,7 +149,7 @@
 		0% {
 			transform: scale(1);
 		}
-		
+
 		100% {
 			transform: scale(1.03);
 		}

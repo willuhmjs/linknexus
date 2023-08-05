@@ -4,7 +4,7 @@
 	export let data: PageData;
 </script>
 
-<div class="container"></div>
+<div class="container">
 	<User user={data.user} />
 </div>
 

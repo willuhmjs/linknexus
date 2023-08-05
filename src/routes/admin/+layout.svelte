@@ -23,7 +23,7 @@
 			-ms-overflow-style: none; /* Internet Explorer 10+ */
 			scrollbar-width: none; /* Firefox */
 		}
-		
+
 		section::-webkit-scrollbar {
 			display: none; /* Safari and Chrome */
 		}
@@ -68,7 +68,7 @@
 
 		@media screen and (min-width: 1051px) {
 			section:last-child {
-					border-left: 2px solid #e8e8ed;
+				border-left: 2px solid #e8e8ed;
 			}
 		}
 
@@ -93,7 +93,7 @@
 			}
 
 			section {
-				margin: 0 1	rem;
+				margin: 0 1 rem;
 				max-height: none;
 			}
 
@@ -115,7 +115,7 @@
 
 			section:last-child div.uw {
 				max-width: 70%;
-			}				
+			}
 		}
 
 		@media (min-width: 1401px) {
@@ -131,8 +131,6 @@
 				transform: scale(0.9);
 			}
 		}
-
-	
 	</style>
 </svelte:head>
 

@@ -9,12 +9,12 @@
 	onMount(() => {
 		let form: HTMLFormElement = document.getElementById('form') as HTMLFormElement;
 		const inputs = form.querySelectorAll('input, select');
-			inputs.forEach((input) => {
+		inputs.forEach((input) => {
 			input.addEventListener('change', async () => {
 				data = await api('/admin/appearance/theme', form);
 			});
 		});
-	})
+	});
 </script>
 
 <form id="form" on:submit|preventDefault>
@@ -24,20 +24,29 @@
 	<h2>Background</h2>
 	<div class="category">
 		<h4>Type</h4>
-			{#each Object.keys(BackgroundType).filter((value) => !isNaN(parseFloat(value))) as type}			
+		{#each Object.keys(BackgroundType).filter((value) => !isNaN(parseFloat(value))) as type}
 			<div>
-			<label for="backgroundType-{type}">
-				<input type="radio" id="backgroundType-{type}" name="backgroundType" checked={type == $wuser.theme.background.type.toString()} value={type}/>
-			<div class="miniphone" style="background: {BackgroundProps[parseInt(type)]($wuser.theme.background.color)}" />
-			</label>
+				<label for="backgroundType-{type}">
+					<input
+						type="radio"
+						id="backgroundType-{type}"
+						name="backgroundType"
+						checked={type == $wuser.theme.background.type.toString()}
+						value={type}
+					/>
+					<div
+						class="miniphone"
+						style="background: {BackgroundProps[parseInt(type)]($wuser.theme.background.color)}"
+					/>
+				</label>
 			</div>
-			{/each}
+		{/each}
 		<h4>Color</h4>
 		<div class="colorBox">
-		<input type="color" name="backgroundColor" value={$wuser.theme.background.color} required />
+			<input type="color" name="backgroundColor" value={$wuser.theme.background.color} required />
 		</div>
 	</div>
-	
+
 	<h2>Button</h2>
 	<div class="category">
 		<h4>Border</h4>
@@ -50,34 +59,38 @@
 		</select>
 		<h4>Border Color</h4>
 		<div class="colorBox">
-
-		<input type="color" name="buttonBorderColor" value={$wuser.theme.button.borderColor} required />
-</div>
+			<input
+				type="color"
+				name="buttonBorderColor"
+				value={$wuser.theme.button.borderColor}
+				required
+			/>
+		</div>
 		<h4>Background Color</h4>
 		<div class="colorBox">
-		<input type="color" name="buttonColor" value={$wuser.theme.button.color} required />
+			<input type="color" name="buttonColor" value={$wuser.theme.button.color} required />
 		</div>
 		<h4>Font Color</h4>
 		<div class="colorBox">
-		<input type="color" name="buttonFontColor" value={$wuser.theme.button.fontColor} required />
-	</div>
+			<input type="color" name="buttonFontColor" value={$wuser.theme.button.fontColor} required />
+		</div>
 	</div>
 
 	<h2>General</h2>
 	<div class="category">
-	<h4>Page Font</h4>
-	<select name="font" required>
-		{#each Object.keys(Font).filter((value) => !isNaN(parseFloat(value))) as font}
-			<option selected={font == $wuser.theme.font.toString()} value={font}
-				>{Font[parseInt(font)]}</option
-			>
-		{/each}
-	</select>
-	<h4>Page Font Color</h4>
-	<div class="colorBox">
-	<input type="color" name="fontColor" value={$wuser.theme.fontColor} required />
+		<h4>Page Font</h4>
+		<select name="font" required>
+			{#each Object.keys(Font).filter((value) => !isNaN(parseFloat(value))) as font}
+				<option selected={font == $wuser.theme.font.toString()} value={font}
+					>{Font[parseInt(font)]}</option
+				>
+			{/each}
+		</select>
+		<h4>Page Font Color</h4>
+		<div class="colorBox">
+			<input type="color" name="fontColor" value={$wuser.theme.fontColor} required />
+		</div>
 	</div>
-</div>
 </form>
 
 <style>
@@ -98,26 +111,25 @@
 
 	.colorBox {
 		width: 50px;
-  height: 50px;
-  border-radius: 1rem;
-  overflow: hidden;
-  border: 2px solid #e5e5e5;
-
+		height: 50px;
+		border-radius: 1rem;
+		overflow: hidden;
+		border: 2px solid #e5e5e5;
 	}
 
 	.colorBox > input[type='color'] {
 		border: 0;
-  padding: 0;
-  width: 200%;
-  height: 200%;
-  cursor: pointer;
-  transform: translate(-25%, -25%);
-		}
+		padding: 0;
+		width: 200%;
+		height: 200%;
+		cursor: pointer;
+		transform: translate(-25%, -25%);
+	}
 
-		.miniphone {
-			width: 90px;
-			height: 160px;
-			border-radius: 0.5rem;
-			border: 2px solid #e5e5e5;
-		}
+	.miniphone {
+		width: 90px;
+		height: 160px;
+		border-radius: 0.5rem;
+		border: 2px solid #e5e5e5;
+	}
 </style>

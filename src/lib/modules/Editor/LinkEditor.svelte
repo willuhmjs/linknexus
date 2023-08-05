@@ -2,7 +2,7 @@
 	import Sortable from 'sortablejs';
 	import { onMount } from 'svelte';
 	let linksElement: HTMLUListElement;
-	export let links: { title: string; url: string; _id: string, image?: string }[];
+	export let links: { title: string; url: string; _id: string; image?: string }[];
 	import wuser from '$lib/user';
 
 	onMount(() => {
@@ -26,7 +26,9 @@
 	function toggleEditor(event: Event) {
 		// access the div with the class "editor" relative to the form and toggle its display betwene block and none
 		const form = event.target as HTMLFormElement;
-		const editor = form.parentElement?.parentElement?.parentElement?.querySelector('.editor') as HTMLDivElement;
+		const editor = form.parentElement?.parentElement?.parentElement?.querySelector(
+			'.editor'
+		) as HTMLDivElement;
 		editor.style.display = editor.style.display === 'block' ? 'none' : 'block';
 	}
 
@@ -45,7 +47,7 @@
 		fetch('/admin/links/update', {
 			method: 'POST',
 			body: JSON.stringify({ ref: 'links', links })
-		})
+		});
 		$wuser.links = links;
 	}
 
@@ -69,37 +71,45 @@
 			<li class="linkItem">
 				<div class="preview">
 					{#if link.image}
-					<img class="previewImg" src={link.image} alt={link.title} />
-				{/if}
-				<a href={link.url} target="_blank" rel="noopener noreferrer" id={link._id}>
-					<span>{link.title}</span>
-				</a>
-				<div class="btnDiv">
-					<form on:submit|preventDefault={toggleEditor} class="editBtn">
+						<img class="previewImg" src={link.image} alt={link.title} />
+					{/if}
+					<a href={link.url} target="_blank" rel="noopener noreferrer" id={link._id}>
+						<span>{link.title}</span>
+					</a>
+					<div class="btnDiv">
+						<form on:submit|preventDefault={toggleEditor} class="editBtn">
+							<input type="hidden" name="id" value={link._id} />
+							<button type="submit" class="bt-primary"><i class="fa-solid fa-pencil" /></button>
+						</form>
+						<form on:submit|preventDefault={deleteLink} class="deleteBtn">
+							<input type="hidden" name="id" value={link._id} />
+							<button type="submit" class="bt-bad"><i class="fa-solid fa-trash" /></button>
+						</form>
+					</div>
+				</div>
+				<div class="editor">
+					<form on:submit|preventDefault={updateSingle}>
 						<input type="hidden" name="id" value={link._id} />
-						<button type="submit" class="bt-primary"><i class="fa-solid fa-pencil" /></button>
+						<label for="title"
+							><span>Title</span>
+							<input type="text" name="title" value={link.title} placeholder="My Awesome Website" />
+						</label>
+						<label for="url"
+							><span>URL</span>
+							<input type="text" name="url" value={link.url} placeholder="https://willuhmjs.com" />
+						</label>
+						<label for="image"
+							><span>Image URL</span>
+							<input
+								type="text"
+								name="image"
+								value={link.image || ''}
+								placeholder="https://willuhmjs.com/image.png"
+							/>
+						</label>
+						<button type="submit" class="bt-primary">Update</button>
 					</form>
-					<form on:submit|preventDefault={deleteLink} class="deleteBtn">
-						<input type="hidden" name="id" value={link._id} />
-						<button type="submit" class="bt-bad"><i class="fa-solid fa-trash" /></button>
-					</form>
-			</div>
-			</div>
-			<div class="editor">
-				<form on:submit|preventDefault={updateSingle}>
-					<input type="hidden" name="id" value={link._id} />
-					<label for="title"><span>Title</span>
-					<input type="text" name="title" value={link.title} placeholder="My Awesome Website" />
-				</label>
-					<label for="url"><span>URL</span>
-					<input type="text" name="url" value={link.url} placeholder="https://willuhmjs.com"/>
-				</label>
-					<label for="image"><span>Image URL</span>
-					<input type="text" name="image" value={link.image || ''} placeholder="https://willuhmjs.com/image.png" />
-				</label>
-					<button type="submit" class="bt-primary">Update</button>
-				</form>
-			</div>
+				</div>
 			</li>
 		{/each}
 	{:else}
@@ -108,16 +118,15 @@
 </ul>
 
 <style>
+	.editor input {
+		margin-bottom: 0.8rem;
+	}
 
-.editor input {
-	margin-bottom: 0.8rem;
-}
+	.editor button {
+		width: 100%;
+	}
 
-.editor button {
-	width: 100%;
-}
-
-label {
+	label {
 		display: flex;
 		flex-direction: column;
 		flex: 1;
