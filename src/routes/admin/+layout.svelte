@@ -3,6 +3,7 @@
 	import User from '$lib/modules/User.svelte';
 	import { page } from '$app/stores';
 	import wuser from '$lib/user';
+	import lighten from '$lib/lighten.js';
 	export let data;
 	if (data.user) {
 		$wuser = data.user;
@@ -143,7 +144,9 @@
 			</div>
 		</section>
 		<section>
-			<div style="background-color: {$wuser.theme.background.color};" class="uw">
+			<div style="{$wuser.theme.background.type == '1'
+			? `background: linear-gradient(0deg, ${lighten($wuser.theme.background.color, 65)} 0%, ${$wuser.theme.background.color} 100%);`
+			: `background: ${$wuser.theme.background.color};`}" class="uw">
 				<User user={$wuser} />
 			</div>
 		</section>

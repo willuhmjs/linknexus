@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { SpecialProps, type IUser, ButtonStyle, Font, BackgroundProps } from '$lib/types';
+	import { SpecialProps, type IUser, ButtonStyle, Font } from '$lib/types';
 	import Gravatar from 'svelte-gravatar';
 	export let user: IUser;
 </script>
@@ -12,9 +12,7 @@
 />
 <div
 	class="container"
-	style="--bg-color: {BackgroundProps[user.theme.background.type](
-		user.theme.background.color
-	)}; --font-color: {user.theme.fontColor}; --bt-color: {user.theme.button
+	style="--font-color: {user.theme.fontColor}; --bt-color: {user.theme.button
 		.color}; --bt-font-color: {user.theme.button.fontColor}; --font-color: {user.theme
 		.fontColor}; --bt-border: {ButtonStyle[user.theme.button.style]}; --bt-border-color: {user.theme
 		.button.borderColor}; font-family: {Font[user.theme.font] === 'Times'
@@ -58,7 +56,7 @@
 
 <style>
 	div.container {
-		background: var(--bg-color, #f5f5fa);
+		background: transparent;
 		color: var(--font-color, #333);
 	}
 

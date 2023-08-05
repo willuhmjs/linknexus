@@ -1,9 +1,10 @@
 <script lang="ts">
-	import { Font, ButtonStyle, BackgroundType, BackgroundProps } from '$lib/types.js';
+	import { Font, ButtonStyle, BackgroundType } from '$lib/types.js';
 	import type { IUser } from '$lib/types.js';
 	export let data: { message: string; error: boolean; user: IUser };
 	import wuser from '$lib/user';
 	import api from '$lib/api';
+	import lighten from '$lib/lighten';
 	import { onMount } from 'svelte';
 
 	onMount(() => {
@@ -15,6 +16,7 @@
 			});
 		});
 	});
+
 </script>
 
 <form id="form" on:submit|preventDefault>
@@ -24,8 +26,8 @@
 	<h2>Background</h2>
 	<div class="category">
 		<h4>Type</h4>
-		{#each Object.keys(BackgroundType).filter((value) => !isNaN(parseFloat(value))) as type}
-			<div>
+		{#each Object.keys(BackgroundType).filter((value) => !isNaN(parseFloat(value))) as type}			
+		<div>
 				<label for="backgroundType-{type}">
 					<input
 						type="radio"
@@ -36,7 +38,9 @@
 					/>
 					<div
 						class="miniphone"
-						style="background: {BackgroundProps[parseInt(type)]($wuser.theme.background.color)}"
+						style={type == '1'
+          ? `background: linear-gradient(0deg, ${lighten($wuser.theme.background.color, 65)} 0%, ${$wuser.theme.background.color} 100%);`
+          : `background: ${$wuser.theme.background.color};`}
 					/>
 				</label>
 			</div>
