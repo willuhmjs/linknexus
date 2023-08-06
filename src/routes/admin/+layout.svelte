@@ -67,12 +67,6 @@
 			width: 100%;
 		}
 
-		@media screen and (min-width: 1051px) {
-			section:last-child {
-				border-left: 2px solid #e8e8ed;
-			}
-		}
-
 		@media screen and (max-width: 500px) {
 			main {
 				display: block;
@@ -85,6 +79,7 @@
 
 			section:last-child div.uw {
 				max-width: 100%;
+				margin: 3rem 0;
 			}
 		}
 
@@ -100,6 +95,13 @@
 
 			section:last-child div.uw {
 				max-width: 50%;
+				margin: 3rem 0;
+			}
+		}
+
+		@media screen and (min-width: 1051px) {
+			section:last-child {
+				border-left: 2px solid #e8e8ed;
 			}
 		}
 
