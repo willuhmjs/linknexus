@@ -37,7 +37,7 @@
 					/>
 					<div class="outerphone">
 					<div
-						class="miniphone"
+						class="radioBox"
 						style={type == '1'
 							? `background: linear-gradient(0deg, ${lighten(
 									$wuser.theme.background.color,
@@ -150,7 +150,7 @@
 		transform: translate(-25%, -25%);
 	}
 
-	.miniphone {
+	.radioBox {
 		width: 90px;
 		height: 160px;
 		border-radius: 0.5rem;
