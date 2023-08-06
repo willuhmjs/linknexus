@@ -17,7 +17,7 @@
 		.fontColor}; --bt-border: {ButtonStyle[user.theme.button.style]}; --bt-border-color: {user.theme
 		.button.borderColor}; font-family: {Font[user.theme.font] === 'Times'
 		? 'Times New Roman'
-		: Font[user.theme.font]}, sans-serif;"
+		: Font[user.theme.font]}, Inter;"
 >
 	<div class="main">
 		<Gravatar email={user.email} size={120} default="mp" rating="pg" style="border-radius: 50%;" />
