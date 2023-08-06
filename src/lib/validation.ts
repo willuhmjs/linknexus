@@ -40,7 +40,6 @@ export const bio = z
 		required_error: 'Bio is required.',
 		invalid_type_error: 'Bio must be a string.'
 	})
-	.min(1, { message: 'Bio must be at least 1 character long.' })
 	.max(160, { message: 'Bio must be at most 160 characters long.' });
 
 const colorSchema = z
