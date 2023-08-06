@@ -76,11 +76,11 @@
 		}
 
 		button:hover {
-			filter: brightness(0.95);
+			filter: brightness(0.9);
 		}
 
 		button:active {
-			filter: brightness(0.9);
+			filter: brightness(0.85);
 		}
 	</style>
 </svelte:head>
