@@ -100,7 +100,7 @@
 	<h2>General</h2>
 	<div class="category">
 		<h4>Page Font</h4>
-		<select name="font" required>
+		<select name="font" required style="width: 100%;">
 			{#each Object.keys(Font).filter((value) => !isNaN(parseFloat(value))) as font}
 				<option selected={font == $wuser.theme.font.toString()} value={font}
 					>{Font[parseInt(font)]}</option
