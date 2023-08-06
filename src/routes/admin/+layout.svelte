@@ -74,6 +74,7 @@
 
 			section {
 				margin: 0;
+				padding: 0 1rem;
 				max-height: none;
 			}
 
@@ -89,7 +90,8 @@
 			}
 
 			section {
-				margin: 0 1 rem;
+				margin: 0;
+				padding: 0 1rem;
 				max-height: none;
 			}
 
