@@ -148,9 +148,14 @@
 			</div>
 		</section>
 		<section>
-			<div style="{$wuser.theme.background.type == '1'
-			? `background: linear-gradient(0deg, ${lighten($wuser.theme.background.color, 65)} 0%, ${$wuser.theme.background.color} 100%);`
-			: `background: ${$wuser.theme.background.color};`}" class="uw">
+			<div
+				style={$wuser.theme.background.type == '1'
+					? `background: linear-gradient(0deg, ${lighten($wuser.theme.background.color, 65)} 0%, ${
+							$wuser.theme.background.color
+					  } 100%);`
+					: `background: ${$wuser.theme.background.color};`}
+				class="uw"
+			>
 				<User user={$wuser} />
 			</div>
 		</section>
