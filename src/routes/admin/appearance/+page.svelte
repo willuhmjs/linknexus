@@ -72,7 +72,7 @@
 					<div
 						class="radioBox" style="background: {$wuser.theme.button.color}; border: 2px {ButtonStyle[parseInt(style)]} {$wuser.theme.button.borderColor}; width: 200px; height: 50px;"
 					>
-					<span style="color: {$wuser.theme.button.fontColor}">Lorem ispum!</span>
+					<span style="color: {$wuser.theme.button.fontColor}">{ButtonStyle[style]}</span>
 				</div>
 					</div>
 				</label>
