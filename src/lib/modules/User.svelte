@@ -74,7 +74,7 @@
 
 	li.linkItem {
 		background-color: var(--bt-color, #fafafa);
-		border: 2px var(--bt-border) var(--bt-border-color, #e8e8ed);
+		border: 1px var(--bt-border) var(--bt-border-color, #e8e8ed);
 		border-radius: 0.5rem;
 		margin: 0.5rem 0;
 		display: flex;
