@@ -70,8 +70,10 @@
 					/>
 					<div class="outerphone">
 					<div
-						class="radioBox" style="background: {$wuser.theme.button.color}; border: 5px {ButtonStyle[parseInt(style)]} {$wuser.theme.button.borderColor}; width: 160px; height: 45px;"
-					/>
+						class="radioBox" style="background: {$wuser.theme.button.color}; border: 5px {ButtonStyle[parseInt(style)]} {$wuser.theme.button.borderColor}; width: 200px; height: 50px;"
+					>
+					<span style="color: {$wuser.theme.button.fontColor}">Lorem ispum!</span>
+				</div>
 					</div>
 				</label>
 			</div>
@@ -162,6 +164,9 @@
 	}
 
 	.radioBox {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		border-radius: 0.5rem;
 		border: 2px solid #e5e5e5;
 	}
