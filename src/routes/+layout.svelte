@@ -74,6 +74,14 @@
 		h2:first-child {
 			margin-top: 0;
 		}
+
+		button:hover {
+			filter: brightness(0.95);
+		}
+
+		button:active {
+			filter: brightness(0.9);
+		}
 	</style>
 </svelte:head>
 <slot />
