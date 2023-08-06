@@ -38,12 +38,12 @@
 					<div class="outerphone">
 					<div
 						class="radioBox"
-						style={type == '1'
+						style="{type == '1'
 							? `background: linear-gradient(0deg, ${lighten(
 									$wuser.theme.background.color,
 									65
 							  )} 0%, ${$wuser.theme.background.color} 100%);`
-							: `background: ${$wuser.theme.background.color};`}
+							: `background: ${$wuser.theme.background.color};`}; width: 90px; height: 160px"
 					/>
 					</div>
 				</label>
@@ -58,13 +58,24 @@
 	<h2>Button</h2>
 	<div class="category">
 		<h4>Border</h4>
-		<select name="buttonStyle" required>
 			{#each Object.keys(ButtonStyle).filter((value) => !isNaN(parseFloat(value))) as style}
-				<option selected={style == $wuser.theme.button.style.toString()} value={style}
-					>{ButtonStyle[parseInt(style)]}</option
-				>
-			{/each}
-		</select>
+			<div class="radioDiv">
+				<label for="buttonStyle-{style}">
+					<input
+						type="radio"
+						id="buttonStyle-{style}"
+						name="buttonStyle"
+						checked={style == $wuser.theme.button.style.toString()}
+						value={style}
+					/>
+					<div class="outerphone">
+					<div
+						class="radioBox" style="background: {$wuser.theme.button.color}; border: 5px {ButtonStyle[parseInt(style)]} {$wuser.theme.button.borderColor}; width: 160px; height: 45px;"
+					/>
+					</div>
+				</label>
+			</div>
+		{/each}
 		<h4>Border Color</h4>
 		<div class="colorBox">
 			<input
@@ -151,8 +162,6 @@
 	}
 
 	.radioBox {
-		width: 90px;
-		height: 160px;
 		border-radius: 0.5rem;
 		border: 2px solid #e5e5e5;
 	}
