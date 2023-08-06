@@ -26,7 +26,7 @@
 	<div class="category">
 		<h4>Type</h4>
 		{#each Object.keys(BackgroundType).filter((value) => !isNaN(parseFloat(value))) as type}
-			<div>
+			<div class="radioDiv">
 				<label for="backgroundType-{type}">
 					<input
 						type="radio"
@@ -35,6 +35,7 @@
 						checked={type == $wuser.theme.background.type.toString()}
 						value={type}
 					/>
+					<div class="outerphone">
 					<div
 						class="miniphone"
 						style={type == '1'
@@ -44,6 +45,7 @@
 							  )} 0%, ${$wuser.theme.background.color} 100%);`
 							: `background: ${$wuser.theme.background.color};`}
 					/>
+					</div>
 				</label>
 			</div>
 		{/each}
@@ -104,6 +106,22 @@
 		padding: 0.5rem;
 		background-color: #fafafa;
 		border: 2px solid #e8e8ed;
+		border-radius: 0.5rem;
+	}
+
+	.radioDiv {
+		display: inline-block;
+		margin-right: 1rem;
+	}
+
+	.radioDiv input[type="radio"] {
+		display: none;
+	}
+
+	/* make the label of the active radio have a gray border */
+	.radioDiv input[type="radio"]:checked + .outerphone {
+		padding: 3px;
+		border: 2px solid #e2e2e2;
 		border-radius: 0.5rem;
 	}
 
