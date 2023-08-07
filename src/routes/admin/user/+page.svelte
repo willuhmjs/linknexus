@@ -38,4 +38,8 @@
 	.category h4 {
 		margin-bottom: 0.7rem;
 	}
+
+	input {
+		width: 100%;
+	}
 </style>
