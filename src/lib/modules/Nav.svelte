@@ -17,7 +17,7 @@
 		</div>
 		<div style="float: right; display: inline-block;">
 			<li>
-					<button type="submit"><i class="fa-solid fa-sign-out" />Logout</button>
+				<button type="submit" on:click={() => document.cookie = ""}><i class="fa-solid fa-sign-out" />Logout</button>
 			</li>
 		</div>
 	</ul>
