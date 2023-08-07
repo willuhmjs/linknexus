@@ -12,7 +12,7 @@
 		const inputs = form.querySelectorAll('input, select');
 		inputs.forEach((input) => {
 			input.addEventListener('change', async () => {
-				data = await api('/admin/appearance/theme', form);
+				data = await api('/admin/appearance', form);
 			});
 		});
 	});
