@@ -39,7 +39,11 @@
 		margin-bottom: 0.7rem;
 	}
 
-	input {
+	form {
+		margin: 0.5rem;
+	}
+
+	input, form button {
 		width: 100%;
 	}
 </style>
