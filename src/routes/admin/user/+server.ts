@@ -24,6 +24,6 @@ export async function POST({ cookies, request, locals }) {
         });        
 		return json({ error: false, user: validUser }, { status: 201 });
 	} catch (e) {
-		return json({ error: true, message: e.errors[0].message, user: validUser }, { status: 200 });
+		return json({ error: true, message: e?.errors?.[0]?.message || "Requested username is unavailable.", user: validUser }, { status: 200 });
 	}
 }
