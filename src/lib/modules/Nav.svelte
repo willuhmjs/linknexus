@@ -4,15 +4,22 @@
 
 <nav>
 	<ul class="navbar">
-		<li class={active === '/admin/links' ? 'active' : ''}>
-			<a href="/admin/links"><i class="fa-solid fa-link" />Links</a>
-		</li>
-		<li class={active === '/admin/appearance' ? 'active' : ''}>
-			<a href="/admin/appearance"><i class="fa-solid fa-eye" />Appearance</a>
-		</li>
-		<li class={active === '/admin/user' ? 'active' : ''}>
-			<a href="/admin/user"><i class="fa-solid fa-user" />User</a>
-		</li>
+		<div style="display: inline-block;">
+			<li class={active === '/admin/links' ? 'active' : ''}>
+				<a href="/admin/links"><i class="fa-solid fa-link" />Links</a>
+			</li>
+			<li class={active === '/admin/appearance' ? 'active' : ''}>
+				<a href="/admin/appearance"><i class="fa-solid fa-eye" />Appearance</a>
+			</li>
+			<li class={active === '/admin/user' ? 'active' : ''}>
+				<a href="/admin/user"><i class="fa-solid fa-user" />User</a>
+			</li>
+		</div>
+		<div style="float: right; display: inline-block;">
+			<li>
+					<button type="submit"><i class="fa-solid fa-sign-out" />Logout</button>
+			</li>
+		</div>
 	</ul>
 </nav>
 
@@ -37,8 +44,7 @@
 		margin-right: 3px;
 	}
 
-	nav li .active,
-	nav li.active a {
+	nav li.active a, nav li.active button {
 		background-color: #e5e5e5;
 		color: inherit;
 	}
@@ -47,8 +53,10 @@
 		margin-right: 0;
 	}
 
-	nav li a {
+	nav li a, nav li button {
 		display: inline-block;
+		background-color: transparent;
+		font-size: 1rem;
 		color: #676b5f;
 		text-decoration: none;
 		padding: 0.75rem 1rem;
@@ -56,16 +64,13 @@
 		border-radius: 10px;
 	}
 
-	nav li a i {
+	nav li a i, nav li button i {
 		margin-right: 0.5rem;
 	}
 
-	nav li a:hover {
+	nav li:hover a, nav li:hover button {
 		background-color: #e5e5e5;
-	}
-
-	nav li:hover a {
-		background-color: #e5e5e5;
+		filter: brightness(1);
 	}
 
 	@media screen and (max-width: 400px) {
