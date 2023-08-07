@@ -11,17 +11,14 @@
 <Gravatar email={$wuser.email} size={150} default="mp" rating="g" style="border-radius: 50%; margin: 0.5rem;" />
 <p class='error'>{data?.message || ''}</p>
 <h4>Username</h4>
-<form on:submit|preventDefault={async (e) => (data = await api('/admin/user/username', e.target))}>
+<form on:submit|preventDefault={async (e) => (data = await api('/admin/user/', e.target))}>
 	<input type="text" name="username" value={data?.user.username || ''} autocomplete="off" />
-	<button type="submit" class="bt-primary">Update Username</button>
-</form>
-<h4>Bio</h4>
-<form on:submit|preventDefault={async (e) => (data = await api('/admin/user/bio', e.target))}>
+	<h4>Bio</h4>
 	<input type="text" name="bio" value={data?.user.bio || ''} autocomplete="off" />
-	<button type="submit" class="bt-primary">Update Bio</button>
-</form>
 <h4>Email</h4>
 <p>{$wuser.email}</p>
+<button type="submit" class="bt-primary">Update Profile</button>
+</form>
 <form method="POST" action="/auth?/logout">
 	<button type="submit" class="bt-bad">Logout</button>
 </form>
