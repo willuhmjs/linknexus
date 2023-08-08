@@ -32,8 +32,8 @@ const userSchema = new Schema(
 		links: [
 			{
 				title: { type: String, required: true, maxLength: 100, default: 'New Link' },
-				url: { type: String, required: true, maxLength: 100 },
-				image: { type: String, required: false, maxLength: 100 }
+				url: { type: String, required: true, maxLength: 300 },
+				image: { type: String, required: false, maxLength: 300 }
 			}
 		],
 		specials: [
