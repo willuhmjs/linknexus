@@ -19,25 +19,39 @@
 		? 'Times New Roman'
 		: Font[user.theme.font]}, Inter;"
 >
-	<div class="main">
+	<div class="main" style={user.theme.display == 0 ? "max-width: 632px;" : "max-width: 90%"}>
 		<Gravatar email={user.email} size={120} default="mp" rating="pg" style="border-radius: 50%;" />
 
 		<h1>@{user.username}</h1>
 		{#if user.bio}
 			<p>{user.bio}</p>
 		{/if}
-		<ul class="linkContainer">
-			{#each user.links as link}
-				<li class="linkItem">
-					<a href={link.url} target="_blank" rel="noopener noreferrer">
-						{#if link.image}
-							<img class="previewImg" src={link.image} alt={link.title} />
-						{/if}
-						<span style={link.image ? 'margin-right: 55px' : ''}>{link.title}</span>
-					</a>
-				</li>
-			{/each}
-		</ul>
+			{#if user.theme.display == 0}
+			<ul class="linkContainer">
+				{#each user.links as link}
+					<li class="linkItem">
+						<a href={link.url} target="_blank" rel="noopener noreferrer">
+							{#if link.image}
+								<img class="previewImg" src={link.image} alt={link.title} />
+							{/if}
+							<span style={link.image ? 'margin-right: 55px' : ''}>{link.title}</span>
+						</a>
+					</li>
+				{/each}
+			</ul>
+
+			{:else if user.theme.display == 1}
+				<div class="linkGrid">
+					{#each user.links as link}
+						<div class="linkGridItem" on:click={() => window.open(link.url)}>
+							{#if link.image}
+								<img class="gridPreviewImg" src={link.image} alt={link.title} loading="lazy" />
+							{/if}
+							<p style={link.image ? "margin-bottom: 10px;" : "margin-bottom: 0px;"}>{link.title}</p>
+						</div>
+					{/each}
+				</div>
+			{/if}
 		<ul class="specialContainer">
 			{#each user.specials as link}
 				<li class="specialItem">
@@ -62,7 +76,6 @@
 
 	div.main {
 		text-align: center;
-		max-width: 632px;
 		margin: 0 auto;
 	}
 
@@ -142,6 +155,47 @@
 	li.specialItem:hover {
 		animation: enlarge 0.2s ease-in-out forwards;
 	}
+
+	.linkGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 10px;
+  justify-items: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.linkGridItem {
+  width: 100%;
+  height: 200px;
+  border-radius: 0.5rem;
+  border: 2px var(--bt-border) var(--bt-border-color, #e8e8ed);
+  background-color: var(--bt-color, #fafafa);
+	border: 2px var(--bt-border) var(--bt-border-color, #e8e8ed);
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+.linkGridItem:hover {
+	animation: enlarge 0.2s ease-in-out forwards;
+	cursor: pointer;
+}
+
+/* image at top and p at bottom */
+.linkGridItem p {
+	font-size: 1rem;
+	margin-top: 0;
+}
+
+.gridPreviewImg {
+	  max-height: 140px;
+	    max-width: 140px;
+	  margin: auto 0;
+	border-radius: 0.5rem;
+	object-fit: cover;
+}
 
 	@keyframes enlarge {
 		0% {
