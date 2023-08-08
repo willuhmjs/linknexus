@@ -61,8 +61,4 @@ export const actions = {
 			return fail(403, { success, message: 'Invalid username or password!', username });
 		}
 	},
-
-	logout: ({ cookies }) => {
-		cookies.delete('session');
-	}
 };

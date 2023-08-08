@@ -17,7 +17,9 @@
 		</div>
 		<div style="float: right; display: inline-block;">
 			<li>
+				<form action="/auth/logout" method="POST">
 					<button type="submit"><i class="fa-solid fa-sign-out" />Logout</button>
+				</form>
 			</li>
 		</div>
 	</ul>

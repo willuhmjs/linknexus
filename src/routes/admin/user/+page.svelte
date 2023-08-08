@@ -19,9 +19,6 @@
 <p>{$wuser.email}</p>
 <button type="submit" class="bt-primary">Update Profile</button>
 </form>
-<form method="POST" action="/auth?/logout">
-	<button type="submit" class="bt-bad">Logout</button>
-</form>
 </div>
 <style>
 	.category {
