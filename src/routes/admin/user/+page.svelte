@@ -8,18 +8,25 @@
 
 <h1>Account Information</h1>
 <div class="category">
-<Gravatar email={$wuser.email} size={150} default="mp" rating="g" style="border-radius: 50%; margin: 0.5rem;" />
-<p class='error'>{data?.message || ''}</p>
-<h4>Username</h4>
-<form on:submit|preventDefault={async (e) => (data = await api('/admin/user/', e.target))}>
-	<input type="text" name="username" value={data?.user.username || ''} autocomplete="off" />
-	<h4>Bio</h4>
-	<input type="text" name="bio" value={data?.user.bio || ''} autocomplete="off" />
-<h4>Email</h4>
-<p>{$wuser.email}</p>
-<button type="submit" class="bt-primary">Update Profile</button>
-</form>
+	<Gravatar
+		email={$wuser.email}
+		size={150}
+		default="mp"
+		rating="g"
+		style="border-radius: 50%; margin: 0.5rem;"
+	/>
+	<p class="error">{data?.message || ''}</p>
+	<h4>Username</h4>
+	<form on:submit|preventDefault={async (e) => (data = await api('/admin/user/', e.target))}>
+		<input type="text" name="username" value={data?.user.username || ''} autocomplete="off" />
+		<h4>Bio</h4>
+		<input type="text" name="bio" value={data?.user.bio || ''} autocomplete="off" />
+		<h4>Email</h4>
+		<p>{$wuser.email}</p>
+		<button type="submit" class="bt-primary">Update Profile</button>
+	</form>
 </div>
+
 <style>
 	.category {
 		padding: 0.5rem;
@@ -36,7 +43,8 @@
 		margin-bottom: 0.7rem;
 	}
 
-	input, form button {
+	input,
+	form button {
 		width: 100%;
 	}
 

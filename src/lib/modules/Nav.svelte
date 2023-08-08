@@ -46,7 +46,8 @@
 		margin-right: 3px;
 	}
 
-	nav li.active a, nav li.active button {
+	nav li.active a,
+	nav li.active button {
 		background-color: #e5e5e5;
 		color: inherit;
 	}
@@ -55,7 +56,8 @@
 		margin-right: 0;
 	}
 
-	nav li a, nav li button {
+	nav li a,
+	nav li button {
 		display: inline-block;
 		background-color: transparent;
 		font-size: 1rem;
@@ -66,11 +68,13 @@
 		border-radius: 10px;
 	}
 
-	nav li a i, nav li button i {
+	nav li a i,
+	nav li button i {
 		margin-right: 0.5rem;
 	}
 
-	nav li:hover a, nav li:hover button {
+	nav li:hover a,
+	nav li:hover button {
 		background-color: #e5e5e5;
 		filter: brightness(1);
 	}

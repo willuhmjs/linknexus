@@ -36,15 +36,15 @@
 						value={type}
 					/>
 					<div class="outerphone">
-					<div
-						class="radioBox"
-						style="{type == '1'
-							? `background: linear-gradient(0deg, ${lighten(
-									$wuser.theme.background.color,
-									65
-							  )} 0%, ${$wuser.theme.background.color} 100%);`
-							: `background: ${$wuser.theme.background.color};`}; width: 90px; height: 160px"
-					/>
+						<div
+							class="radioBox"
+							style="{type == '1'
+								? `background: linear-gradient(0deg, ${lighten(
+										$wuser.theme.background.color,
+										65
+								  )} 0%, ${$wuser.theme.background.color} 100%);`
+								: `background: ${$wuser.theme.background.color};`}; width: 90px; height: 160px"
+						/>
 					</div>
 				</label>
 			</div>
@@ -58,7 +58,7 @@
 	<h2>Button</h2>
 	<div class="category">
 		<h4>Border</h4>
-			{#each Object.keys(ButtonStyle).filter((value) => !isNaN(parseFloat(value))) as style}
+		{#each Object.keys(ButtonStyle).filter((value) => !isNaN(parseFloat(value))) as style}
 			<div class="radioDiv">
 				<label for="buttonStyle-{style}">
 					<input
@@ -69,11 +69,14 @@
 						value={style}
 					/>
 					<div class="outerphone">
-					<div
-						class="radioBox" style="background: {$wuser.theme.button.color}; border: 2px {ButtonStyle[parseInt(style)]} {$wuser.theme.button.borderColor}; width: 200px; height: 50px;"
-					>
-					<span style="color: {$wuser.theme.button.fontColor}">{ButtonStyle[style]}</span>
-				</div>
+						<div
+							class="radioBox"
+							style="background: {$wuser.theme.button.color}; border: 2px {ButtonStyle[
+								parseInt(style)
+							]} {$wuser.theme.button.borderColor}; width: 200px; height: 50px;"
+						>
+							<span style="color: {$wuser.theme.button.fontColor}">{ButtonStyle[style]}</span>
+						</div>
 					</div>
 				</label>
 			</div>
@@ -127,12 +130,12 @@
 		margin-right: 1rem;
 	}
 
-	.radioDiv input[type="radio"] {
+	.radioDiv input[type='radio'] {
 		display: none;
 	}
 
 	/* make the label of the active radio have a gray border */
-	.radioDiv input[type="radio"]:checked + .outerphone {
+	.radioDiv input[type='radio']:checked + .outerphone {
 		padding: 3px;
 		border: 2px solid #e2e2e2;
 		border-radius: 0.5rem;
