@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Font, ButtonStyle, BackgroundType } from '$lib/types.js';
+	import { Font, ButtonStyle, BackgroundType, Display } from '$lib/types.js';
 	import type { IUser } from '$lib/types.js';
 	export let data: { message: string; error: boolean; user: IUser };
 	import wuser from '$lib/user';
@@ -102,8 +102,16 @@
 
 	<h2>General</h2>
 	<div class="category">
+		<h4>Display Mode</h4>
+		<select name="display" required>
+			{#each Object.keys(Display).filter((value) => !isNaN(parseFloat(value))) as display}
+				<option selected={display == $wuser.theme.display.toString()} value={display}
+					>{Display[parseInt(display)]}</option
+				>
+			{/each}
+		</select>
 		<h4>Page Font</h4>
-		<select name="font" required style="width: 100%;">
+		<select name="font" required>
 			{#each Object.keys(Font).filter((value) => !isNaN(parseFloat(value))) as font}
 				<option selected={font == $wuser.theme.font.toString()} value={font}
 					>{Font[parseInt(font)]}</option
@@ -172,5 +180,13 @@
 		align-items: center;
 		border-radius: 0.5rem;
 		border: 2px solid #e5e5e5;
+	}
+
+	select {
+		width: 100%;
+		height: 2.5rem;
+		border-radius: 0.5rem;
+		border: 2px solid #e5e5e5;
+		padding: 0.5rem;
 	}
 </style>

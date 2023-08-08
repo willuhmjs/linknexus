@@ -84,6 +84,11 @@ export enum Font {
 	Times
 }
 
+export enum Display {
+	List,
+	Grid	
+}
+
 export interface IUser extends mongoose.Document {
 	email: string;
 	password: string;
@@ -105,6 +110,7 @@ export interface IUser extends mongoose.Document {
 }
 
 export interface ITheme extends mongoose.Document {
+	display: Display;
 	background: {
 		type: BackgroundType;
 		color: string;

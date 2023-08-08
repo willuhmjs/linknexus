@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 import { MONGO_URI } from '$config';
-import { BackgroundType, ButtonStyle, Font, SpecialLink, type IUser } from '$lib/types';
+import { BackgroundType, ButtonStyle, Font, SpecialLink, Display, type IUser } from '$lib/types';
 export const connect = async () => {
 	await mongoose.connect(MONGO_URI);
 	console.log('connected to mongo');
@@ -13,8 +13,8 @@ const userSchema = new Schema(
 		username: { type: String, required: true, unique: true, maxLength: 100 },
 		bio: { type: String, required: false, maxLength: 100 },
 		// whether or not to use standard or grid mode
-		standard: { type: Boolean, required: true, default: true, maxLength: 100 },
 		theme: {
+			display: { type: Number, required: true, default: 0, enum: Display },
 			background: {
 				type: { type: Number, required: true, default: 0, enum: BackgroundType },
 				color: { type: String, required: true, default: '#f5f5fa', maxLength: 100 }

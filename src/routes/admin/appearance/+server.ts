@@ -8,6 +8,7 @@ export async function POST({ request, locals }) {
 	const data = await request.json();
 
 	const theme = {
+		display: parseInt(data.display || ''),
 		background: {
 			type: parseInt(data.backgroundType || ''),
 			color: data.backgroundColor || ''
