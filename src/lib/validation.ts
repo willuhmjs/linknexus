@@ -47,7 +47,7 @@ const colorSchema = z
 		required_error: 'Color is required.',
 		invalid_type_error: 'Color must be a string.'
 	})
-	.regex(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/, 'Invalid hexadecimal color code');
+	.regex(/^#([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/, 'Invalid hexadecimal color code');
 
 export const theme = z.object({
 	background: z.object({
