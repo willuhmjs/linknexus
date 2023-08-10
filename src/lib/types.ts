@@ -94,6 +94,11 @@ export interface IUser extends mongoose.Document {
 	password: string;
 	username: string;
 	bio?: string;
+	meta: {
+		title: string;
+		description: string;	
+		color: string;	
+	}
 	standard: boolean;
 	theme: ITheme;
 	links: {

@@ -7,14 +7,23 @@ import { JWT_KEY } from '$config';
 export async function POST({ cookies, request, locals }) {
 	const user = locals.user;
 	const data = await request.json();
-	const { username, bio } = data;
+	const { username, bio, metaTitle, metaDescription, metaColor } = data;
 
+	const meta = {
+		title: metaTitle,
+		description: metaDescription,
+		color: metaColor
+	}
 	const validUser = user as IUser;
 	try {
 		validator.username.parse(username);
 		validator.bio.parse(bio);
+		validator.meta.parse(meta);
+
 		validUser.username = username;
 		validUser.bio = bio;
+		validUser.meta = meta;
+			
 		await validUser.save();
 		const token = jwt.sign({ username }, JWT_KEY, { expiresIn: '7d' });
 		cookies.set('session', token, {

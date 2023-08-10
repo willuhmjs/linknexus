@@ -12,6 +12,11 @@ const userSchema = new Schema(
 		password: { type: String, required: true, maxLength: 100 },
 		username: { type: String, required: true, unique: true, maxLength: 100 },
 		bio: { type: String, required: false, maxLength: 100 },
+		meta: {
+			title: { type: String, required: false, maxLength: 100, default: '' },
+			description: { type: String, required: false, maxLength: 100, default: '' },
+			color: { type: String, required: false, maxLength: 100, default: '#333333' },
+		},
 		// whether or not to use standard or grid mode
 		theme: {
 			display: { type: Number, required: true, default: 0, enum: Display },

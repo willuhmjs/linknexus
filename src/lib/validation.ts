@@ -129,3 +129,9 @@ export const link = z.object({
 	title,
 	image: z.string().url().optional()
 });
+
+export const meta = z.object({
+	title: z.string().max(60, { message: 'Title must be at most 60 characters long.' }),
+	description: z.string().max(160, { message: 'Description must be at most 160 characters long.' }),
+	color: colorSchema
+});
