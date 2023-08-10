@@ -11,6 +11,7 @@
 </script>
 
 <svelte:head>
+	<!-- favicon using svelte-gravatar component -->
 	<style>
 		main {
 			display: flex;

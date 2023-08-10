@@ -2,7 +2,14 @@
 	import { SpecialProps, type IUser, ButtonStyle, Font } from '$lib/types';
 	import Gravatar from 'svelte-gravatar';
 	export let user: IUser;
+	import md5 from "md5";
 </script>
+
+<svelte:head>
+	<title>@{user.username}</title>
+	<!-- favicon -->
+	<link rel="icon" href="https://gravatar.com/avatar/{md5(user.email.trim().toLowerCase())}?s=48&d=mp" />
+</svelte:head>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
