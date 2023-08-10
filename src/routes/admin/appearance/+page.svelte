@@ -1,13 +1,19 @@
 <script lang="ts">
 	import { Font, ButtonStyle, BackgroundType, Display } from '$lib/types.js';
+	import ColorPicker from 'svelte-awesome-color-picker';
+	import Input from '$lib/modules/ColorPicker/Input.svelte';
+	import Wrapper from '$lib/modules/ColorPicker/Wrapper.svelte';
 	import type { IUser } from '$lib/types.js';
 	export let data: { message: string; error: boolean; user: IUser };
 	import wuser from '$lib/user';
 	import api from '$lib/api';
 	import lighten from '$lib/lighten';
 	import { onMount } from 'svelte';
+	let submit: HTMLInputElement;
 
+	let initialTheme = structuredClone($wuser.theme);
 	onMount(() => {
+		
 		let form: HTMLFormElement = document.getElementById('form') as HTMLFormElement;
 		const inputs = form.querySelectorAll('input, select');
 		inputs.forEach((input) => {
@@ -19,6 +25,8 @@
 </script>
 
 <form id="form" on:submit|preventDefault>
+	<!-- for submitting the form programmatically via event dispatch -->
+	<input type="hidden" bind:this={submit} />
 	{#if data.error}
 		<p class="error">{data?.message}</p>
 	{/if}
@@ -50,9 +58,8 @@
 			</div>
 		{/each}
 		<h4>Color</h4>
-		<div class="colorBox">
-			<input type="color" name="backgroundColor" value={$wuser.theme.background.color} required />
-		</div>
+		<ColorPicker bind:hex={initialTheme.background.color} on:input={() => submit.dispatchEvent(new CustomEvent("change"))} canChangeMode={false} components={{ input: Input, wrapper: Wrapper }}/>
+		<input type='hidden' name='backgroundColor' value={initialTheme.background.color}/>
 	</div>
 
 	<h2>Button</h2>
@@ -82,22 +89,14 @@
 			</div>
 		{/each}
 		<h4>Border Color</h4>
-		<div class="colorBox">
-			<input
-				type="color"
-				name="buttonBorderColor"
-				value={$wuser.theme.button.borderColor}
-				required
-			/>
-		</div>
+		<ColorPicker bind:hex={initialTheme.button.borderColor} on:input={() => submit.dispatchEvent(new CustomEvent("change"))} canChangeMode={false} components={{ input: Input, wrapper: Wrapper }}/>
+		<input type='hidden' name='buttonBorderColor' value={initialTheme.button.borderColor}/>
 		<h4>Background Color</h4>
-		<div class="colorBox">
-			<input type="color" name="buttonColor" value={$wuser.theme.button.color} required />
-		</div>
+		<ColorPicker bind:hex={initialTheme.button.color} on:input={() => submit.dispatchEvent(new CustomEvent("change"))} canChangeMode={false} components={{ input: Input, wrapper: Wrapper }}/>
+		<input type='hidden' name='buttonColor' value={initialTheme.button.color}/>
 		<h4>Font Color</h4>
-		<div class="colorBox">
-			<input type="color" name="buttonFontColor" value={$wuser.theme.button.fontColor} required />
-		</div>
+		<ColorPicker bind:hex={initialTheme.button.fontColor} on:input={() => submit.dispatchEvent(new CustomEvent("change"))} canChangeMode={false} components={{ input: Input, wrapper: Wrapper }}/>
+		<input type='hidden' name='buttonFontColor' value={initialTheme.button.fontColor}/>
 	</div>
 
 	<h2>General</h2>
@@ -119,9 +118,8 @@
 			{/each}
 		</select>
 		<h4>Page Font Color</h4>
-		<div class="colorBox">
-			<input type="color" name="fontColor" value={$wuser.theme.fontColor} required />
-		</div>
+		<ColorPicker bind:hex={initialTheme.fontColor} on:input={() => submit.dispatchEvent(new CustomEvent("change"))} canChangeMode={false} components={{ input: Input, wrapper: Wrapper }}/>
+		<input type='hidden' name='fontColor' value={initialTheme.fontColor}/>
 	</div>
 </form>
 
@@ -155,23 +153,6 @@
 
 	.category h4 {
 		margin-bottom: 0.7rem;
-	}
-
-	.colorBox {
-		width: 50px;
-		height: 50px;
-		border-radius: 1rem;
-		overflow: hidden;
-		border: 2px solid #e5e5e5;
-	}
-
-	.colorBox > input[type='color'] {
-		border: 0;
-		padding: 0;
-		width: 200%;
-		height: 200%;
-		cursor: pointer;
-		transform: translate(-25%, -25%);
 	}
 
 	.radioBox {

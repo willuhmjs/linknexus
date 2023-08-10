@@ -19,7 +19,7 @@
 		? 'Times New Roman'
 		: Font[user.theme.font]}, Inter;"
 >
-	<div class="main" style={user.theme.display == 0 ? "max-width: 632px;" : "max-width: 90%"}>
+	<div class="main" style={user.theme.display == 0 ? "max-width: 640px;" : "max-width: 90%"}>
 		<Gravatar email={user.email} size={120} default="mp" rating="pg" style="border-radius: 50%;" />
 
 		<h1>@{user.username}</h1>
