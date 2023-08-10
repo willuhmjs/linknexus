@@ -8,7 +8,7 @@
 <svelte:head>
 	<title>@{user.username}</title>
 	<!-- favicon -->
-	<link rel="icon" href="https://gravatar.com/avatar/{md5(user.email.trim().toLowerCase())}?s=48&d=mp&r=pg" />
+	<link rel="icon" href="https://gravatar.com/avatar/{md5(user.email.trim().toLowerCase())}?s=16&d=mp&r=pg" />
 </svelte:head>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
