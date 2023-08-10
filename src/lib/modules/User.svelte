@@ -50,12 +50,12 @@
 			{:else if user.theme.display == 1}
 				<div class="linkGrid">
 					{#each user.links as link}
-						<div class="linkGridItem" on:click={() => window.open(link.url)}>
-							{#if link.image}
-								<img class="gridPreviewImg" src={link.image} alt={link.title} loading="lazy" />
-							{/if}
-							<p style={link.image ? "margin-bottom: 10px;" : "margin-bottom: 0px;"}>{link.title}</p>
-						</div>
+					<a href={link.url} target="_blank" class="linkGridItem">
+						{#if link.image}
+							<img class="gridPreviewImg" src={link.image} alt={link.title} loading="lazy" />
+						{/if}
+						<p style={link.image ? "margin-bottom: 10px;" : "margin-bottom: 0px;"}>{link.title}</p>
+					</a>
 					{/each}
 				</div>
 			{/if}
@@ -183,6 +183,9 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
+	color: var(--bt-font-color, #333);
+	text-decoration: none;
+	
 }
 
 .linkGridItem:hover {
