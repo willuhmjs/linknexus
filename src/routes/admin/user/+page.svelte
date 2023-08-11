@@ -29,7 +29,7 @@
 			<input type="text" name="bio" value={data?.user.bio || ''} autocomplete="off" />
 			<h4>Email</h4>
 			<p>{$wuser.email}</p>
-			<button type="submit" class="bt-primary">Update Profile</button>
+			<button type="submit" class="bt-primary">Update Account</button>
 		</form>
 	</div>
 
@@ -56,7 +56,7 @@
 				/>
 			</div>
 			<input type="hidden" name="metaColor" value={metaColor} />
-			<button type="submit" class="bt-primary">Update Profile</button>
+			<button type="submit" class="bt-primary">Update Meta</button>
 		</form>
 	</div>
 
