@@ -14,8 +14,13 @@
 			<li class={active === '/admin/user' ? 'active' : ''}>
 				<a href="/admin/user"><i class="fa-solid fa-user" />User</a>
 			</li>
+			<li class="smallLogout">
+				<form action="/auth/logout" method="POST">
+					<button type="submit"><i class="fa-solid fa-sign-out" />Logout</button>
+				</form>
+			</li>
 		</div>
-		<div style="float: right; display: inline-block;">
+		<div id="right" style="float: right; display: inline-block;">
 			<li>
 				<form action="/auth/logout" method="POST">
 					<button type="submit"><i class="fa-solid fa-sign-out" />Logout</button>
@@ -79,7 +84,11 @@
 		filter: brightness(1);
 	}
 
-	@media screen and (max-width: 400px) {
+	.smallLogout {
+		display: none;
+	}
+
+	@media screen and (max-width: 510px) {
 		/* vertical navbar */
 		nav {
 			padding: 0.5rem;
@@ -97,6 +106,19 @@
 			padding: 0.75rem;
 			border: none;
 			border-bottom: 2px solid transparent;
+		}
+
+		nav div:first-child {
+		width: 100%;
+	}
+
+
+		#right * {
+			display: none;
+		}
+
+		.smallLogout {
+			display: inline-block;
 		}
 	}
 </style>
