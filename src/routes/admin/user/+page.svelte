@@ -46,11 +46,13 @@
 		/>
 
 		<h4>Color</h4>
-		<ColorPicker
-			bind:hex={metaColor}
-			canChangeMode={false}
-			components={{ input: Input, wrapper: Wrapper }}
-		/>
+		<div style="margin-bottom: 1rem">
+			<ColorPicker
+				bind:hex={metaColor}
+				canChangeMode={false}
+				components={{ input: Input, wrapper: Wrapper }}
+			/>
+		</div>
 		<input type="hidden" name="metaColor" value={metaColor} />
 		<button type="submit" class="bt-primary">Update Profile</button>
 	</div>
