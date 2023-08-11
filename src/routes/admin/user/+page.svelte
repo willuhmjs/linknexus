@@ -12,7 +12,6 @@
 	let metaColor: string = $wuser.meta.color;
 </script>
 
-<form on:submit|preventDefault={async (e) => (data = await api('/admin/user/', e.target))}>
 	<h1>Account Information</h1>
 	<div class="category">
 		<Gravatar
@@ -23,40 +22,43 @@
 			style="border-radius: 50%; margin: 0.5rem;"
 		/>
 		<p class="error">{data?.message || ''}</p>
-		<h4>Username</h4>
-		<input type="text" name="username" value={data?.user.username || ''} autocomplete="off" />
-		<h4>Bio</h4>
-		<input type="text" name="bio" value={data?.user.bio || ''} autocomplete="off" />
-		<h4>Email</h4>
-		<p>{$wuser.email}</p>
-		<button type="submit" class="bt-primary">Update Profile</button>
+		<form on:submit|preventDefault={async (e) => (data = await api('/admin/user/account', e.target))}>
+			<h4>Username</h4>
+			<input type="text" name="username" value={data?.user.username || ''} autocomplete="off" />
+			<h4>Bio</h4>
+			<input type="text" name="bio" value={data?.user.bio || ''} autocomplete="off" />
+			<h4>Email</h4>
+			<p>{$wuser.email}</p>
+			<button type="submit" class="bt-primary">Update Profile</button>
+		</form>
 	</div>
 
 	<h1>Meta Information</h1>
 	<div class="category">
-		<h4>Title</h4>
-		<input type="text" name="metaTitle" value={data?.user.meta.title || ''} autocomplete="off" />
+		<form on:submit|preventDefault={async (e) => (data = await api('/admin/user/meta', e.target))}>
+			<h4>Title</h4>
+			<input type="text" name="metaTitle" value={data?.user.meta.title || ''} autocomplete="off" />
 
-		<h4>Description</h4>
-		<input
-			type="text"
-			name="metaDescription"
-			value={data?.user.meta.description || ''}
-			autocomplete="off"
-		/>
-
-		<h4>Color</h4>
-		<div style="margin-bottom: 1rem">
-			<ColorPicker
-				bind:hex={metaColor}
-				canChangeMode={false}
-				components={{ input: Input, wrapper: Wrapper }}
+			<h4>Description</h4>
+			<input
+				type="text"
+				name="metaDescription"
+				value={data?.user.meta.description || ''}
+				autocomplete="off"
 			/>
-		</div>
-		<input type="hidden" name="metaColor" value={metaColor} />
-		<button type="submit" class="bt-primary">Update Profile</button>
+
+			<h4>Color</h4>
+			<div style="margin-bottom: 1rem">
+				<ColorPicker
+					bind:hex={metaColor}
+					canChangeMode={false}
+					components={{ input: Input, wrapper: Wrapper }}
+				/>
+			</div>
+			<input type="hidden" name="metaColor" value={metaColor} />
+			<button type="submit" class="bt-primary">Update Profile</button>
+		</form>
 	</div>
-</form>
 
 <style>
 	.category {
