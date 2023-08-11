@@ -60,6 +60,10 @@ export const register = async (
 		await User.create({
 			email,
 			username,
+			meta: {
+				title: username,
+				description: `Landing page for ${username}.`,
+			},
 			password: hashedPassword
 		});
 
