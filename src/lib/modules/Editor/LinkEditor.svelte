@@ -107,7 +107,7 @@
 								placeholder="https://willuhmjs.com/image.png"
 							/>
 						</label>
-						<button type="submit" class="bt-primary">Update</button>
+						<button type="submit" class="bt-primary">Update Link</button>
 					</form>
 				</div>
 			</li>
