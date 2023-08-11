@@ -2,30 +2,8 @@
 	import { SpecialProps, type IUser, ButtonStyle, Font } from '$lib/types';
 	import Gravatar from 'svelte-gravatar';
 	export let user: IUser;
-	import { browser } from '$app/environment'
-	import md5 from "md5";
 </script>
 
-<svelte:head>
-	{#if browser}
-	<title>{user.meta.title}</title>
-	<link rel="icon" href="https://gravatar.com/avatar/{md5(user.email.trim().toLowerCase())}?s=16&d=mp&r=pg" />
-	<meta name="description" content={user.meta.description}>
-
-	<meta property="og:url" content="https://willuhmjs.com">
-	<meta property="og:type" content="website">
-	<meta property="og:title" content={user.meta.title}>
-	<meta property="og:description" content={user.meta.description}>
-
-	<meta name="twitter:card" content="summary_large_image">
-	<meta property="twitter:domain" content={window.location.hostname}>
-	<meta property="twitter:url" content={window.location.href}>
-	<meta name="twitter:title" content={user.meta.title}>
-	<meta name="twitter:description" content={user.meta.description}>
-
-	<meta name="theme-color" content={user.meta.color} />
-	{/if}
-</svelte:head>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
