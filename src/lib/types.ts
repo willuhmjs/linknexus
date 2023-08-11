@@ -86,7 +86,7 @@ export enum Font {
 
 export enum Display {
 	List,
-	Grid	
+	Grid
 }
 
 export interface IUser extends mongoose.Document {
@@ -96,9 +96,9 @@ export interface IUser extends mongoose.Document {
 	bio?: string;
 	meta: {
 		title: string;
-		description: string;	
-		color: string;	
-	}
+		description: string;
+		color: string;
+	};
 	standard: boolean;
 	theme: ITheme;
 	links: {

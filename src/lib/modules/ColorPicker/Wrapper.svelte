@@ -33,7 +33,7 @@
 	.isPopup {
 		position: absolute;
 		left: 45px;
-        bottom: 0px;
+		bottom: 0px;
 		z-index: var(--picker-z-index, 2);
 	}
 </style>

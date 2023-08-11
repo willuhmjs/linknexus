@@ -4,7 +4,6 @@
 	export let user: IUser;
 </script>
 
-
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
@@ -20,14 +19,14 @@
 		? 'Times New Roman'
 		: Font[user.theme.font]}, Inter;"
 >
-	<div class="main" style={user.theme.display == 0 ? "max-width: 640px;" : "max-width: 90%"}>
+	<div class="main" style={user.theme.display == 0 ? 'max-width: 640px;' : 'max-width: 90%'}>
 		<Gravatar email={user.email} size={120} default="mp" rating="pg" style="border-radius: 50%;" />
 
 		<h1>@{user.username}</h1>
 		{#if user.bio}
 			<p>{user.bio}</p>
 		{/if}
-			{#if user.theme.display == 0}
+		{#if user.theme.display == 0}
 			<ul class="linkContainer">
 				{#each user.links as link}
 					<li class="linkItem">
@@ -40,19 +39,18 @@
 					</li>
 				{/each}
 			</ul>
-
-			{:else if user.theme.display == 1}
-				<div class="linkGrid">
-					{#each user.links as link}
+		{:else if user.theme.display == 1}
+			<div class="linkGrid">
+				{#each user.links as link}
 					<a href={link.url} target="_blank" class="linkGridItem">
 						{#if link.image}
 							<img class="gridPreviewImg" src={link.image} alt={link.title} loading="lazy" />
 						{/if}
-						<p style={link.image ? "margin-bottom: 10px;" : "margin-bottom: 0px;"}>{link.title}</p>
+						<p style={link.image ? 'margin-bottom: 10px;' : 'margin-bottom: 0px;'}>{link.title}</p>
 					</a>
-					{/each}
-				</div>
-			{/if}
+				{/each}
+			</div>
+		{/if}
 		<ul class="specialContainer">
 			{#each user.specials as link}
 				<li class="specialItem">
@@ -158,48 +156,47 @@
 	}
 
 	.linkGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: 10px;
-  justify-items: center;
-  align-items: center;
-  margin-top: 2rem;
-}
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+		grid-gap: 10px;
+		justify-items: center;
+		align-items: center;
+		margin-top: 2rem;
+	}
 
-.linkGridItem {
-  width: 100%;
-  height: 200px;
-  border-radius: 0.5rem;
-  border: 2px var(--bt-border) var(--bt-border-color, #e8e8ed);
-  background-color: var(--bt-color, #fafafa);
-	border: 2px var(--bt-border) var(--bt-border-color, #e8e8ed);
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-	color: var(--bt-font-color, #333);
-	text-decoration: none;
-	
-}
+	.linkGridItem {
+		width: 100%;
+		height: 200px;
+		border-radius: 0.5rem;
+		border: 2px var(--bt-border) var(--bt-border-color, #e8e8ed);
+		background-color: var(--bt-color, #fafafa);
+		border: 2px var(--bt-border) var(--bt-border-color, #e8e8ed);
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		color: var(--bt-font-color, #333);
+		text-decoration: none;
+	}
 
-.linkGridItem:hover {
-	animation: enlarge 0.2s ease-in-out forwards;
-	cursor: pointer;
-}
+	.linkGridItem:hover {
+		animation: enlarge 0.2s ease-in-out forwards;
+		cursor: pointer;
+	}
 
-/* image at top and p at bottom */
-.linkGridItem p {
-	font-size: 1rem;
-	margin-top: 0;
-}
+	/* image at top and p at bottom */
+	.linkGridItem p {
+		font-size: 1rem;
+		margin-top: 0;
+	}
 
-.gridPreviewImg {
-	  max-height: 140px;
-	    max-width: 140px;
-	  margin: auto 0;
-	border-radius: 0.5rem;
-	object-fit: cover;
-}
+	.gridPreviewImg {
+		max-height: 140px;
+		max-width: 140px;
+		margin: auto 0;
+		border-radius: 0.5rem;
+		object-fit: cover;
+	}
 
 	@keyframes enlarge {
 		0% {

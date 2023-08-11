@@ -15,7 +15,7 @@ const userSchema = new Schema(
 		meta: {
 			title: { type: String, required: false, maxLength: 100, default: '' },
 			description: { type: String, required: false, maxLength: 100, default: '' },
-			color: { type: String, required: false, maxLength: 100, default: '#333333' },
+			color: { type: String, required: false, maxLength: 100, default: '#333333' }
 		},
 		// whether or not to use standard or grid mode
 		theme: {

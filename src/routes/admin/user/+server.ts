@@ -13,7 +13,7 @@ export async function POST({ cookies, request, locals }) {
 		title: metaTitle,
 		description: metaDescription,
 		color: metaColor
-	}
+	};
 	const validUser = user as IUser;
 	try {
 		validator.username.parse(username);
@@ -23,7 +23,7 @@ export async function POST({ cookies, request, locals }) {
 		validUser.username = username;
 		validUser.bio = bio;
 		validUser.meta = meta;
-			
+
 		await validUser.save();
 		const token = jwt.sign({ username }, JWT_KEY, { expiresIn: '7d' });
 		cookies.set('session', token, {

@@ -14,16 +14,20 @@
 		/* prevent default behavior on safari */
 	}}
 >
-
-		<div class="colorBox">
-			<input type="color" value={hex} on:click|preventDefault={() => {
+	<div class="colorBox">
+		<input
+			type="color"
+			value={hex}
+			on:click|preventDefault={() => {
 				/* prevent default behavior on most browsers */
 			}}
 			on:mousedown|preventDefault={() => {
 				/* prevent default behavior on safari */
 			}}
-			aria-haspopup="dialog" required />
-		</div>
+			aria-haspopup="dialog"
+			required
+		/>
+	</div>
 </label>
 
 <style>

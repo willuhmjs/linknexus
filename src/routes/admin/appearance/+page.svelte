@@ -13,7 +13,6 @@
 
 	let initialTheme = structuredClone($wuser.theme);
 	onMount(() => {
-		
 		let form: HTMLFormElement = document.getElementById('form') as HTMLFormElement;
 		const inputs = form.querySelectorAll('input, select');
 		inputs.forEach((input) => {
@@ -58,8 +57,13 @@
 			</div>
 		{/each}
 		<h4>Color</h4>
-		<ColorPicker bind:hex={initialTheme.background.color} on:input={() => submit.dispatchEvent(new CustomEvent("change"))} canChangeMode={false} components={{ input: Input, wrapper: Wrapper }}/>
-		<input type='hidden' name='backgroundColor' value={initialTheme.background.color}/>
+		<ColorPicker
+			bind:hex={initialTheme.background.color}
+			on:input={() => submit.dispatchEvent(new CustomEvent('change'))}
+			canChangeMode={false}
+			components={{ input: Input, wrapper: Wrapper }}
+		/>
+		<input type="hidden" name="backgroundColor" value={initialTheme.background.color} />
 	</div>
 
 	<h2>Button</h2>
@@ -89,14 +93,29 @@
 			</div>
 		{/each}
 		<h4>Border Color</h4>
-		<ColorPicker bind:hex={initialTheme.button.borderColor} on:input={() => submit.dispatchEvent(new CustomEvent("change"))} canChangeMode={false} components={{ input: Input, wrapper: Wrapper }}/>
-		<input type='hidden' name='buttonBorderColor' value={initialTheme.button.borderColor}/>
+		<ColorPicker
+			bind:hex={initialTheme.button.borderColor}
+			on:input={() => submit.dispatchEvent(new CustomEvent('change'))}
+			canChangeMode={false}
+			components={{ input: Input, wrapper: Wrapper }}
+		/>
+		<input type="hidden" name="buttonBorderColor" value={initialTheme.button.borderColor} />
 		<h4>Background Color</h4>
-		<ColorPicker bind:hex={initialTheme.button.color} on:input={() => submit.dispatchEvent(new CustomEvent("change"))} canChangeMode={false} components={{ input: Input, wrapper: Wrapper }}/>
-		<input type='hidden' name='buttonColor' value={initialTheme.button.color}/>
+		<ColorPicker
+			bind:hex={initialTheme.button.color}
+			on:input={() => submit.dispatchEvent(new CustomEvent('change'))}
+			canChangeMode={false}
+			components={{ input: Input, wrapper: Wrapper }}
+		/>
+		<input type="hidden" name="buttonColor" value={initialTheme.button.color} />
 		<h4>Font Color</h4>
-		<ColorPicker bind:hex={initialTheme.button.fontColor} on:input={() => submit.dispatchEvent(new CustomEvent("change"))} canChangeMode={false} components={{ input: Input, wrapper: Wrapper }}/>
-		<input type='hidden' name='buttonFontColor' value={initialTheme.button.fontColor}/>
+		<ColorPicker
+			bind:hex={initialTheme.button.fontColor}
+			on:input={() => submit.dispatchEvent(new CustomEvent('change'))}
+			canChangeMode={false}
+			components={{ input: Input, wrapper: Wrapper }}
+		/>
+		<input type="hidden" name="buttonFontColor" value={initialTheme.button.fontColor} />
 	</div>
 
 	<h2>General</h2>
@@ -118,8 +137,13 @@
 			{/each}
 		</select>
 		<h4>Page Font Color</h4>
-		<ColorPicker bind:hex={initialTheme.fontColor} on:input={() => submit.dispatchEvent(new CustomEvent("change"))} canChangeMode={false} components={{ input: Input, wrapper: Wrapper }}/>
-		<input type='hidden' name='fontColor' value={initialTheme.fontColor}/>
+		<ColorPicker
+			bind:hex={initialTheme.fontColor}
+			on:input={() => submit.dispatchEvent(new CustomEvent('change'))}
+			canChangeMode={false}
+			components={{ input: Input, wrapper: Wrapper }}
+		/>
+		<input type="hidden" name="fontColor" value={initialTheme.fontColor} />
 	</div>
 </form>
 

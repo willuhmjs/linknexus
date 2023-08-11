@@ -1,23 +1,27 @@
 <script>
 	import { page } from '$app/stores';
 	let user = $page.data.user;
-	import md5 from "md5";
+	import md5 from 'md5';
 </script>
+
 <svelte:head>
 	{#if user}
-	<title>{user.meta.title}</title>
-	<link rel="icon" href="https://gravatar.com/avatar/{md5(user.email.trim().toLowerCase())}?s=16&d=mp&r=pg" />
-	<meta name="description" content={user.meta.description}>
+		<title>{user.meta.title}</title>
+		<link
+			rel="icon"
+			href="https://gravatar.com/avatar/{md5(user.email.trim().toLowerCase())}?s=16&d=mp&r=pg"
+		/>
+		<meta name="description" content={user.meta.description} />
 
-	<meta property="og:type" content="website">
-	<meta property="og:title" content={user.meta.title}>
-	<meta property="og:description" content={user.meta.description}>
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={user.meta.title} />
+		<meta property="og:description" content={user.meta.description} />
 
-	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:title" content={user.meta.title}>
-	<meta name="twitter:description" content={user.meta.description}>
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={user.meta.title} />
+		<meta name="twitter:description" content={user.meta.description} />
 
-	<meta name="theme-color" content={user.meta.color} />
+		<meta name="theme-color" content={user.meta.color} />
 	{/if}
 	<link
 		rel="stylesheet"

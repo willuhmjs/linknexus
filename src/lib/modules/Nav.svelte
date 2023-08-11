@@ -109,9 +109,8 @@
 		}
 
 		nav div:first-child {
-		width: 100%;
-	}
-
+			width: 100%;
+		}
 
 		#right * {
 			display: none;
