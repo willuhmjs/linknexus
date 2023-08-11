@@ -2,8 +2,6 @@
 	export let wrapper: HTMLElement;
 	export let isOpen: boolean;
 	export let isPopup: boolean;
-	/* svelte-ignore unused-export-let */
-	export let toRight: boolean;
 </script>
 
 <div
