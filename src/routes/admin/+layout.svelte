@@ -151,7 +151,7 @@
 		<section>
 			<div
 				style={$wuser.theme.background.type == '1'
-					? `background: linear-gradient(0deg, ${lighten($wuser.theme.background.color, 50)} 0%, ${
+					? `background: linear-gradient(0deg, ${lighten($wuser.theme.background.color, 30)} 0%, ${
 							$wuser.theme.background.color
 					  } 100%);`
 					: `background: ${$wuser.theme.background.color};`}
