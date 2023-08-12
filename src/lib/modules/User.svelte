@@ -119,7 +119,7 @@
 	}
 
 	li.specialItem a {
-		font-size: 2.2rem;
+		font-size: 2.38rem;
 		color: black;
 		margin: 0 0.5rem;
 		color: var(--font-color);
