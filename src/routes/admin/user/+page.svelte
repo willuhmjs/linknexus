@@ -68,6 +68,19 @@
 		</form>
 	</div>
 
+	<h1>Analytics</h1>
+	<div class="category">
+		<h4>Google Measurement ID</h4>
+		<form on:submit|preventDefault={async (e) => (data = await api('/admin/user/analytics', e.target))}>
+			<input
+				type="text"
+				name="measurementId"
+				value={data?.user.measurement_id || ''}
+				autocomplete="off"
+			/>
+			<button type="submit" class="bt-primary" style="margin-top: 1rem;">Update Analytics</button>
+		</form>
+	</div>
 <style>
 	.category {
 		padding: 0.5rem;
@@ -87,9 +100,5 @@
 	input,
 	form button {
 		width: 100%;
-	}
-
-	form button {
-		margin: 0.15rem 0;
 	}
 </style>
