@@ -12,6 +12,7 @@ const userSchema = new Schema(
 		password: { type: String, required: true, maxLength: 100 },
 		username: { type: String, required: true, unique: true, maxLength: 100 },
 		bio: { type: String, required: false, maxLength: 100 },
+		measurement_id: { type: String, required: false, maxLength: 13 },
 		meta: {
 			title: { type: String, required: false, maxLength: 60, default: '' },
 			description: { type: String, required: false, maxLength: 160, default: '' },

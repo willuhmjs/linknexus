@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { SpecialProps, type IUser, ButtonStyle, Font } from '$lib/types';
 	import Gravatar from 'svelte-gravatar';
+	import Analytics from './Analytics.svelte';
 	export let user: IUser;
 </script>
+<Analytics measurement_id={user.measurement_id} />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

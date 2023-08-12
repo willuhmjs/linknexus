@@ -94,6 +94,7 @@ export interface IUser extends mongoose.Document {
 	password: string;
 	username: string;
 	bio?: string;
+	measurement_id: string;
 	meta: {
 		title: string;
 		description: string;
