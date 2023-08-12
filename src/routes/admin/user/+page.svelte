@@ -6,8 +6,8 @@
 	import wuser from '$lib/user';
 
 	import ColorPicker from 'svelte-awesome-color-picker';
-	import Input from '$lib/modules/ColorPicker/Input.svelte';
-	import Wrapper from '$lib/modules/ColorPicker/Wrapper.svelte';
+	import Input from '$lib/Components/ColorPicker/Input.svelte';
+	import Wrapper from '$lib/Components/ColorPicker/Wrapper.svelte';
 
 	let metaColor: string = $wuser.meta.color;
 </script>

@@ -2,8 +2,8 @@
 	import { SpecialLink } from '$lib/types.js';
 	export let data;
 	import wuser from '$lib/user';
-	import LinkEditor from '$lib/modules/Editor/LinkEditor.svelte';
-	import SpecialEditor from '$lib/modules/Editor/SpecialEditor.svelte';
+	import LinkEditor from '$lib/Components/Editor/LinkEditor.svelte';
+	import SpecialEditor from '$lib/Components/Editor/SpecialEditor.svelte';
 	import api from '$lib/api';
 	//let links: { title: string; url: string; _id: string }[] = $wuser?.links;
 	//let specials: { type: SpecialLink; username: string; _id: string }[] = $wuser?.specials;

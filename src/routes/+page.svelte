@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import User from '$lib/modules/User.svelte';
+	import User from '$lib/Components/User.svelte';
 	import lighten from '$lib/lighten';
 	export let data: PageData;
 </script>

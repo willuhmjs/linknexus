@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Nav from '$lib/modules/Nav.svelte';
-	import User from '$lib/modules/User.svelte';
+	import Nav from '$lib/Components/Nav.svelte';
+	import User from '$lib/Components/User.svelte';
 	import { page } from '$app/stores';
 	import wuser from '$lib/user';
 	import lighten from '$lib/lighten.js';

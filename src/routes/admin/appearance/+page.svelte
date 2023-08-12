@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { Font, ButtonStyle, BackgroundType, Display } from '$lib/types.js';
 	import ColorPicker from 'svelte-awesome-color-picker';
-	import Input from '$lib/modules/ColorPicker/Input.svelte';
-	import Wrapper from '$lib/modules/ColorPicker/Wrapper.svelte';
+	import Input from '$lib/Components/ColorPicker/Input.svelte';
+	import Wrapper from '$lib/Components/ColorPicker/Wrapper.svelte';
 	import type { IUser } from '$lib/types.js';
 	export let data: { message: string; error: boolean; user: IUser };
 	import wuser from '$lib/user';
