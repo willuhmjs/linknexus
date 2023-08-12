@@ -13,9 +13,10 @@ const userSchema = new Schema(
 		username: { type: String, required: true, unique: true, maxLength: 100 },
 		bio: { type: String, required: false, maxLength: 100 },
 		meta: {
-			title: { type: String, required: false, maxLength: 100, default: '' },
-			description: { type: String, required: false, maxLength: 100, default: '' },
-			color: { type: String, required: false, maxLength: 100, default: '#333333' }
+			title: { type: String, required: false, maxLength: 60, default: '' },
+			description: { type: String, required: false, maxLength: 160, default: '' },
+			color: { type: String, required: false, maxLength: 100, default: '#333333' },
+			image: { type: String, required: false, maxLength: 300, default: '' }
 		},
 		// whether or not to use standard or grid mode
 		theme: {
@@ -36,7 +37,7 @@ const userSchema = new Schema(
 		},
 		links: [
 			{
-				title: { type: String, required: true, maxLength: 100, default: 'New Link' },
+				title: { type: String, required: true, maxLength: 60, default: 'New Link' },
 				url: { type: String, required: true, maxLength: 300 },
 				image: { type: String, required: false, maxLength: 300 }
 			}

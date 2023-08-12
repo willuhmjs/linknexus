@@ -97,6 +97,7 @@ export interface IUser extends mongoose.Document {
 	meta: {
 		title: string;
 		description: string;
+		image: string;
 		color: string;
 	};
 	standard: boolean;

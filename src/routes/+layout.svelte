@@ -16,11 +16,11 @@
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content={user.meta.title} />
 		<meta property="og:description" content={user.meta.description} />
-
+		<meta property="og:image" content={user.meta.image} />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={user.meta.title} />
 		<meta name="twitter:description" content={user.meta.description} />
-
+		<meta name="twitter:image" content={user.meta.image} />
 		<meta name="theme-color" content={user.meta.color} />
 	{/if}
 	<link

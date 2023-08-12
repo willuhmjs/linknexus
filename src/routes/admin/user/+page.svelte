@@ -47,6 +47,14 @@
 				autocomplete="off"
 			/>
 
+			<h4>Image</h4>
+			<input
+				type="text"
+				name="metaImage"
+				value={data?.user.meta.image || ''}
+				autocomplete="off"
+			/>
+
 			<h4>Color</h4>
 			<div style="margin-bottom: 1rem">
 				<ColorPicker
