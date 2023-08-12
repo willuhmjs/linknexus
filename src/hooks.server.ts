@@ -12,6 +12,8 @@ setInterval(() => {
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const request = event.request;
+	request.headers.get("Referer")
+
 	// todo make this better
 	const ip =
 		request.headers.get('cf-connecting-ip') ||

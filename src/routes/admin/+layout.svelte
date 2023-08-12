@@ -4,10 +4,17 @@
 	import { page } from '$app/stores';
 	import wuser from '$lib/user';
 	import lighten from '$lib/lighten.js';
+	import { onMount } from 'svelte';
 	export let data;
 	if (data.user) {
 		$wuser = data.user;
 	}
+
+	onMount(() => {
+		if (window.document.referrer) {
+			console.log(window.document.referrer);
+		}
+	});
 </script>
 
 <svelte:head>
