@@ -84,7 +84,6 @@
 		list-style: none;
 		padding: 0;
 		margin: 0;
-		overflow: hidden;
 	}
 
 	li.linkItem {
@@ -137,7 +136,7 @@
 		align-items: center;
 		justify-content: center;
 		margin-top: 2rem;
-		overflow: auto;
+		overflow: hidden;
 		flex-wrap: wrap;
 		line-height: 3rem;
 	}
