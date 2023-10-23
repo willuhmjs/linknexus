@@ -3,12 +3,14 @@ import { login, register } from '$lib/auth';
 import * as validator from '$lib/validation';
 import { User } from '$lib/mongo';
 import { SAAS } from '$config';
+import { LoginTypes } from "$lib/types";
+
 export const actions = {
 	register: async ({ cookies, request }) => {
 		if (!SAAS) {
 			const numUsers = await User.countDocuments();
 			if (numUsers > 0) {
-				return fail(401, { success: false, message: 'Registration is disabled!' });
+				return fail(401, { success: false, message: 'Registration is disabled!', type: LoginTypes.REGISTER });
 			}
 		}
 		const data = await request.formData();
@@ -21,7 +23,7 @@ export const actions = {
 			validator.username.parse(username);
 			validator.password.parse(password);
 		} catch (e) {
-			return fail(403, { success: false, message: e.errors[0].message, username, email });
+			return fail(403, { success: false, message: e.errors[0].message, username, email, type: LoginTypes.REGISTER });
 		}
 
 		if (!username || !password || !email) {
@@ -37,7 +39,7 @@ export const actions = {
 			});
 			throw redirect(303, '/admin/');
 		} else {
-			return fail(403, { success, message: 'User already exists!', username, email });
+			return fail(403, { success, message: 'User already exists!', username, email, type: LoginTypes.REGISTER });
 		}
 	},
 
@@ -46,7 +48,7 @@ export const actions = {
 		const username = data.get('username')?.toString();
 		const password = data.get('password')?.toString();
 		if (!username || !password) {
-			return fail(403, { success: false, message: 'Invalid username or password!' });
+			return fail(403, { success: false, message: 'Invalid username or password!', type: LoginTypes.LOGIN });
 		}
 
 		const { success, token } = await login(username, password);
@@ -58,7 +60,7 @@ export const actions = {
 			});
 			throw redirect(303, '/admin/');
 		} else {
-			return fail(403, { success, message: 'Invalid username or password!', username });
+			return fail(403, { success, message: 'Invalid username or password!', username, type: LoginTypes.LOGIN });
 		}
 	}
 };

@@ -131,3 +131,8 @@ export interface ITheme extends mongoose.Document {
 	font: Font;
 	fontColor: string;
 }
+
+export enum LoginTypes {
+	LOGIN = "Login",
+	REGISTER = "Register"
+};
