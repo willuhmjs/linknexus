@@ -1,8 +1,8 @@
 import mongoose, { Schema } from 'mongoose';
-import { MONGO_URI } from '$config';
+import { MONGO_URL } from '$config';
 import { BackgroundType, ButtonStyle, Font, SpecialLink, Display, type IUser } from '$lib/types';
 export const connect = async () => {
-	await mongoose.connect(MONGO_URI);
+	await mongoose.connect(MONGO_URL);
 	console.log('connected to mongo');
 };
 
