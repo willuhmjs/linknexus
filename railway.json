@@ -6,7 +6,7 @@
 		"nixpacksPlan": {
 			"phases": {
 				"setup": {
-					"nixPkgs": ["nodejs_20"]
+					"nixPkgs": ["nodejs_20", "yarn"]
 				}
 			}
 		}
