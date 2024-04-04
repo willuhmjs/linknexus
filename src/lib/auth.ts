@@ -8,6 +8,11 @@ import type { Cookies } from '@sveltejs/kit';
 
 type Projection = ProjectionType<IUser>;
 
+bcrypt.setRandomFallback((len) => {
+	const buf = new Uint8Array(len);
+	return buf.map(() => Math.floor(Math.random() * 256));
+})
+
 export const login = async (
 	username: string,
 	password: string
